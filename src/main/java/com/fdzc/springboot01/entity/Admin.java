@@ -1,23 +1,18 @@
 package com.fdzc.springboot01.entity;
 
-import org.springframework.stereotype.Component;
-
-@Component
-public class User {
+public class Admin {
 
     private Integer id;
     private String name;
     private String password;
-    private Integer point;
 
-    public User() {
+    public Admin() {
     }
 
-    public User(Integer id, String name, String password, Integer point) {
+    public Admin(Integer id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
-        this.point = point;
     }
 
     public Integer getId() {
@@ -44,21 +39,12 @@ public class User {
         this.password = password;
     }
 
-    public Integer getPoint() {
-        return point;
-    }
-
-    public void setPoint(Integer point) {
-        this.point = point;
-    }
-
     @Override
     public String toString() {
-        return "User{" +
+        return "Admin{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", point=" + point +
                 '}';
     }
 }

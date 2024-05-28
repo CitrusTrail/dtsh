@@ -95,10 +95,10 @@ DROP TABLE IF EXISTS `travel`;
 CREATE TABLE `travel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `travel_start-time` datetime,
-  `travel_end-time` datetime,
-  `travel_total-time` datetime,
-  `travel_mode` varchar(50),  -- 出行方式，如：步行、骑行、公交等
+  `start_time` datetime,
+  `end_time` datetime,
+  `total_time` int(11),
+  `mode` varchar(50),  -- 出行方式，如：步行、骑行、公交等
   `carbon` decimal(10, 2),  -- 此次出行的减少的碳排放量
   `description` text,  -- 路线详情或其他备注
   PRIMARY KEY (`id`) USING BTREE
@@ -116,9 +116,9 @@ INSERT INTO `travel` VALUES (2, 2, NULL, NULL, NULL, '骑行', 999.99, NULL);
 DROP TABLE IF EXISTS `group`;
 CREATE TABLE `group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `group_name` varchar(255),
-  `group_description` text,
-  `created_by` int(11),
+  `name` varchar(255),
+  `description` text,
+  `creator` int(11),
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
@@ -151,9 +151,9 @@ DROP TABLE IF EXISTS `chat`;
 CREATE TABLE `chat` (
   `group_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `post_content` text,
-  `posted_at` datetime NOT NULL,
-  PRIMARY KEY (`group_id`, `user_id`, `posted_at`) USING BTREE
+  `content` text,
+  `time` datetime NOT NULL,
+  PRIMARY KEY (`group_id`, `user_id`, `time`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -169,8 +169,8 @@ DROP TABLE IF EXISTS `share`;
 CREATE TABLE `share` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `post_content` text,
-  `posted_at` datetime NOT NULL,
+  `content` text,
+  `time` datetime NOT NULL,
   `likes` INT DEFAULT 0,  -- 点赞数
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
@@ -227,14 +227,14 @@ DROP TABLE IF EXISTS `user_carbon`;
 CREATE TABLE `user_carbon` (
   `user_id` int(11) NOT NULL,
   `date` date,
-  `carbon` int(11),
+  `carbon` decimal(10, 2),
   PRIMARY KEY (`user_id`, `date`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_carbon
 -- ----------------------------
-INSERT INTO `user_carbon` VALUES (1, '2024-05-01', 999);
-INSERT INTO `user_carbon` VALUES (1, '2024-05-02', 999);
+INSERT INTO `user_carbon` VALUES (1, '2024-05-01', 999.99);
+INSERT INTO `user_carbon` VALUES (1, '2024-05-02', 999.99);
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -1,23 +1,22 @@
 package com.fdzc.springboot01.entity;
 
-import org.springframework.stereotype.Component;
-
-@Component
-public class User {
+public class Goods {
 
     private Integer id;
     private String name;
-    private String password;
     private Integer point;
+    private Integer stock;
+    private String description;
 
-    public User() {
+    public Goods() {
     }
 
-    public User(Integer id, String name, String password, Integer point) {
+    public Goods(Integer id, String name, Integer point, Integer stock, String description) {
         this.id = id;
         this.name = name;
-        this.password = password;
         this.point = point;
+        this.stock = stock;
+        this.description = description;
     }
 
     public Integer getId() {
@@ -36,14 +35,6 @@ public class User {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Integer getPoint() {
         return point;
     }
@@ -52,13 +43,30 @@ public class User {
         this.point = point;
     }
 
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
+        return "Goods{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
                 ", point=" + point +
+                ", stock=" + stock +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
