@@ -51,8 +51,8 @@ public class TaskService {
         return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
     }
 
-    public String deleteOneUserTask(Integer id) {
-        Integer res = userTaskMapper.deleteById(id);
+    public String deleteOneUserTask(UserTask userTask) {
+        Integer res = userTaskMapper.deleteById(userTask);
         return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
     }
 

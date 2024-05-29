@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class UserCarbonService {
+public class CarbonService {
 
     @Resource
     UserCarbonMapper userCarbonMapper;

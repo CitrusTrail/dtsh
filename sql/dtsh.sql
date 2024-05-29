@@ -149,18 +149,19 @@ INSERT INTO `user_group` VALUES (2, 1);
 -- ----------------------------
 DROP TABLE IF EXISTS `chat`;
 CREATE TABLE `chat` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `content` text,
   `time` datetime NOT NULL,
-  PRIMARY KEY (`group_id`, `user_id`, `time`) USING BTREE
+  PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of chat
 -- ----------------------------
-INSERT INTO `chat` VALUES (1, 1, '666', '2024-05-01 12:00:00');
-INSERT INTO `chat` VALUES (2, 2, '123', '2024-05-01 12:00:00');
+INSERT INTO `chat` VALUES (1, 1, 1, '666', '2024-05-01 12:00:00');
+INSERT INTO `chat` VALUES (2, 1, 2, '123', '2024-05-01 12:00:00');
 
 -- ----------------------------
 -- Table structure for share

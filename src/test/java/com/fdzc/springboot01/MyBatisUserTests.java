@@ -1,10 +1,7 @@
 package com.fdzc.springboot01;
 
 import com.fdzc.springboot01.entity.User;
-import com.fdzc.springboot01.mapper.DeptMapper;
 import com.fdzc.springboot01.mapper.UserMapper;
-import com.fdzc.springboot01.vo.DeptVo;
-import com.fdzc.springboot01.vo.UserVo;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 public class MyBatisUserTests {
 
@@ -39,48 +35,6 @@ public class MyBatisUserTests {
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         User user = userMapper.selectById(1);
         System.out.println(user);
-    }
-
-    @Test
-    public void selectAllUserTest(){
-        SqlSession sqlSession = MyBatisUserTests.getSqlSession();
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        List<User> users = userMapper.selectAll();
-        users.forEach(System.out::println);
-    }
-
-    @Test
-    public void selectUserDeptTest(){
-        SqlSession sqlSession = MyBatisUserTests.getSqlSession();
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        List<UserVo> userVos = userMapper.selectUserDept();
-        userVos.forEach(System.out::println);
-    }
-
-    @Test
-    public void insertUserTest(){
-        SqlSession sqlSession = MyBatisUserTests.getSqlSession();
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        User user = new User(null,"class2ZZZ","753");
-        Integer num = userMapper.insert(user);
-        System.out.println(num);
-    }
-
-    @Test
-    public void updateUserTest(){
-        SqlSession sqlSession = MyBatisUserTests.getSqlSession();
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        User user = new User(13,"honghaier1111","753");
-        Integer num = userMapper.update(user);
-        System.out.println(num);
-    }
-
-    @Test
-    public void deleteUserTest(){
-        SqlSession sqlSession = MyBatisUserTests.getSqlSession();
-        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        Integer num = userMapper.delete(13);
-        System.out.println(num);
     }
 
 

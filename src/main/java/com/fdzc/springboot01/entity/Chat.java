@@ -1,7 +1,12 @@
 package com.fdzc.springboot01.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Chat {
 
+    private Integer id;
     private Integer groupId;
     private Integer userId;
     private String content;
@@ -10,11 +15,20 @@ public class Chat {
     public Chat() {
     }
 
-    public Chat(Integer groupId, Integer userId, String content, String time) {
+    public Chat(Integer id, Integer groupId, Integer userId, String content, String time) {
+        this.id = id;
         this.groupId = groupId;
         this.userId = userId;
         this.content = content;
         this.time = time;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getGroupId() {
@@ -52,7 +66,8 @@ public class Chat {
     @Override
     public String toString() {
         return "Chat{" +
-                "groupId=" + groupId +
+                "id=" + id +
+                ", groupId=" + groupId +
                 ", userId=" + userId +
                 ", content='" + content + '\'' +
                 ", time='" + time + '\'' +

@@ -1,5 +1,8 @@
 package com.fdzc.springboot01.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class UserGroup {
 
     private Integer userId;
