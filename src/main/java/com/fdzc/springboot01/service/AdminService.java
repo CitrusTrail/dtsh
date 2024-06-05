@@ -32,4 +32,8 @@ public class AdminService {
         return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
     }
 
+    public String findNamePassword(Admin admin) {
+        return "";
+    }
+
 }

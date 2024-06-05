@@ -1,5 +1,6 @@
 package com.fdzc.springboot01.controller;
 
+import com.fdzc.springboot01.common.Result;
 import com.fdzc.springboot01.entity.Admin;
 import com.fdzc.springboot01.service.AdminService;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,11 @@ public class AdminController {
     @DeleteMapping("/{id}")
     public String deleteOneAdmin(@PathVariable Integer id) {
         return adminService.deleteOneAdmin(id);
+    }
+
+    @PostMapping("/login")
+    public Result login(@RequestBody Admin admin) {
+        return Result.success(adminService.findNamePassword(admin));
     }
 
 }
