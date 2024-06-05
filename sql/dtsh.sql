@@ -207,8 +207,8 @@ INSERT INTO `goods` VALUES (2, 'good002', 999, 999, NULL);
 DROP TABLE IF EXISTS `buy`;
 CREATE TABLE `buy` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11),
-  `goods_id` int(11),
+  `user_id` int(11) NOT NULL,
+  `goods_id` int(11) NOT NULL,
   `time` datetime,
   `point` int(11),
   `num` int(11),
