@@ -70,3 +70,28 @@ export function editTravel(data) {
 export function delTravel(data) {
   return request.delete('/travels', data)
 }
+
+// 小组列表接口
+export function getGroupList(params) {
+  return request.get('/groups', { params })
+}
+
+// 查询单个小组接口
+export function getGroup(params) {
+  return request.get('/groups', { params })
+}
+
+// 新增小组接口
+export function addGroup(data) {
+  return request.post('/groups', data)
+}
+
+// 修改小组接口
+export function editGroup(data) {
+  return request.put('/groups', data)
+}
+
+// 删除小组接口
+export function delGroup(data) {
+  return request.delete('/groups', data)
+}

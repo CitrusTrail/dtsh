@@ -1,19 +1,15 @@
 <template>
   <el-form ref="formRef" :model="form" label-width="120px">
-    <!-- 出行名称  -->
-    <el-form-item label="用户编号" prop="userId" style="width: 92%">
-      <el-input v-model="form.userId" placeholder="请填写用户编号" />
+    <!-- 小组名称  -->
+    <el-form-item label="小组名称" prop="userId" style="width: 92%">
+      <el-input v-model="form.name" placeholder="请填写小组名称" />
     </el-form-item>
-    <!-- 出行积分  -->
-    <el-form-item label="出行方式" prop="mode" style="width: 92%">
-      <el-input v-model="form.mode" placeholder="请填写出行方式" />
+    <!-- 创建者  -->
+    <el-form-item label="创建者/组长" prop="mode" style="width: 92%">
+      <el-input v-model="form.creator" placeholder="请填写创建者/组长" />
     </el-form-item>
-    <!-- 碳排放 -->
-    <el-form-item label="碳排放" prop="carbon" style="width: 92%">
-      <el-input v-model="form.carbon" placeholder="请填写碳排放" />
-    </el-form-item>
-    <!-- 出行详情 -->
-    <el-form-item label="出行详情" prop="description" style="width: 92%" class="desc">
+    <!-- 小组简介 -->
+    <el-form-item label="小组详情" prop="description" style="width: 92%" class="desc">
       <Editor :init="initEditor" v-model="form.description"></Editor>
     </el-form-item>
     <!-- 操作按钮 -->
@@ -27,7 +23,7 @@
 
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
-import { getTravel, addTravel, editTravel } from '../api'
+import { getGroup, addGroup, editGroup } from '../api'
 import useToken from '../stores/token'
 import { Plus } from '@element-plus/icons-vue'
 
@@ -42,9 +38,8 @@ const emit = defineEmits(['success'])
 
 const form = reactive({
   id: props.id,
-  userId: '',
-  mode: '',
-  carbon: '',
+  name: '',
+  creator: '',
   description: ''
 })
 const formRef = ref()
@@ -52,7 +47,7 @@ const { token } = useToken()
 const headers = { jwt: token }
 
 onMounted(() => {
-  loadTravel()
+  loadGroup()
 })
 
 const resetForm = id => {
@@ -62,14 +57,14 @@ const resetForm = id => {
 
 defineExpose({ resetForm })
 
-const loadTravel = async () => {
+const loadGroup = async () => {
   if (form.id) {
-    const travel = await getTravel({ id: form.id })
-    Object.assign(form, travel)
+    const group = await getGroup({ id: form.id })
+    Object.assign(form, group)
   }
 }
 
-// 新增出行
+// 新增小组
 const addSubmit = async () => {
   const data = {
     userId: form.userId,
@@ -77,14 +72,14 @@ const addSubmit = async () => {
     carbon: form.carbon,
     description: form.description
   }
-  if (await addTravel(data)) {
+  if (await addGroup(data)) {
     emit('success')
   }
 }
 
-// 修改出行
+// 修改小组
 const editSubmit = async () => {
-  if (await editTravel(form)) {
+  if (await editGroup(form)) {
     emit('success')
   }
 }
@@ -92,7 +87,7 @@ const editSubmit = async () => {
 // 重置表单
 const btnCancel = () => {
   formRef.value.resetFields()
-  loadTravel()
+  loadGroup()
 }
 
 // 上传成功

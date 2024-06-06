@@ -29,9 +29,18 @@
             <span>出行管理</span>
           </el-menu-item>
         </router-link>
+        <!-- 小组管理 -->
+        <router-link :to="{ name: 'group' }">
+          <el-menu-item index="4">
+            <el-icon>
+              <Comment />
+            </el-icon>
+            <span>小组管理</span>
+          </el-menu-item>
+        </router-link>
         <!-- 个人中心 -->
         <router-link :to="{ name: 'setting' }">
-          <el-menu-item index="4">
+          <el-menu-item index="5">
             <el-icon>
               <Setting />
             </el-icon>
@@ -44,14 +53,15 @@
 </template>
   
 <script setup>
-import { HomeFilled, Setting, List, MapLocation } from '@element-plus/icons-vue'
+import { HomeFilled, Setting, List, MapLocation, Comment } from '@element-plus/icons-vue'
 import { ref } from 'vue'
 import router from '../router'
 const menuIndex = {
   'index': '1',
   'task': '2',
   'travel': '3',
-  'setting': '4'
+  'group': '4',
+  'setting': '5'
 }
 const active = ref(menuIndex[router.currentRoute.value.name] || '0')
 </script>

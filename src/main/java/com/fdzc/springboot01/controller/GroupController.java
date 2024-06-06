@@ -1,5 +1,6 @@
 package com.fdzc.springboot01.controller;
 
+import com.fdzc.springboot01.common.Result;
 import com.fdzc.springboot01.entity.Chat;
 import com.fdzc.springboot01.entity.Group;
 import com.fdzc.springboot01.entity.UserGroup;
@@ -16,64 +17,64 @@ public class GroupController {
     @Resource
     GroupService service;
 
-    @GetMapping("/chats")
-    public List<Chat> findAllChat() {
-        return service.findAllChat();
-    }
-
     @GetMapping
-    public List<Group> findAllGroup() {
-        return service.findAllGroup();
-    }
-
-    @GetMapping("/userGroups")
-    public List<UserGroup> findAllUserGroup() {
-        return service.findAllUserGroup();
-    }
-
-    @PostMapping("/chats")
-    public String addOneChat(Chat chat) {
-        return service.addOneChat(chat);
+    public Result findAllGroup() {
+        return Result.success(service.findAllGroup());
     }
 
     @PostMapping
-    public String addOneGroup(Group group) {
-        return service.addOneGroup(group);
-    }
-
-    @PostMapping("/userGroups")
-    public String addOneUserGroup(UserGroup userGroup) {
-        return service.addOneUserGroup(userGroup);
-    }
-
-    @PutMapping("/chats")
-    public String updateOneChat(Chat chat) {
-        return service.updateOneChat(chat);
+    public Result addOneGroup(Group group) {
+        return Result.success(service.addOneGroup(group));
     }
 
     @PutMapping
-    public String updateOneGroup(Group group) {
-        return service.updateOneGroup(group);
-    }
-
-    @PutMapping("/userGroups")
-    public String updateOneUserGroup(UserGroup userGroup) {
-        return service.updateOneUserGroup(userGroup);
-    }
-
-    @DeleteMapping("/chats/{id}")
-    public String deleteOneChat(Integer id) {
-        return service.deleteOneChat(id);
+    public Result updateOneGroup(Group group) {
+        return Result.success(service.updateOneGroup(group));
     }
 
     @DeleteMapping("/{id}")
-    public String deleteOneGroup(Integer id) {
-        return service.deleteOneGroup(id);
+    public Result deleteOneGroup(Integer id) {
+        return Result.success(service.deleteOneGroup(id));
+    }
+
+    @GetMapping("/userGroups")
+    public Result findAllUserGroup() {
+        return Result.success(service.findAllUserGroup());
+    }
+
+    @PostMapping("/userGroups")
+    public Result addOneUserGroup(UserGroup userGroup) {
+        return Result.success(service.addOneUserGroup(userGroup));
+    }
+
+    @PutMapping("/userGroups")
+    public Result updateOneUserGroup(UserGroup userGroup) {
+        return Result.success(service.updateOneUserGroup(userGroup));
     }
 
     @DeleteMapping("/userGroups/{id}")
-    public String deleteOneUserGroup(Integer id) {
-        return service.deleteOneUserGroup(id);
+    public Result deleteOneUserGroup(Integer id) {
+        return Result.success(service.deleteOneUserGroup(id));
+    }
+
+    @GetMapping("/chats")
+    public Result findAllChat() {
+        return Result.success(service.findAllChat());
+    }
+
+    @PostMapping("/chats")
+    public Result addOneChat(Chat chat) {
+        return Result.success(service.addOneChat(chat));
+    }
+
+    @PutMapping("/chats")
+    public Result updateOneChat(Chat chat) {
+        return Result.success(service.updateOneChat(chat));
+    }
+
+    @DeleteMapping("/chats/{id}")
+    public Result deleteOneChat(Integer id) {
+        return Result.success(service.deleteOneChat(id));
     }
 
 }

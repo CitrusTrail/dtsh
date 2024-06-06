@@ -1,20 +1,22 @@
 package com.fdzc.springboot01.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import org.springframework.stereotype.Component;
 
 @Component
+@TableName("`group`")
 public class Group {
 
     private Integer id;
     private String name;
     private String description;
-    private String creator;
+    private Integer creator;
 
     public Group() {
     }
 
-    public Group(Integer id, String name, String description, String creator) {
+    public Group(Integer id, String name, String description, Integer creator) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -45,11 +47,11 @@ public class Group {
         this.description = description;
     }
 
-    public String getCreator() {
+    public Integer getCreator() {
         return creator;
     }
 
-    public void setCreator(String creator) {
+    public void setCreator(Integer creator) {
         this.creator = creator;
     }
 
