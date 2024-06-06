@@ -1,6 +1,8 @@
 package com.fdzc.springboot01.controller;
 
+import com.fdzc.springboot01.common.Constants;
 import com.fdzc.springboot01.common.Result;
+import com.fdzc.springboot01.common.dto.UserDTO;
 import com.fdzc.springboot01.entity.Admin;
 import com.fdzc.springboot01.service.AdminService;
 import org.springframework.web.bind.annotation.*;
@@ -36,8 +38,9 @@ public class AdminController {
     }
 
     @PostMapping("/login")
-    public Result login(@RequestBody Admin admin) {
-        return Result.success(adminService.findNamePassword(admin));
+    public Result login(@RequestBody UserDTO userDTO) {
+        UserDTO dto = adminService.login(userDTO);
+        return Result.success(dto);
     }
 
 }

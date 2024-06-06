@@ -43,8 +43,7 @@ const ruleFormRef = ref()
 const submitForm = formEl => {
   formEl.validate(async valid => {
     if (valid) {
-      //const data = await login(form)
-      const data = {token:'111'}
+      const data = await login(form)
       if (data) {
         updateToken(data.token)
         router.push({ name: 'index' })
