@@ -145,3 +145,28 @@ export function editGoods(data) {
 export function delGoods(data) {
   return request.delete('/goods', data)
 }
+
+// 用户列表接口
+export function getUserList(params) {
+  return request.get('/users', { params })
+}
+
+// 查询单个用户接口
+export function getUser(params) {
+  return request.get('/users', { params })
+}
+
+// 新增用户接口
+export function addUser(data) {
+  return request.post('/users', data)
+}
+
+// 修改用户接口
+export function editUser(data) {
+  return request.put('/users', data)
+}
+
+// 删除用户接口
+export function delUser(data) {
+  return request.delete('/users', data)
+}

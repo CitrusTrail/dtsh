@@ -7,7 +7,6 @@ import com.fdzc.springboot01.service.AdminService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @RestController
 @RequestMapping("/admins")
@@ -17,23 +16,23 @@ public class AdminController {
     AdminService adminService;
 
     @GetMapping
-    public List<Admin> findAllAdmin() {
-        return adminService.findAllAdmin();
+    public Result findAllAdmin() {
+        return Result.success(adminService.findAllAdmin());
     }
 
     @PostMapping
-    public String addOneAdmin(@RequestBody Admin admin) {
-        return adminService.addOneAdmin(admin);
+    public Result addOneAdmin(@RequestBody Admin admin) {
+        return Result.success(adminService.addOneAdmin(admin));
     }
 
     @PutMapping
-    public String updateOneAdmin(@RequestBody Admin admin) {
-        return adminService.updateOneAdmin(admin);
+    public Result updateOneAdmin(@RequestBody Admin admin) {
+        return Result.success(adminService.updateOneAdmin(admin));
     }
 
     @DeleteMapping("/{id}")
-    public String deleteOneAdmin(@PathVariable Integer id) {
-        return adminService.deleteOneAdmin(id);
+    public Result deleteOneAdmin(@PathVariable Integer id) {
+        return Result.success(adminService.deleteOneAdmin(id));
     }
 
     @PostMapping("/login")

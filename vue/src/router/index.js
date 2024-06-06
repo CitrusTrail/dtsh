@@ -17,6 +17,12 @@ const router = createRouter({
           meta: { title: '首页' },
         },
         {
+          path: '/user',
+          name: 'user',
+          component: () => import('../pages/subpages/User.vue'),
+          meta: { title: '用户管理' },
+        },
+        {
           path: '/task',
           name: 'task',
           component: () => import('../pages/subpages/Task.vue'),

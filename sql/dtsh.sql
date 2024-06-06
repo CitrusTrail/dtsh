@@ -25,15 +25,18 @@ CREATE TABLE `user`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50),
   `password` varchar(50),
+  `address` text,
+  `tel` varchar(50),
   `point` int(11), -- 积分
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'chen001', '123456', 233);
-INSERT INTO `user` VALUES (2, 'chen002', '123456', 999);
+INSERT INTO `user` VALUES (1, 'zhangsan', '123456', '福建省福州市闽侯县福州大学', '13500000000', 233);
+INSERT INTO `user` VALUES (2, 'lisi', '123456', '福建省福州市闽侯县福州大学', '13900000000', 999);
+INSERT INTO `user` VALUES (3, 'wangwu', '123456', '福建省福州市闽侯县福州大学', '13700000000', 999);
 
 -- ----------------------------
 -- Table structure for admin
@@ -49,8 +52,8 @@ CREATE TABLE `admin`  (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES (1, 'chen001', '123456');
-INSERT INTO `admin` VALUES (2, 'chen002', '123456');
+INSERT INTO `admin` VALUES (1, 'admin', '123456');
+INSERT INTO `admin` VALUES (2, 'root', '123456');
 
 -- ----------------------------
 -- Table structure for task
@@ -68,8 +71,8 @@ CREATE TABLE `task` (
 -- ----------------------------
 -- Records of task
 -- ----------------------------
-INSERT INTO `task` VALUES (1, 'task001', '123456', 999.99, 999);
-INSERT INTO `task` VALUES (2, 'task002', '123456', 999.99, 999);
+INSERT INTO `task` VALUES (1, '骑行1公里', '使用出行功能完成骑行1公里', 1.99, 999);
+INSERT INTO `task` VALUES (2, '垃圾分类知识问答', '在规定的时间内完成垃圾分类知识问答题', 0.00, 999);
 
 -- ----------------------------
 -- Table structure for user_task
@@ -85,8 +88,8 @@ CREATE TABLE `user_task` (
 -- ----------------------------
 -- Records of user_task
 -- ----------------------------
-INSERT INTO `user_task` VALUES (1, 1, NULL);
-INSERT INTO `user_task` VALUES (2, 1, NULL);
+INSERT INTO `user_task` VALUES (1, 1, '2024-06-01 00:00:00');
+INSERT INTO `user_task` VALUES (2, 1, '2024-06-01 00:00:00');
 
 -- ----------------------------
 -- Table structure for travel
@@ -107,8 +110,8 @@ CREATE TABLE `travel` (
 -- ----------------------------
 -- Records of travel
 -- ----------------------------
-INSERT INTO `travel` VALUES (1, 1, NULL, NULL, NULL, '骑行', 999.99, NULL);
-INSERT INTO `travel` VALUES (2, 2, NULL, NULL, NULL, '骑行', 999.99, NULL);
+INSERT INTO `travel` VALUES (1, 1, '2024-06-01 00:00:00', '2024-06-01 12:00:00', 999, '骑行', 999.99, '从旗山湖公园出发，途径金山公园，最后到达飞凤山公园');
+INSERT INTO `travel` VALUES (2, 2, '2024-06-01 00:00:00', '2024-06-01 12:00:00', 999, '步行', 999.99, NULL);
 
 -- ----------------------------
 -- Table structure for group
@@ -125,8 +128,8 @@ CREATE TABLE `group` (
 -- ----------------------------
 -- Records of group
 -- ----------------------------
-INSERT INTO `group` VALUES (1, 'group001', NULL, 1);
-INSERT INTO `group` VALUES (2, 'group002', NULL, 1);
+INSERT INTO `group` VALUES (1, '生态大家庭', '我们都爱大自然！', 1);
+INSERT INTO `group` VALUES (2, '低碳2群', '这里聚集了对低碳感兴趣的友友', 1);
 
 -- ----------------------------
 -- Table structure for user_group
@@ -161,7 +164,7 @@ CREATE TABLE `chat` (
 -- Records of chat
 -- ----------------------------
 INSERT INTO `chat` VALUES (1, 1, 1, '666', '2024-05-01 12:00:00');
-INSERT INTO `chat` VALUES (2, 1, 2, '123', '2024-05-01 12:00:00');
+INSERT INTO `chat` VALUES (2, 1, 2, '我认为。。。', '2024-05-01 12:00:00');
 
 -- ----------------------------
 -- Table structure for share
@@ -179,8 +182,8 @@ CREATE TABLE `share` (
 -- ----------------------------
 -- Records of share
 -- ----------------------------
-INSERT INTO `share` VALUES (1, 1, '666', '2024-05-01 12:00:00', 2);
-INSERT INTO `share` VALUES (2, 2, '123', '2024-05-01 12:00:00', 4);
+INSERT INTO `share` VALUES (1, 1, '今天又是低碳出行的一天', '2024-05-01 12:00:00', 2);
+INSERT INTO `share` VALUES (2, 2, '风景真美！', '2024-05-01 12:00:00', 4);
 
 -- ----------------------------
 -- Table structure for goods
@@ -198,8 +201,8 @@ CREATE TABLE `goods` (
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES (1, 'good001', 999, 999, NULL);
-INSERT INTO `goods` VALUES (2, 'good002', 999, 999, NULL);
+INSERT INTO `goods` VALUES (1, '玩偶', 999, 999, '吉祥物');
+INSERT INTO `goods` VALUES (2, '水杯', 999, 999, '印有绿叶图案的水杯');
 
 -- ----------------------------
 -- Table structure for buy

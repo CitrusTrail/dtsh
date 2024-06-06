@@ -1,5 +1,6 @@
 package com.fdzc.springboot01.controller;
 
+import com.fdzc.springboot01.common.Result;
 import com.fdzc.springboot01.entity.UserCarbon;
 import com.fdzc.springboot01.service.CarbonService;
 import org.springframework.web.bind.annotation.*;
@@ -15,23 +16,23 @@ public class CarbonController {
     CarbonService service;
 
     @GetMapping
-    public List<UserCarbon> findAllUserCarbon() {
-        return service.findAllUserCarbon();
+    public Result findAllUserCarbon() {
+        return Result.success(service.findAllUserCarbon());
     }
 
     @PostMapping
-    public String addOneUserCarbon(UserCarbon userCarbon) {
-        return service.addOneUserCarbon(userCarbon);
+    public Result addOneUserCarbon(UserCarbon userCarbon) {
+        return Result.success(service.addOneUserCarbon(userCarbon));
     }
 
     @PutMapping
-    public String updateOneUserCarbon(UserCarbon userCarbon) {
-        return service.updateOneUserCarbon(userCarbon);
+    public Result updateOneUserCarbon(UserCarbon userCarbon) {
+        return Result.success(service.updateOneUserCarbon(userCarbon));
     }
 
     @DeleteMapping("/{id}")
-    public String deleteOneUserCarbon(Integer id) {
-        return service.deleteOneUserCarbon(id);
+    public Result deleteOneUserCarbon(Integer id) {
+        return Result.success(service.deleteOneUserCarbon(id));
     }
 
 }

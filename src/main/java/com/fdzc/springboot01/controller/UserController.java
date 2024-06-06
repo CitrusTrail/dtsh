@@ -1,5 +1,6 @@
 package com.fdzc.springboot01.controller;
 
+import com.fdzc.springboot01.common.Result;
 import com.fdzc.springboot01.entity.User;
 import com.fdzc.springboot01.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -15,23 +16,23 @@ public class UserController {
     UserService userService;
 
     @GetMapping
-    public List<User> findAll() {
-        return userService.findAllUser();
+    public Result findAll() {
+        return Result.success(userService.findAllUser());
     }
 
     @PostMapping
-    public String addOne(@RequestBody User user) {
-        return userService.addOneUser(user);
+    public Result addOne(@RequestBody User user) {
+        return Result.success(userService.addOneUser(user));
     }
 
     @PutMapping
-    public String updateOne(@RequestBody User user) {
-        return userService.updateOneUser(user);
+    public Result updateOne(@RequestBody User user) {
+        return Result.success(userService.updateOneUser(user));
     }
 
     @DeleteMapping("/{id}")
-    public String deleteOne(@PathVariable Integer id) {
-        return userService.deleteOneUser(id);
+    public Result deleteOne(@PathVariable Integer id) {
+        return Result.success(userService.deleteOneUser(id));
     }
 
 }

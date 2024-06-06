@@ -9,15 +9,19 @@ public class User {
     private Integer id;
     private String name;
     private String password;
+    private String address;
+    private String tel;
     private Integer point;
 
     public User() {
     }
 
-    public User(Integer id, String name, String password, Integer point) {
+    public User(Integer id, String name, String password, String address, String tel, Integer point) {
         this.id = id;
         this.name = name;
         this.password = password;
+        this.address = address;
+        this.tel = tel;
         this.point = point;
     }
 
@@ -53,12 +57,30 @@ public class User {
         this.point = point;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", tel='" + tel + '\'' +
                 ", point=" + point +
                 '}';
     }

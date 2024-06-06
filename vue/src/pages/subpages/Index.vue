@@ -24,7 +24,7 @@
         </template>
         <div class="info">
           <el-row :gutter="24">
-            <!-- 商品数量 -->
+            <!-- 用户数量 -->
             <el-col :span="8">
               <div class="card-container">
                 <div class="card-left-container" style="background-color: #EEAD0E;">
@@ -34,11 +34,11 @@
                 </div>
                 <div class="card-right-container">
                   <p class="number">500</p>
-                  <p>商品数量(个)</p>
+                  <p>用户数量(个)</p>
                 </div>
               </div>
             </el-col>
-            <!-- 商品分类数量 -->
+            <!-- 小组数量 -->
             <el-col :span="8">
               <div class="card-container">
                 <div class="card-left-container" style="background-color: #AB82FF;">
@@ -48,7 +48,7 @@
                 </div>
                 <div class="card-right-container">
                   <p class="number">20</p>
-                  <p>商品分类数量(个)</p>
+                  <p>小组数量(个)</p>
                 </div>
               </div>
             </el-col>
@@ -114,15 +114,15 @@ const loadAdmin = async () => {
 // 用户登录信息（模拟数据）
 const loginInfo = reactive({
   loginTime: '2023-07-22 09:00:00',
-  loginPlace: '北京'
+  loginPlace: '福州'
 })
 
-// 图表1：月度销售额
+// 图表1：月度网站访问量
 const initCharts1 = () => {
   const myChart = echarts.init(document.getElementById('salesVolume'))
   myChart.setOption({
     color: ['#1493fa'],
-    title: { text: '2022年月度销售额' },
+    title: { text: '2023年网站访问量' },
     xAxis: {
       data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
       name: '月份',
@@ -131,7 +131,7 @@ const initCharts1 = () => {
       },
     },
     yAxis: {
-      name: '单位（千万元）',
+      name: '单位（次）',
     },
     grid: {
       left: '3%',
@@ -144,7 +144,7 @@ const initCharts1 = () => {
       {
         data: [6, 7, 8.5, 8, 9, 10, 13, 12, 10, 16, 15, 14],
         type: 'line',
-        name: '销售额',
+        name: '访问量',
         smooth: true,
         label: {
           show: true,
@@ -159,11 +159,11 @@ const initCharts1 = () => {
   }
 }
 
-// 图表2：2022年订单数量
+// 图表2：2023年碳排放情况
 const initCharts2 = () => {
   const myChart = echarts.init(document.getElementById('orderQuantity'))
   myChart.setOption({
-    title: { text: '2022年订单数量' },
+    title: { text: '2023年碳排放量' },
     color: ['#1493fa'],
     grid: {
       left: '3%',
@@ -185,14 +185,14 @@ const initCharts2 = () => {
     },
     legend: {},
     yAxis: {
-      name: '单位（个）',
+      name: '单位（吨）',
     },
     series: [
       {
         data: [400, 450, 300, 230, 250, 300, 400, 350, 160, 350, 380, 400],
         type: 'bar',
         barWidth: '60%',
-        name: '订单总数',
+        name: '碳排放量',
         label: {
           show: true,
           position: 'top',
