@@ -1,5 +1,6 @@
 package com.fdzc.springboot01.controller;
 
+import com.fdzc.springboot01.common.Result;
 import com.fdzc.springboot01.entity.Share;
 import com.fdzc.springboot01.service.ShareService;
 import org.springframework.web.bind.annotation.*;
@@ -15,23 +16,23 @@ public class ShareController {
     ShareService service;
 
     @GetMapping
-    public List<Share> findAllShare() {
-        return service.findAllShare();
+    public Result findAllShare() {
+        return Result.success(service.findAllShare());
     }
 
     @PostMapping
-    public String addOneShare(Share share) {
-        return service.addOneShare(share);
+    public Result addOneShare(Share share) {
+        return Result.success(service.addOneShare(share));
     }
 
     @PutMapping
-    public String updateOneShare(Share share) {
-        return service.updateOneShare(share);
+    public Result updateOneShare(Share share) {
+        return Result.success(service.updateOneShare(share));
     }
 
     @DeleteMapping("/{id}")
-    public String deleteOneShare(Integer id) {
-        return service.deleteOneShare(id);
+    public Result deleteOneShare(Integer id) {
+        return Result.success(service.deleteOneShare(id));
     }
 
 }

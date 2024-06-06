@@ -35,6 +35,12 @@ const router = createRouter({
           meta: { title: '小组管理' },
         },
         {
+          path: '/share',
+          name: 'share',
+          component: () => import('../pages/subpages/Share.vue'),
+          meta: { title: '分享管理' },
+        },
+        {
           path: '/setting',
           name: 'setting',
           component: () => import('../pages/subpages/Setting.vue'),

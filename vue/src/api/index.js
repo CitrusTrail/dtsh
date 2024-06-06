@@ -95,3 +95,28 @@ export function editGroup(data) {
 export function delGroup(data) {
   return request.delete('/groups', data)
 }
+
+// 分享列表接口
+export function getShareList(params) {
+  return request.get('/shares', { params })
+}
+
+// 查询单个分享接口
+export function getShare(params) {
+  return request.get('/shares', { params })
+}
+
+// 新增分享接口
+export function addShare(data) {
+  return request.post('/shares', data)
+}
+
+// 修改分享接口
+export function editShare(data) {
+  return request.put('/shares', data)
+}
+
+// 删除分享接口
+export function delShare(data) {
+  return request.delete('/shares', data)
+}

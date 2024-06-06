@@ -1,16 +1,20 @@
 <template>
   <el-form ref="formRef" :model="form" label-width="120px">
-    <!-- 小组名称  -->
-    <el-form-item label="小组名称" prop="userId" style="width: 92%">
-      <el-input v-model="form.name" placeholder="请填写小组名称" />
+    <!-- 用户编号  -->
+    <el-form-item label="用户编号" prop="userId" style="width: 92%">
+      <el-input v-model="form.userId" placeholder="请填写用户编号" />
     </el-form-item>
-    <!-- 创建者  -->
-    <el-form-item label="创建者/组长" prop="mode" style="width: 92%">
-      <el-input v-model="form.creator" placeholder="请填写创建者/组长" />
+    <!-- 发送时间  -->
+    <el-form-item label="发送时间" prop="datetime" style="width: 92%">
+      <el-input v-model="form.datetime" placeholder="请填写发送时间" />
     </el-form-item>
-    <!-- 小组简介 -->
-    <el-form-item label="小组简介" prop="description" style="width: 92%" class="desc">
-      <Editor :init="initEditor" v-model="form.description"></Editor>
+    <!-- 点赞数 -->
+    <el-form-item label="点赞数" prop="likes" style="width: 92%">
+      <el-input v-model="form.likes" placeholder="请填写点赞数" />
+    </el-form-item>
+    <!-- 分享内容 -->
+    <el-form-item label="分享内容" prop="content" style="width: 92%" class="desc">
+      <Editor :init="initEditor" v-model="form.content"></Editor>
     </el-form-item>
     <!-- 操作按钮 -->
     <el-form-item>
@@ -23,7 +27,7 @@
 
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
-import { getGroup, addGroup, editGroup } from '../api'
+import { getShare, addShare, editShare } from '../api'
 import useToken from '../stores/token'
 import { Plus } from '@element-plus/icons-vue'
 
@@ -38,16 +42,17 @@ const emit = defineEmits(['success'])
 
 const form = reactive({
   id: props.id,
-  name: '',
-  creator: '',
-  description: ''
+  userId: '',
+  datetime: '',
+  likes: '',
+  content: ''
 })
 const formRef = ref()
 const { token } = useToken()
 const headers = { jwt: token }
 
 onMounted(() => {
-  loadGroup()
+  loadShare()
 })
 
 const resetForm = id => {
@@ -57,29 +62,29 @@ const resetForm = id => {
 
 defineExpose({ resetForm })
 
-const loadGroup = async () => {
+const loadShare = async () => {
   if (form.id) {
-    const group = await getGroup({ id: form.id })
-    Object.assign(form, group)
+    const share = await getShare({ id: form.id })
+    Object.assign(form, share)
   }
 }
 
-// 新增小组
+// 新增分享
 const addSubmit = async () => {
   const data = {
-    userId: form.userId,
-    mode: form.mode,
+    name: form.name,
+    point: form.point,
     carbon: form.carbon,
     description: form.description
   }
-  if (await addGroup(data)) {
+  if (await addShare(data)) {
     emit('success')
   }
 }
 
-// 修改小组
+// 修改分享
 const editSubmit = async () => {
-  if (await editGroup(form)) {
+  if (await editShare(form)) {
     emit('success')
   }
 }
@@ -87,7 +92,7 @@ const editSubmit = async () => {
 // 重置表单
 const btnCancel = () => {
   formRef.value.resetFields()
-  loadGroup()
+  loadShare()
 }
 
 // 上传成功

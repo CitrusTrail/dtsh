@@ -1,10 +1,10 @@
 <template>
   <el-form ref="formRef" :model="form" label-width="120px">
-    <!-- 出行名称  -->
+    <!-- 用户编号  -->
     <el-form-item label="用户编号" prop="userId" style="width: 92%">
       <el-input v-model="form.userId" placeholder="请填写用户编号" />
     </el-form-item>
-    <!-- 出行积分  -->
+    <!-- 出行方式  -->
     <el-form-item label="出行方式" prop="mode" style="width: 92%">
       <el-input v-model="form.mode" placeholder="请填写出行方式" />
     </el-form-item>
