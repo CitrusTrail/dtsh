@@ -23,6 +23,12 @@ const router = createRouter({
           meta: { title: '任务管理' },
         },
         {
+          path: '/travel',
+          name: 'travel',
+          component: () => import('../pages/subpages/Travel.vue'),
+          meta: { title: '出行管理' },
+        },
+        {
           path: '/setting',
           name: 'setting',
           component: () => import('../pages/subpages/Setting.vue'),

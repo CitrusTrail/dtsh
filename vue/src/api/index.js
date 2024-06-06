@@ -45,3 +45,28 @@ export function editTask(data) {
 export function delTask(data) {
   return request.delete('/tasks', data)
 }
+
+// 出行列表接口
+export function getTravelList(params) {
+  return request.get('/travels', { params })
+}
+
+// 查询单个出行接口
+export function getTravel(params) {
+  return request.get('/travels', { params })
+}
+
+// 新增出行接口
+export function addTravel(data) {
+  return request.post('/travels', data)
+}
+
+// 修改出行接口
+export function editTravel(data) {
+  return request.put('/travels', data)
+}
+
+// 删除出行接口
+export function delTravel(data) {
+  return request.delete('/travels', data)
+}

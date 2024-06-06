@@ -1,6 +1,5 @@
 package com.fdzc.springboot01.controller;
 
-import com.fdzc.springboot01.common.Constants;
 import com.fdzc.springboot01.common.Result;
 import com.fdzc.springboot01.common.dto.UserDTO;
 import com.fdzc.springboot01.entity.Admin;
