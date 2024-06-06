@@ -1,5 +1,6 @@
 package com.fdzc.springboot01.controller;
 
+import com.fdzc.springboot01.common.Result;
 import com.fdzc.springboot01.entity.Buy;
 import com.fdzc.springboot01.entity.Goods;
 import com.fdzc.springboot01.service.GoodsService;
@@ -13,46 +14,46 @@ import java.util.List;
 public class GoodsController {
 
     @Resource
-    GoodsService srvice;
+    GoodsService service;
 
     @GetMapping
-    public List<Goods> findAllGoods() {
-        return srvice.findAllGoods();
-    }
-
-    @GetMapping("/buy")
-    public List<Buy> findAllBuy() {
-        return srvice.findAllBuy();
+    public Result findAllGoods() {
+        return Result.success(service.findAllGoods());
     }
 
     @PostMapping
-    public String addOneGoods(Goods goods) {
-        return srvice.addOneGoods(goods);
-    }
-
-    @PostMapping("/buy")
-    public String addOneBuy(Buy buy) {
-        return srvice.addOneBuy(buy);
+    public Result addOneGoods(Goods goods) {
+        return Result.success(service.addOneGoods(goods));
     }
 
     @PutMapping
-    public String updateOneGoods(Goods goods) {
-        return srvice.updateOneGoods(goods);
-    }
-
-    @PutMapping("/buy")
-    public String updateOneBuy(Buy buy) {
-        return srvice.updateOneBuy(buy);
+    public Result updateOneGoods(Goods goods) {
+        return Result.success(service.updateOneGoods(goods));
     }
 
     @DeleteMapping("/{id}")
-    public String deleteOneGoods(Integer id) {
-        return srvice.deleteOneGoods(id);
+    public Result deleteOneGoods(Integer id) {
+        return Result.success(service.deleteOneGoods(id));
+    }
+
+    @GetMapping("/buy")
+    public Result findAllBuy() {
+        return Result.success(service.findAllBuy());
+    }
+
+    @PostMapping("/buy")
+    public Result addOneBuy(Buy buy) {
+        return Result.success(service.addOneBuy(buy));
+    }
+
+    @PutMapping("/buy")
+    public Result updateOneBuy(Buy buy) {
+        return Result.success(service.updateOneBuy(buy));
     }
 
     @DeleteMapping("/buy/{id}")
-    public String deleteOneBuy(Integer id) {
-        return srvice.deleteOneBuy(id);
+    public Result deleteOneBuy(Integer id) {
+        return Result.success(service.deleteOneBuy(id));
     }
 
 }

@@ -120,3 +120,28 @@ export function editShare(data) {
 export function delShare(data) {
   return request.delete('/shares', data)
 }
+
+// 商品列表接口
+export function getGoodsList(params) {
+  return request.get('/goods', { params })
+}
+
+// 查询单个商品接口
+export function getGoods(params) {
+  return request.get('/goods', { params })
+}
+
+// 新增商品接口
+export function addGoods(data) {
+  return request.post('/goods', data)
+}
+
+// 修改商品接口
+export function editGoods(data) {
+  return request.put('/goods', data)
+}
+
+// 删除商品接口
+export function delGoods(data) {
+  return request.delete('/goods', data)
+}
