@@ -13,12 +13,17 @@ export function getAdmin() {
 
 // 修改密码接口
 export function changeAdminPassword(data) {
-  return request.post('/admin/admin/changePassword', data)
+  return request.put('/admins', data)
 }
 
 // 修改头像接口
 export function changeAdminAvatar(data) {
-  return request.post('/admin/admin/changeAvatar', data)
+  return request.put('/admins', data)
+}
+
+// 更新图片地址
+export function uploadPictureURL() {
+  return config.baseURL + '/upload/picture'
 }
 
 // 任务列表接口

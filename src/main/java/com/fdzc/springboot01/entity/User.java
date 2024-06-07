@@ -12,17 +12,19 @@ public class User {
     private String address;
     private String tel;
     private Integer point;
+    private String avatar;
 
     public User() {
     }
 
-    public User(Integer id, String name, String password, String address, String tel, Integer point) {
+    public User(Integer id, String name, String password, String address, String tel, Integer point, String avatar) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.address = address;
         this.tel = tel;
         this.point = point;
+        this.avatar = avatar;
     }
 
     public Integer getId() {
@@ -73,6 +75,14 @@ public class User {
         this.tel = tel;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -82,6 +92,7 @@ public class User {
                 ", address='" + address + '\'' +
                 ", tel='" + tel + '\'' +
                 ", point=" + point +
+                ", avatar='" + avatar + '\'' +
                 '}';
     }
 }

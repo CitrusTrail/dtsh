@@ -81,15 +81,13 @@ const uploadRef = ref()
 const submitForm = formEl => {
   formEl.validate(async valid => {
     if (valid) {
-      await changeAdminPassword({ password: form.password })
+      await changeAdminPassword({
+        password: form.password
+      })
       resetForm()
-      // 退出登录
-      removeToken()
-      removeAdmin()
-      router.push({ name: 'login' })
       notification({
-        message: '修改密码后，请重新登录',
-        type: 'warning'
+        message: '密码修改成功',
+        type: 'success'
       })
     } else {
       notification({

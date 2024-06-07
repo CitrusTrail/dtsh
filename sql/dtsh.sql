@@ -28,15 +28,16 @@ CREATE TABLE `user`  (
   `address` text,
   `tel` varchar(50),
   `point` int(11), -- 积分
+  `avatar` text,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'zhangsan', '123456', '福建省福州市闽侯县福州大学', '13500000000', 233);
-INSERT INTO `user` VALUES (2, 'lisi', '123456', '福建省福州市闽侯县福州大学', '13900000000', 999);
-INSERT INTO `user` VALUES (3, 'wangwu', '123456', '福建省福州市闽侯县福州大学', '13700000000', 999);
+INSERT INTO `user` VALUES (1, 'zhangsan', '123456', '福建省福州市闽侯县福州大学', '13500000000', 233, 'http://localhost:8099/upload/picture/1.png');
+INSERT INTO `user` VALUES (2, 'lisi', '123456', '福建省福州市闽侯县福州大学', '13900000000', 999, 'http://localhost:8099/upload/picture/2.png');
+INSERT INTO `user` VALUES (3, 'wangwu', '123456', '福建省福州市闽侯县福州大学', '13700000000', 999, 'http://localhost:8099/upload/picture/3.png');
 
 -- ----------------------------
 -- Table structure for admin
@@ -46,14 +47,15 @@ CREATE TABLE `admin`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50),
   `password` varchar(50),
+  `avatar` text,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES (1, 'admin', '123456');
-INSERT INTO `admin` VALUES (2, 'root', '123456');
+INSERT INTO `admin` VALUES (1, 'admin', '123456', 'http://localhost:8099/upload/picture/4.png');
+INSERT INTO `admin` VALUES (2, 'root', '123456', 'http://localhost:8099/upload/picture/5.png');
 
 -- ----------------------------
 -- Table structure for task
