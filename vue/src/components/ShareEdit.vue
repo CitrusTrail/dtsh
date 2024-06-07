@@ -114,6 +114,27 @@ const uploadSuccess = response => {
   }
 }
 
+import Editor from '@tinymce/tinymce-vue'
+
+import 'tinymce/tinymce'
+import 'tinymce/models/dom'
+import 'tinymce/themes/silver'
+import 'tinymce/icons/default'
+import 'tinymce/plugins/image'
+
+// 编辑器配置
+let initEditor = {
+  width: '100%',
+  skin_url: '/tinymce/skins/ui/oxide',
+  content_css: '/tinymce/skins/content/default/content.css',
+  language_url: '/tinymce/langs/zh-Hans.js',
+  language: 'zh-Hans',
+  menubar: false,
+  statusbar: false,
+  toolbar: 'bold underline italic strikethrough image undo redo',
+  plugins: 'image',
+}
+
 </script>
 
 <style scoped>
