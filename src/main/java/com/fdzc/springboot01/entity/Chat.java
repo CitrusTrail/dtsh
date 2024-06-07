@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Chat {
-
+    @TableId
     private Integer id;
     private Integer groupId;
     private Integer userId;

@@ -20,6 +20,10 @@ public class AdminService {
         return adminMapper.selectList(null);
     }
 
+    public Admin findById(Integer id) {
+        return adminMapper.selectById(id);
+    }
+
     public Admin findOneAdmin(Integer id) {
         return adminMapper.selectById(id);
     }
@@ -39,7 +43,7 @@ public class AdminService {
         return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
     }
 
-    public Admin findNamePassword(UserDTO userDTO) {
+    public Admin findByNamePassword(UserDTO userDTO) {
         QueryWrapper<Admin> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("name", userDTO.getUsername());
         queryWrapper.eq("password", userDTO.getPassword());
@@ -52,7 +56,7 @@ public class AdminService {
     }
 
     public UserDTO login(UserDTO userDTO) {
-        Admin one = findNamePassword(userDTO);
+        Admin one = findByNamePassword(userDTO);
         if (one != null) {
             // 设置token
             String token = TokenUtils.genToken(one.getId().toString(), one.getPassword());

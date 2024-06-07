@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @TableName("`group`")
 public class Group {
-
+    @TableId
     private Integer id;
     private String name;
     private String description;

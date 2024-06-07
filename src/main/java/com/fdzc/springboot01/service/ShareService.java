@@ -17,6 +17,10 @@ public class ShareService {
         return shareMapper.selectList(null);
     }
 
+    public Share findById(Integer id) {
+        return shareMapper.selectById(id);
+    }
+
     public String addOneShare(Share share) {
         Integer res = shareMapper.insert(share);
         return String.format("添加成功：%d，添加失败：%d", res, 1 - res);

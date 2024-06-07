@@ -20,6 +20,11 @@ public class UserController {
         return Result.success(userService.findAllUser());
     }
 
+    @GetMapping("/{id}")
+    public Result findById(@PathVariable Integer id) {
+        return Result.success(userService.findById(id));
+    }
+
     @PostMapping
     public Result addOne(@RequestBody User user) {
         return Result.success(userService.addOneUser(user));

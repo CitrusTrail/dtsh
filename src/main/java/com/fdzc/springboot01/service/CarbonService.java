@@ -27,8 +27,8 @@ public class CarbonService {
         return String.format("修改成功：%d，修改失败：%d", res, 1 - res);
     }
 
-    public String deleteOneUserCarbon(Integer id) {
-        Integer res = userCarbonMapper.deleteById(id);
+    public String deleteOneUserCarbon(UserCarbon userCarbon) {
+        Integer res = userCarbonMapper.deleteById(userCarbon);
         return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
     }
 

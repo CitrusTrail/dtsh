@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Admin {
-
+    @TableId
     private Integer id;
     private String name;
     private String password;

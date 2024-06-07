@@ -17,6 +17,10 @@ public class TravelService {
         return travelMapper.selectList(null);
     }
 
+    public Travel findById(Integer id) {
+        return travelMapper.selectById(id);
+    }
+
     public String addOneTravel(Travel travel) {
         Integer res = travelMapper.insert(travel);
         return String.format("添加成功：%d，添加失败：%d", res, 1 - res);

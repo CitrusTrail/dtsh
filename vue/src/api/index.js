@@ -28,7 +28,7 @@ export function getTaskList(params) {
 
 // 查询单个任务接口
 export function getTask(params) {
-  return request.get('/tasks', { params })
+  return request.get('/tasks/'+params.id)
 }
 
 // 新增任务接口
@@ -43,7 +43,7 @@ export function editTask(data) {
 
 // 删除任务接口
 export function delTask(data) {
-  return request.delete('/tasks', data)
+  return request.delete('/tasks/'+data.id)
 }
 
 // 出行列表接口
@@ -53,7 +53,7 @@ export function getTravelList(params) {
 
 // 查询单个出行接口
 export function getTravel(params) {
-  return request.get('/travels', { params })
+  return request.get('/travels/'+params.id)
 }
 
 // 新增出行接口
@@ -68,7 +68,7 @@ export function editTravel(data) {
 
 // 删除出行接口
 export function delTravel(data) {
-  return request.delete('/travels', data)
+  return request.delete('/travels/'+data.id)
 }
 
 // 小组列表接口
@@ -78,7 +78,7 @@ export function getGroupList(params) {
 
 // 查询单个小组接口
 export function getGroup(params) {
-  return request.get('/groups', { params })
+  return request.get('/groups/'+params.id)
 }
 
 // 新增小组接口
@@ -93,7 +93,7 @@ export function editGroup(data) {
 
 // 删除小组接口
 export function delGroup(data) {
-  return request.delete('/groups', data)
+  return request.delete('/groups/'+data.id)
 }
 
 // 分享列表接口
@@ -103,7 +103,7 @@ export function getShareList(params) {
 
 // 查询单个分享接口
 export function getShare(params) {
-  return request.get('/shares', { params })
+  return request.get('/shares/'+params.id)
 }
 
 // 新增分享接口
@@ -118,7 +118,7 @@ export function editShare(data) {
 
 // 删除分享接口
 export function delShare(data) {
-  return request.delete('/shares', data)
+  return request.delete('/shares/'+data.id)
 }
 
 // 商品列表接口
@@ -128,7 +128,7 @@ export function getGoodsList(params) {
 
 // 查询单个商品接口
 export function getGoods(params) {
-  return request.get('/goods', { params })
+  return request.get('/goods/'+params.id)
 }
 
 // 新增商品接口
@@ -143,7 +143,7 @@ export function editGoods(data) {
 
 // 删除商品接口
 export function delGoods(data) {
-  return request.delete('/goods', data)
+  return request.delete('/goods/'+data.id)
 }
 
 // 用户列表接口
@@ -153,7 +153,7 @@ export function getUserList(params) {
 
 // 查询单个用户接口
 export function getUser(params) {
-  return request.get('/users', { params })
+  return request.get('/users/'+params.id)
 }
 
 // 新增用户接口
@@ -168,5 +168,5 @@ export function editUser(data) {
 
 // 删除用户接口
 export function delUser(data) {
-  return request.delete('/users', data)
+  return request.delete('/users/'+data.id)
 }

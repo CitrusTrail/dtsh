@@ -20,18 +20,23 @@ public class ShareController {
         return Result.success(service.findAllShare());
     }
 
+    @GetMapping("/{id}")
+    public Result findById(@PathVariable Integer id) {
+        return Result.success(service.findById(id));
+    }
+
     @PostMapping
-    public Result addOneShare(Share share) {
+    public Result addOneShare(@RequestBody Share share) {
         return Result.success(service.addOneShare(share));
     }
 
     @PutMapping
-    public Result updateOneShare(Share share) {
+    public Result updateOneShare(@RequestBody Share share) {
         return Result.success(service.updateOneShare(share));
     }
 
     @DeleteMapping("/{id}")
-    public Result deleteOneShare(Integer id) {
+    public Result deleteOneShare(@PathVariable Integer id) {
         return Result.success(service.deleteOneShare(id));
     }
 

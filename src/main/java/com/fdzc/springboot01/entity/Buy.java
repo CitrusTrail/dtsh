@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Buy {
-
+    @TableId
     private Integer id;
     private Integer userId;
     private Integer goodsId;

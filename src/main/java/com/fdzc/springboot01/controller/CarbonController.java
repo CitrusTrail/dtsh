@@ -21,18 +21,18 @@ public class CarbonController {
     }
 
     @PostMapping
-    public Result addOneUserCarbon(UserCarbon userCarbon) {
+    public Result addOneUserCarbon(@RequestBody UserCarbon userCarbon) {
         return Result.success(service.addOneUserCarbon(userCarbon));
     }
 
     @PutMapping
-    public Result updateOneUserCarbon(UserCarbon userCarbon) {
+    public Result updateOneUserCarbon(@RequestBody UserCarbon userCarbon) {
         return Result.success(service.updateOneUserCarbon(userCarbon));
     }
 
-    @DeleteMapping("/{id}")
-    public Result deleteOneUserCarbon(Integer id) {
-        return Result.success(service.deleteOneUserCarbon(id));
+    @DeleteMapping
+    public Result deleteOneUserCarbon(@RequestBody UserCarbon userCarbon) {
+        return Result.success(service.deleteOneUserCarbon(userCarbon));
     }
 
 }

@@ -17,6 +17,10 @@ public class UserService {
         return userMapper.selectList(null);
     }
 
+    public User findById(Integer id) {
+        return userMapper.selectById(id);
+    }
+
     public String addOneUser(User user) {
         Integer res = userMapper.insert(user);
         return String.format("添加成功：%d，添加失败：%d", res, 1 - res);

@@ -22,17 +22,12 @@ public class TaskService {
         return taskMapper.selectList(null);
     }
 
-    public List<UserTask> findAllUserTask() {
-        return userTaskMapper.selectList(null);
+    public Task findById(Integer id) {
+        return taskMapper.selectById(id);
     }
 
     public String addOneTask(Task task) {
         Integer res = taskMapper.insert(task);
-        return String.format("添加成功：%d，添加失败：%d", res, 1 - res);
-    }
-
-    public String addOneUserTask(UserTask userTask) {
-        Integer res = userTaskMapper.insert(userTask);
         return String.format("添加成功：%d，添加失败：%d", res, 1 - res);
     }
 
@@ -41,14 +36,23 @@ public class TaskService {
         return String.format("修改成功：%d，修改失败：%d", res, 1 - res);
     }
 
-    public String updateOneUserTask(UserTask userTask) {
-        Integer res = userTaskMapper.updateById(userTask);
-        return String.format("修改成功：%d，修改失败：%d", res, 1 - res);
-    }
-
     public String deleteOneTask(Integer id) {
         Integer res = taskMapper.deleteById(id);
         return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
+    }
+
+    public List<UserTask> findAllUserTask() {
+        return userTaskMapper.selectList(null);
+    }
+
+    public String addOneUserTask(UserTask userTask) {
+        Integer res = userTaskMapper.insert(userTask);
+        return String.format("添加成功：%d，添加失败：%d", res, 1 - res);
+    }
+
+    public String updateOneUserTask(UserTask userTask) {
+        Integer res = userTaskMapper.updateById(userTask);
+        return String.format("修改成功：%d，修改失败：%d", res, 1 - res);
     }
 
     public String deleteOneUserTask(UserTask userTask) {

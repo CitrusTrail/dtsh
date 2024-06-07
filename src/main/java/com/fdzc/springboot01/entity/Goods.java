@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Goods {
-
+    @TableId
     private Integer id;
     private String name;
     private Integer point;

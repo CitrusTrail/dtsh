@@ -22,18 +22,23 @@ public class GroupController {
         return Result.success(service.findAllGroup());
     }
 
+    @GetMapping("/{id}")
+    public Result findById(@PathVariable Integer id) {
+        return Result.success(service.findById(id));
+    }
+
     @PostMapping
-    public Result addOneGroup(Group group) {
+    public Result addOneGroup(@RequestBody Group group) {
         return Result.success(service.addOneGroup(group));
     }
 
     @PutMapping
-    public Result updateOneGroup(Group group) {
+    public Result updateOneGroup(@RequestBody Group group) {
         return Result.success(service.updateOneGroup(group));
     }
 
     @DeleteMapping("/{id}")
-    public Result deleteOneGroup(Integer id) {
+    public Result deleteOneGroup(@PathVariable Integer id) {
         return Result.success(service.deleteOneGroup(id));
     }
 
@@ -43,18 +48,18 @@ public class GroupController {
     }
 
     @PostMapping("/userGroups")
-    public Result addOneUserGroup(UserGroup userGroup) {
+    public Result addOneUserGroup(@RequestBody UserGroup userGroup) {
         return Result.success(service.addOneUserGroup(userGroup));
     }
 
     @PutMapping("/userGroups")
-    public Result updateOneUserGroup(UserGroup userGroup) {
+    public Result updateOneUserGroup(@RequestBody UserGroup userGroup) {
         return Result.success(service.updateOneUserGroup(userGroup));
     }
 
-    @DeleteMapping("/userGroups/{id}")
-    public Result deleteOneUserGroup(Integer id) {
-        return Result.success(service.deleteOneUserGroup(id));
+    @DeleteMapping("/userGroups")
+    public Result deleteOneUserGroup(@RequestBody UserGroup userGroup) {
+        return Result.success(service.deleteOneUserGroup(userGroup));
     }
 
     @GetMapping("/chats")
@@ -63,17 +68,17 @@ public class GroupController {
     }
 
     @PostMapping("/chats")
-    public Result addOneChat(Chat chat) {
+    public Result addOneChat(@RequestBody Chat chat) {
         return Result.success(service.addOneChat(chat));
     }
 
     @PutMapping("/chats")
-    public Result updateOneChat(Chat chat) {
+    public Result updateOneChat(@RequestBody Chat chat) {
         return Result.success(service.updateOneChat(chat));
     }
 
     @DeleteMapping("/chats/{id}")
-    public Result deleteOneChat(Integer id) {
+    public Result deleteOneChat(@PathVariable Integer id) {
         return Result.success(service.deleteOneChat(id));
     }
 
