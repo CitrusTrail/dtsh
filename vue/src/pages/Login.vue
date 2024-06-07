@@ -27,10 +27,12 @@ import { ref, reactive } from 'vue'
 import { login } from '../api'
 import { useRouter } from 'vue-router'
 import useToken from '../stores/token'
+import useAdmin from '../stores/admin'
 import notification from '../utils/notification'
 
 const router = useRouter()
 const { updateToken } = useToken()
+const { updateAdmin } = useAdmin()
 
 const form = reactive({
   username: '',
@@ -46,6 +48,9 @@ const submitForm = formEl => {
       const data = await login(form)
       if (data) {
         updateToken(data.token)
+        updateAdmin({
+          id: data.id
+        })
         router.push({ name: 'index' })
       }
     } else {

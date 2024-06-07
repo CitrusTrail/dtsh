@@ -31,9 +31,9 @@ onMounted(() => {
 })
 
 const loadAdmin = async () => {
-  let data = await getAdmin()
+  let data = await getAdmin({ id: admin.id })
   updateAdmin({
-    username: data.username,
+    username: data.name,
     avatar: data.avatar
   })
 }

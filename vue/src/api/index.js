@@ -7,8 +7,8 @@ export function login(data) {
 }
 
 // 用户信息接口
-export function getAdmin() {
-  return request.get('/admins')
+export function getAdmin(params) {
+  return request.get('/admins/'+params.id)
 }
 
 // 修改密码接口

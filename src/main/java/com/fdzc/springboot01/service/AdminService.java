@@ -61,7 +61,7 @@ public class AdminService {
             // 设置token
             String token = TokenUtils.genToken(one.getId().toString(), one.getPassword());
             userDTO.setToken(token);
-        } else {
+            userDTO.setId(one.getId());
         }
         return userDTO;
     }

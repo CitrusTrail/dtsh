@@ -5,9 +5,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 @Configuration
-public class CorsConfig {
+public class CorsConfig extends WebMvcConfigurationSupport {
 
     // 当前跨域请求最大有效时长。这里默认1天
     private static final long MAX_AGE = 24 * 60 * 60;
@@ -22,5 +24,11 @@ public class CorsConfig {
         corsConfiguration.setMaxAge(MAX_AGE);
         source.registerCorsConfiguration("/**", corsConfiguration); // 4 对接口配置跨域设置
         return new CorsFilter(source);
+    }
+
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/upload/picture/**")
+                .addResourceLocations("classpath:/static/upload/picture/");
     }
 }

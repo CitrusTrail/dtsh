@@ -82,6 +82,7 @@ const submitForm = formEl => {
   formEl.validate(async valid => {
     if (valid) {
       await changeAdminPassword({
+        id: admin.id,
         password: form.password
       })
       resetForm()
@@ -107,20 +108,19 @@ const submitUpload = () => {
 }
 
 const uploadSuccess = async response => {
-  const { errno, errmsg, data } = response
-  if (errno !== 0) {
+  const { code, msg, data } = response
+  if (code !== '200') {
     notification({
       message: errmsg,
       type: 'error'
     })
   } else {
-    if (errmsg !== '') {
-      notification({
-        message: errmsg,
-        type: 'success'
-      })
-    }
+    notification({
+      message: msg,
+      type: 'success'
+    })
     await changeAdminAvatar({
+      id: admin.id,
       avatar: data.savepath
     })
     updateAdmin({

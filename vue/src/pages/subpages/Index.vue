@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-right-container">
                   <p class="number">121</p>
-                  <p>用户访问次数(次)</p>
+                  <p>用户访问(次)</p>
                 </div>
               </div>
             </el-col>
