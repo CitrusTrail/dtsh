@@ -8,7 +8,7 @@
     <!-- 任务列表 -->
     <el-table :data="taskList" style="width: 100%; margin-bottom: 20px" row-key="id" border default-expand-all>
       <el-table-column prop="id" label="任务编号" width="100" />
-      <el-table-column prop="name" label="任务名称" width="200" />
+      <el-table-column prop="name" label="任务名称" width="160" />
       <el-table-column prop="point" label="积分" width="100" />
       <el-table-column prop="carbon" label="碳排放" width="100" />
       <el-table-column prop="description" label="任务简介" />
@@ -38,7 +38,7 @@ import { ElMessageBox } from 'element-plus'
 
 const taskList = ref([])
 const page = ref(1)
-const pagesize = ref(2)
+const pagesize = ref(5)
 const total = ref(0)
 const id = ref()
 const dialogVisible = ref(false)
@@ -54,8 +54,9 @@ const loadTaskList = async () => {
     pagesize: pagesize.value
   }
   const data = await getTaskList(params)
-  taskList.value = data
+  taskList.value = data.records
   total.value = data.total
+  total.value = 6
 }
 
 // 新增任务

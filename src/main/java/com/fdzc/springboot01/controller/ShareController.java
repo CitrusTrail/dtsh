@@ -16,8 +16,8 @@ public class ShareController {
     ShareService service;
 
     @GetMapping
-    public Result findAllShare() {
-        return Result.success(service.findAllShare());
+    public Result findAllShare(int page,int pagesize) {
+        return Result.success(service.findAllShare(page,pagesize));
     }
 
     @GetMapping("/{id}")

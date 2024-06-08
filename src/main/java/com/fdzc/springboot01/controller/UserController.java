@@ -16,8 +16,8 @@ public class UserController {
     UserService userService;
 
     @GetMapping
-    public Result findAll() {
-        return Result.success(userService.findAllUser());
+    public Result findAll(int page,int pagesize) {
+        return Result.success(userService.findAllUser(page,pagesize));
     }
 
     @GetMapping("/{id}")

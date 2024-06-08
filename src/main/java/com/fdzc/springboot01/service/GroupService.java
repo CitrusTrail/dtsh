@@ -1,5 +1,7 @@
 package com.fdzc.springboot01.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fdzc.springboot01.entity.Chat;
 import com.fdzc.springboot01.entity.Group;
 import com.fdzc.springboot01.entity.UserGroup;
@@ -23,8 +25,12 @@ public class GroupService {
     @Resource
     UserGroupMapper userGroupMapper;
 
-    public List<Group> findAllGroup() {
-        return groupMapper.selectList(null);
+    public PageDTO<Group> findAllGroup(int page,int pagesize) {
+        PageDTO<Group> pageDTO = new PageDTO<>();
+        Page<Group> taskPage = groupMapper.selectPage(new Page<>(page, pagesize), null);
+        pageDTO.setRecords(taskPage.getRecords());
+        pageDTO.setTotal(taskPage.getTotal());
+        return pageDTO;
     }
 
     public Group findById(Integer id) {

@@ -1,5 +1,7 @@
 package com.fdzc.springboot01.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.entity.UserTask;
 import com.fdzc.springboot01.mapper.TaskMapper;
@@ -18,8 +20,12 @@ public class TaskService {
     @Resource
     UserTaskMapper userTaskMapper;
 
-    public List<Task> findAllTask() {
-        return taskMapper.selectList(null);
+    public PageDTO<Task> findAllTask(int page, int pagesize) {
+        PageDTO<Task> pageDTO = new PageDTO<>();
+        Page<Task> taskPage = taskMapper.selectPage(new Page<>(page, pagesize), null);
+        pageDTO.setRecords(taskPage.getRecords());
+        pageDTO.setTotal(taskPage.getTotal());
+        return pageDTO;
     }
 
     public Task findById(Integer id) {

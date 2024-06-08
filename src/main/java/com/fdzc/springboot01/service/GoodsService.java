@@ -1,5 +1,7 @@
 package com.fdzc.springboot01.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fdzc.springboot01.entity.Buy;
 import com.fdzc.springboot01.entity.Goods;
 import com.fdzc.springboot01.mapper.BuyMapper;
@@ -18,8 +20,12 @@ public class GoodsService {
     @Resource
     BuyMapper buyMapper;
 
-    public List<Goods> findAllGoods() {
-        return goodsMapper.selectList(null);
+    public PageDTO<Goods> findAllGoods(int page, int pagesize) {
+        PageDTO<Goods> pageDTO = new PageDTO<>();
+        Page<Goods> taskPage = goodsMapper.selectPage(new Page<>(page, pagesize), null);
+        pageDTO.setRecords(taskPage.getRecords());
+        pageDTO.setTotal(taskPage.getTotal());
+        return pageDTO;
     }
 
     public Goods findById(Integer id) {

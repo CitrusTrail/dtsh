@@ -38,7 +38,7 @@ import { ElMessageBox } from 'element-plus'
 
 const goodsList = ref([])
 const page = ref(1)
-const pagesize = ref(2)
+const pagesize = ref(5)
 const total = ref(0)
 const id = ref()
 const dialogVisible = ref(false)
@@ -54,7 +54,7 @@ const loadGoodsList = async () => {
     pagesize: pagesize.value
   }
   const data = await getGoodsList(params)
-  goodsList.value = data
+  goodsList.value = data.records
   total.value = data.total
 }
 

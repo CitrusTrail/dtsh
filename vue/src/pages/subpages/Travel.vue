@@ -38,7 +38,7 @@ import { ElMessageBox } from 'element-plus'
 
 const travelList = ref([])
 const page = ref(1)
-const pagesize = ref(2)
+const pagesize = ref(5)
 const total = ref(0)
 const id = ref()
 const dialogVisible = ref(false)
@@ -54,7 +54,7 @@ const loadTravelList = async () => {
     pagesize: pagesize.value
   }
   const data = await getTravelList(params)
-  travelList.value = data
+  travelList.value = data.records
   total.value = data.total
 }
 

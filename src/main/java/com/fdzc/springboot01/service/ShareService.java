@@ -1,11 +1,12 @@
 package com.fdzc.springboot01.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fdzc.springboot01.entity.Share;
 import com.fdzc.springboot01.mapper.ShareMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @Service
 public class ShareService {
@@ -13,8 +14,12 @@ public class ShareService {
     @Resource
     ShareMapper shareMapper;
 
-    public List<Share> findAllShare() {
-        return shareMapper.selectList(null);
+    public PageDTO<Share> findAllShare(int page,int pagesize) {
+        PageDTO<Share> pageDTO = new PageDTO<>();
+        Page<Share> taskPage = shareMapper.selectPage(new Page<>(page, pagesize), null);
+        pageDTO.setRecords(taskPage.getRecords());
+        pageDTO.setTotal(taskPage.getTotal());
+        return pageDTO;
     }
 
     public Share findById(Integer id) {
