@@ -5,8 +5,8 @@
       <el-input v-model="form.userId" placeholder="请填写用户编号" />
     </el-form-item>
     <!-- 发送时间  -->
-    <el-form-item label="发送时间" prop="datetime" style="width: 92%">
-      <el-input v-model="form.datetime" placeholder="请填写发送时间" />
+    <el-form-item label="发送时间" prop="time" style="width: 92%">
+      <el-input v-model="form.time" placeholder="请填写发送时间" />
     </el-form-item>
     <!-- 点赞数 -->
     <el-form-item label="点赞数" prop="likes" style="width: 92%">
@@ -43,7 +43,7 @@ const emit = defineEmits(['success'])
 const form = reactive({
   id: props.id,
   userId: '',
-  datetime: '',
+  time: '',
   likes: '',
   content: ''
 })

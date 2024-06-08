@@ -8,7 +8,7 @@
     <!-- 商品列表 -->
     <el-table :data="goodsList" style="width: 100%; margin-bottom: 20px" row-key="id" border default-expand-all>
       <el-table-column prop="id" label="商品编号" width="100" />
-      <el-table-column prop="name" label="商品名称" width="260" />
+      <el-table-column prop="name" label="商品名称" width="100" />
       <el-table-column prop="point" label="积分" width="100" />
       <el-table-column prop="stock" label="库存量" width="100" />
       <el-table-column prop="description" label="商品简介" />

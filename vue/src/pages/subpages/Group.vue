@@ -8,8 +8,8 @@
     <!-- 小组列表 -->
     <el-table :data="groupList" style="width: 100%; margin-bottom: 20px" row-key="id" border default-expand-all>
       <el-table-column prop="id" label="小组编号" width="100" />
-      <el-table-column prop="name" label="小组名称" width="260" />
-      <el-table-column prop="creator" label="创建者/组长" width="100" />
+      <el-table-column prop="name" label="小组名称" width="200" />
+      <el-table-column prop="creator" label="创建者/组长" width="120" />
       <el-table-column prop="description" label="小组简介" />
       <el-table-column fixed="right" label="操作" width="200">
         <template #default="{ row }">

@@ -8,7 +8,7 @@
     <!-- 出行列表 -->
     <el-table :data="travelList" style="width: 100%; margin-bottom: 20px" row-key="id" border default-expand-all>
       <el-table-column prop="id" label="出行编号" width="100" />
-      <el-table-column prop="userId" label="用户编号" width="260" />
+      <el-table-column prop="userId" label="用户编号" width="100" />
       <el-table-column prop="mode" label="出行方式" width="100" />
       <el-table-column prop="carbon" label="碳排放" width="100" />
       <el-table-column prop="description" label="出行详情" />

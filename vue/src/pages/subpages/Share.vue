@@ -8,8 +8,8 @@
     <!-- 分享列表 -->
     <el-table :data="shareList" style="width: 100%; margin-bottom: 20px" row-key="id" border default-expand-all>
       <el-table-column prop="id" label="分享编号" width="100" />
-      <el-table-column prop="userId" label="用户编号" width="260" />
-      <el-table-column prop="datetime" label="发送时间" width="100" />
+      <el-table-column prop="userId" label="用户编号" width="100" />
+      <el-table-column prop="time" label="发送时间" width="250" />
       <el-table-column prop="likes" label="点赞数" width="100" />
       <el-table-column prop="content" label="分享内容" />
       <el-table-column fixed="right" label="操作" width="200">

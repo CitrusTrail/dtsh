@@ -8,7 +8,7 @@
     <!-- 任务列表 -->
     <el-table :data="taskList" style="width: 100%; margin-bottom: 20px" row-key="id" border default-expand-all>
       <el-table-column prop="id" label="任务编号" width="100" />
-      <el-table-column prop="name" label="任务名称" width="260" />
+      <el-table-column prop="name" label="任务名称" width="200" />
       <el-table-column prop="point" label="积分" width="100" />
       <el-table-column prop="carbon" label="碳排放" width="100" />
       <el-table-column prop="description" label="任务简介" />

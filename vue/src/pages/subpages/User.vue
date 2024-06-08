@@ -8,10 +8,10 @@
     <!-- 用户列表 -->
     <el-table :data="userList" style="width: 100%; margin-bottom: 20px" row-key="id" border default-expand-all>
       <el-table-column prop="id" label="用户编号" width="100" />
-      <el-table-column prop="name" label="用户名称" width="260" />
-      <el-table-column prop="tel" label="联系电话" width="100" />
-      <el-table-column prop="address" label="地址" width="100" />
-      <el-table-column prop="point" label="积分" />
+      <el-table-column prop="name" label="用户名称" width="100" />
+      <el-table-column prop="point" label="积分" width="100"/>
+      <el-table-column prop="tel" label="联系电话" width="200" />
+      <el-table-column prop="address" label="地址" />
       <el-table-column fixed="right" label="操作" width="200">
         <template #default="{ row }">
           <el-button type="warning" @click="editRow(row)">编辑</el-button>
