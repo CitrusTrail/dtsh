@@ -8,6 +8,7 @@ import com.fdzc.springboot01.service.GoodsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -65,6 +66,11 @@ public class GoodsController {
     @PostMapping("/multiple")
     public Result deleteMultipleGoods(@RequestBody IdDTO idDTO) {
         return Result.success(service.deleteMultipleGoods(idDTO));
+    }
+
+    @GetMapping("/download")
+    public void download(HttpServletResponse response) {
+        service.download(response);
     }
 
 }

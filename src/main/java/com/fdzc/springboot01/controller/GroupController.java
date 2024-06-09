@@ -9,6 +9,7 @@ import com.fdzc.springboot01.service.GroupService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -86,5 +87,10 @@ public class GroupController {
     @PostMapping("/multiple")
     public Result deleteMultipleGroup(@RequestBody IdDTO idDTO) {
         return Result.success(service.deleteMultipleGroup(idDTO));
+    }
+
+    @GetMapping("/download")
+    public void download(HttpServletResponse response) {
+        service.download(response);
     }
 }

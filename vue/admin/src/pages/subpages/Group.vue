@@ -1,11 +1,12 @@
 <template>
   <div>
     <el-button type="primary" style="margin-bottom: 10px;" @click="addRow">新增小组</el-button>
+    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
+    <el-button type="success" style="margin-bottom: 10px;" @click="download">导出Excel</el-button>
     <!-- 新增小组的弹出框 -->
     <el-dialog v-model="dialogVisible" :title="id ? '修改小组' : '新增小组'" :before-close="handleBeforeClose">
       <GroupEdit ref="groupForm" :id="id" @success="editSuccess" />
     </el-dialog>
-    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
     <!-- 小组列表 -->
     <el-table
       :data="groupList"
@@ -22,8 +23,8 @@
       <el-table-column prop="description" label="小组简介" show-overflow-tooltip />
       <el-table-column fixed="right" label="操作" width="200">
         <template #default="{ row }">
-          <el-button type="warning" @click="editRow(row)">编辑</el-button>
-          <el-button type="danger" @click="delRow(row)">删除</el-button>
+          <el-button type="warning" @click="editRow(row)" plain >编辑</el-button>
+          <el-button type="danger" @click="delRow(row)" plain >删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -40,7 +41,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getGroupList, delGroup, delMultipleGroup } from '../../api'
+import { getGroupList, delGroup, delMultipleGroup, downloadGroup } from '../../api'
 import GroupEdit from '../../components/GroupEdit.vue'
 import { ElMessageBox } from 'element-plus'
 
@@ -141,5 +142,10 @@ const delMultipleRow = () => {
      loadGroupList()
    }
  }).catch(() => {})
+}
+
+// 导出文件
+const download = async () => {
+  await downloadGroup()
 }
 </script>

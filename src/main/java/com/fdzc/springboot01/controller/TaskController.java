@@ -8,6 +8,7 @@ import com.fdzc.springboot01.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -67,6 +68,11 @@ public class TaskController {
     @PostMapping("/multiple")
     public Result deleteMultipleTask(@RequestBody IdDTO idDTO) {
         return Result.success(service.deleteMultipleTask(idDTO));
+    }
+
+    @GetMapping("/download")
+    public void download(HttpServletResponse response) {
+        service.download(response);
     }
 
     @GetMapping("/hot")

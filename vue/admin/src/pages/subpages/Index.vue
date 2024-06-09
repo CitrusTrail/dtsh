@@ -97,8 +97,15 @@ import * as echarts from 'echarts'
 
 const { admin, updateAdmin } = useAdmin()
 
+// 用户登录信息（模拟数据）
+const loginInfo = reactive({
+  loginTime: '2024-06-01 09:00:00',
+  loginPlace: '福州'
+})
+
 onMounted(() => {
   loadAdmin()
+  loadLogin()
   initCharts1()
   initCharts2()
 })
@@ -111,11 +118,9 @@ const loadAdmin = async () => {
   })
 }
 
-// 用户登录信息（模拟数据）
-const loginInfo = reactive({
-  loginTime: '2023-07-22 09:00:00',
-  loginPlace: '福州'
-})
+const loadLogin = () => {
+  loginInfo.loginTime = new Date().toLocaleString()
+}
 
 // 图表1：月度网站访问量
 const initCharts1 = () => {
@@ -164,7 +169,7 @@ const initCharts2 = () => {
   const myChart = echarts.init(document.getElementById('orderQuantity'))
   myChart.setOption({
     title: { text: '2023年碳排放量' },
-    color: ['#1493fa'],
+    color: ['#67c23a'],
     grid: {
       left: '3%',
       right: '8%',

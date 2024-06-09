@@ -1,5 +1,6 @@
 package com.fdzc.springboot01.service;
 
+import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fdzc.springboot01.common.dto.IdDTO;
@@ -11,6 +12,7 @@ import com.fdzc.springboot01.mapper.UserTaskMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Service
@@ -69,6 +71,17 @@ public class TaskService {
             res += deleteOneTask(id);
         }
         return res;
+    }
+
+    public void download(HttpServletResponse response) {
+        List<Task> list = taskMapper.selectList(null);
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("UTF-8");
+        try {
+            response.setHeader("Content-disposition", "attachment;filename=export.xlsx");
+            EasyExcel.write(response.getOutputStream(),Task.class).autoCloseStream(Boolean.FALSE).sheet("任务列表").doWrite(list);
+        } catch (Exception e) {
+        }
     }
 
     public List<HotTaskVo> findHotTask(Integer num) {

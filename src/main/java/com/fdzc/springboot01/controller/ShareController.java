@@ -7,6 +7,7 @@ import com.fdzc.springboot01.service.ShareService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -44,5 +45,10 @@ public class ShareController {
     @PostMapping("/multiple")
     public Result deleteMultipleShare(@RequestBody IdDTO idDTO) {
         return Result.success(service.deleteMultipleShare(idDTO));
+    }
+
+    @GetMapping("/download")
+    public void download(HttpServletResponse response) {
+        service.download(response);
     }
 }

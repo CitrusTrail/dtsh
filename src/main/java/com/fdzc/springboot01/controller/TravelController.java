@@ -7,6 +7,7 @@ import com.fdzc.springboot01.service.TravelService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/travels")
@@ -43,5 +44,10 @@ public class TravelController {
     @PostMapping("/multiple")
     public Result deleteMultipleTravel(@RequestBody IdDTO idDTO) {
         return Result.success(service.deleteMultipleTravel(idDTO));
+    }
+
+    @GetMapping("/download")
+    public void download(HttpServletResponse response) {
+        service.download(response);
     }
 }

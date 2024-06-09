@@ -111,7 +111,7 @@ const uploadSuccess = async response => {
   const { code, msg, data } = response
   if (code !== '200') {
     notification({
-      message: errmsg,
+      message: msg,
       type: 'error'
     })
   } else {

@@ -1,15 +1,18 @@
 package com.fdzc.springboot01.service;
 
+import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.Buy;
 import com.fdzc.springboot01.entity.Goods;
+import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.mapper.BuyMapper;
 import com.fdzc.springboot01.mapper.GoodsMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Service
@@ -68,6 +71,17 @@ public class GoodsService {
             res += deleteOneGoods(id);
         }
         return res;
+    }
+
+    public void download(HttpServletResponse response) {
+        List<Goods> list = goodsMapper.selectList(null);
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("UTF-8");
+        try {
+            response.setHeader("Content-disposition", "attachment;filename=export.xlsx");
+            EasyExcel.write(response.getOutputStream(),Goods.class).autoCloseStream(Boolean.FALSE).sheet("商品列表").doWrite(list);
+        } catch (Exception e) {
+        }
     }
 
 }

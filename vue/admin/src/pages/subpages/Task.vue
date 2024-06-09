@@ -1,11 +1,12 @@
 <template>
   <div>
     <el-button type="primary" style="margin-bottom: 10px;" @click="addRow">新增任务</el-button>
+    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
+    <el-button type="success" style="margin-bottom: 10px;" @click="download">导出Excel</el-button>
     <!-- 新增任务的弹出框 -->
     <el-dialog v-model="dialogVisible" :title="id ? '修改任务' : '新增任务'" :before-close="handleBeforeClose">
       <TaskEdit ref="taskForm" :id="id" @success="editSuccess" />
     </el-dialog>
-    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
     <!-- 任务列表 -->
     <el-table
       :data="taskList"
@@ -23,8 +24,8 @@
       <el-table-column prop="description" label="任务简介" show-overflow-tooltip />
       <el-table-column fixed="right" label="操作" width="200">
         <template #default="{ row }">
-          <el-button type="warning" @click="editRow(row)">编辑</el-button>
-          <el-button type="danger" @click="delRow(row)">删除</el-button>
+          <el-button type="warning" @click="editRow(row)" plain >编辑</el-button>
+          <el-button type="danger" @click="delRow(row)" plain >删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -41,7 +42,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getTaskList, delTask, delMultipleTask } from '../../api'
+import { getTaskList, delTask, delMultipleTask, downloadTask } from '../../api'
 import TaskEdit from '../../components/TaskEdit.vue'
 import { ElMessageBox } from 'element-plus'
 
@@ -142,5 +143,10 @@ const delMultipleRow = () => {
      loadTaskList()
    }
  }).catch(() => {})
+}
+
+// 导出文件
+const download = async () => {
+  await downloadTask()
 }
 </script>

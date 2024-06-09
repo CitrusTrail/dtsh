@@ -7,6 +7,7 @@ import com.fdzc.springboot01.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -44,5 +45,10 @@ public class UserController {
     @PostMapping("/multiple")
     public Result deleteMultipleUser(@RequestBody IdDTO idDTO) {
         return Result.success(userService.deleteMultipleUser(idDTO));
+    }
+
+    @GetMapping("/download")
+    public void download(HttpServletResponse response) {
+        userService.download(response);
     }
 }

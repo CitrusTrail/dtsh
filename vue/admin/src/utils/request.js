@@ -22,25 +22,37 @@ service.interceptors.request.use(config => {
 
 service.interceptors.response.use(
   response => {
-    loadingInstance.close()
-    const { code, data, msg } = response.data
-    if (code === '200') {
-      if (msg !== '') {
+      loadingInstance.close()
+      if(response.headers.getContentType() === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8"){
+          const url = window.URL.createObjectURL(new Blob([response.data], { type: 'multipary/vnd.ms-excel' }))
+          const link = document.createElement('a')
+          link.href = url
+          link.setAttribute('download',"export" + new Date().toLocaleString() + ".xlsx")
+          document.body.appendChild(link)
+          link.click()
+          document.body.removeChild(link)
+          window.URL.revokeObjectURL(url)
+      }
+      else{
+        const { code, data, msg } = response.data
+        if (code === '200') {
+          if (msg !== '') {
+            notification({
+              message: msg,
+              type: 'success'
+            })
+          }
+          return data || true
+        }
         notification({
           message: msg,
-          type: 'success'
+          type: 'error'
         })
+        if (code === '401') {
+          router.push({ name: 'login' })
+        }
+        return false
       }
-      return data || true
-    }
-    notification({
-      message: msg,
-      type: 'error'
-    })
-    if (code === '401') {
-      router.push({ name: 'login' })
-    }
-    return false
   },
   error => {
     loadingInstance.close()

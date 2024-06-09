@@ -23,7 +23,7 @@ export function changeAdminAvatar(data) {
 
 // 更新图片地址
 export function uploadPictureURL() {
-  return config.baseURL + '/upload/picture'
+  return config.baseURL + '/file/picture'
 }
 
 // 任务列表接口
@@ -204,4 +204,34 @@ export function delMultipleGoods(data) {
 // 批量删除用户接口
 export function delMultipleUser(data) {
   return request.post('/users/multiple', data)
+}
+
+// 导出任务接口
+export function downloadTask() {
+  return request.get('/tasks/download',{ responseType: 'blob' })
+}
+
+// 导出出行接口
+export function downloadTravel() {
+  return request.get('/travels/download',{ responseType: 'blob' })
+}
+
+// 导出小组接口
+export function downloadGroup() {
+  return request.get('/groups/download',{ responseType: 'blob' })
+}
+
+// 导出分享接口
+export function downloadShare() {
+  return request.get('/shares/download',{ responseType: 'blob' })
+}
+
+// 导出商品接口
+export function downloadGoods() {
+  return request.get('/goods/download',{ responseType: 'blob' })
+}
+
+// 导出用户接口
+export function downloadUser() {
+  return request.get('/users/download',{ responseType: 'blob' })
 }

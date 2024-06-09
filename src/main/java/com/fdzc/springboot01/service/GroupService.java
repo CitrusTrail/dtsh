@@ -1,10 +1,12 @@
 package com.fdzc.springboot01.service;
 
+import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.Chat;
 import com.fdzc.springboot01.entity.Group;
+import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.entity.UserGroup;
 import com.fdzc.springboot01.mapper.ChatMapper;
 import com.fdzc.springboot01.mapper.GroupMapper;
@@ -12,6 +14,7 @@ import com.fdzc.springboot01.mapper.UserGroupMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Service
@@ -89,6 +92,17 @@ public class GroupService {
             res += deleteOneGroup(id);
         }
         return res;
+    }
+
+    public void download(HttpServletResponse response) {
+        List<Group> list = groupMapper.selectList(null);
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("UTF-8");
+        try {
+            response.setHeader("Content-disposition", "attachment;filename=export.xlsx");
+            EasyExcel.write(response.getOutputStream(),Group.class).autoCloseStream(Boolean.FALSE).sheet("小组列表").doWrite(list);
+        } catch (Exception e) {
+        }
     }
 
 }
