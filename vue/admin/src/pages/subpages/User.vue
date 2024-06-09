@@ -5,8 +5,17 @@
     <el-dialog v-model="dialogVisible" :title="id ? '修改用户' : '新增用户'" :before-close="handleBeforeClose">
       <UserEdit ref="userForm" :id="id" @success="editSuccess" />
     </el-dialog>
+    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
     <!-- 用户列表 -->
-    <el-table :data="userList" style="width: 100%; margin-bottom: 20px" row-key="id" border default-expand-all>
+    <el-table
+      :data="userList"
+      style="width: 100%; margin-bottom: 20px" row-key="id"
+      border
+      default-expand-all
+      stripe
+      @selection-change="handleSelectionChange"
+    >
+      <el-table-column type="selection" width="55" />
       <el-table-column prop="id" label="用户编号" width="100" />
       <el-table-column prop="name" label="用户名称" width="100" />
       <el-table-column prop="point" label="积分" width="100"/>
@@ -32,7 +41,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getUserList, delUser } from '../../api'
+import { getUserList, delUser, delMultipleUser } from '../../api'
 import UserEdit from '../../components/UserEdit.vue'
 import { ElMessageBox } from 'element-plus'
 
@@ -114,5 +123,24 @@ const handleBeforeClose  = () => {
       userForm.value.resetForm()
     }, 500)
   }).catch(() => {})
+}
+
+// 多选
+const multipleSelection = ref([])
+const handleSelectionChange = val => {
+  multipleSelection.value = val
+}
+
+// 批量删除
+const delMultipleRow = () => {
+ ElMessageBox.confirm('确定要删除选中的任务吗？', {
+   closeOnClickModal: false,
+   confirmButtonText: '确定',
+   cancelButtonText: '取消',
+ }).then(async () => {
+   if (await delMultipleUser({ ids: multipleSelection.value.map(item=>item.id) })) {
+     loadUserList()
+   }
+ }).catch(() => {})
 }
 </script>

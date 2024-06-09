@@ -1,6 +1,7 @@
 package com.fdzc.springboot01.controller;
 
 import com.fdzc.springboot01.common.Result;
+import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.Chat;
 import com.fdzc.springboot01.entity.Group;
 import com.fdzc.springboot01.entity.UserGroup;
@@ -82,4 +83,8 @@ public class GroupController {
         return Result.success(service.deleteOneChat(id));
     }
 
+    @PostMapping("/multiple")
+    public Result deleteMultipleGroup(@RequestBody IdDTO idDTO) {
+        return Result.success(service.deleteMultipleGroup(idDTO));
+    }
 }

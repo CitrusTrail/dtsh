@@ -1,6 +1,7 @@
 package com.fdzc.springboot01.controller;
 
 import com.fdzc.springboot01.common.Result;
+import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.Share;
 import com.fdzc.springboot01.service.ShareService;
 import org.springframework.web.bind.annotation.*;
@@ -40,4 +41,8 @@ public class ShareController {
         return Result.success(service.deleteOneShare(id));
     }
 
+    @PostMapping("/multiple")
+    public Result deleteMultipleShare(@RequestBody IdDTO idDTO) {
+        return Result.success(service.deleteMultipleShare(idDTO));
+    }
 }

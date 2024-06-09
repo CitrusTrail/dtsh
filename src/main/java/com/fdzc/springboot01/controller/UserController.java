@@ -1,6 +1,7 @@
 package com.fdzc.springboot01.controller;
 
 import com.fdzc.springboot01.common.Result;
+import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.User;
 import com.fdzc.springboot01.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -40,4 +41,8 @@ public class UserController {
         return Result.success(userService.deleteOneUser(id));
     }
 
+    @PostMapping("/multiple")
+    public Result deleteMultipleUser(@RequestBody IdDTO idDTO) {
+        return Result.success(userService.deleteMultipleUser(idDTO));
+    }
 }

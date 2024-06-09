@@ -5,13 +5,22 @@
     <el-dialog v-model="dialogVisible" :title="id ? '修改任务' : '新增任务'" :before-close="handleBeforeClose">
       <TaskEdit ref="taskForm" :id="id" @success="editSuccess" />
     </el-dialog>
+    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
     <!-- 任务列表 -->
-    <el-table :data="taskList" style="width: 100%; margin-bottom: 20px" row-key="id" border default-expand-all>
+    <el-table
+      :data="taskList"
+      style="width: 100%; margin-bottom: 20px" row-key="id"
+      border
+      default-expand-all
+      stripe
+      @selection-change="handleSelectionChange"
+    >
+      <el-table-column type="selection" width="55" />
       <el-table-column prop="id" label="任务编号" width="100" />
       <el-table-column prop="name" label="任务名称" width="160" />
       <el-table-column prop="point" label="积分" width="100" />
       <el-table-column prop="carbon" label="碳排放" width="100" />
-      <el-table-column prop="description" label="任务简介" />
+      <el-table-column prop="description" label="任务简介" show-overflow-tooltip />
       <el-table-column fixed="right" label="操作" width="200">
         <template #default="{ row }">
           <el-button type="warning" @click="editRow(row)">编辑</el-button>
@@ -32,7 +41,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getTaskList, delTask } from '../../api'
+import { getTaskList, delTask, delMultipleTask } from '../../api'
 import TaskEdit from '../../components/TaskEdit.vue'
 import { ElMessageBox } from 'element-plus'
 
@@ -56,7 +65,6 @@ const loadTaskList = async () => {
   const data = await getTaskList(params)
   taskList.value = data.records
   total.value = data.total
-  total.value = 6
 }
 
 // 新增任务
@@ -115,5 +123,24 @@ const handleBeforeClose  = () => {
       taskForm.value.resetForm()
     }, 500)
   }).catch(() => {})
+}
+
+// 多选
+const multipleSelection = ref([])
+const handleSelectionChange = val => {
+  multipleSelection.value = val
+}
+
+// 批量删除
+const delMultipleRow = () => {
+ ElMessageBox.confirm('确定要删除选中的任务吗？', {
+   closeOnClickModal: false,
+   confirmButtonText: '确定',
+   cancelButtonText: '取消',
+ }).then(async () => {
+   if (await delMultipleTask({ ids: multipleSelection.value.map(item=>item.id) })) {
+     loadTaskList()
+   }
+ }).catch(() => {})
 }
 </script>

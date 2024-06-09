@@ -1,6 +1,7 @@
 package com.fdzc.springboot01.controller;
 
 import com.fdzc.springboot01.common.Result;
+import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.Buy;
 import com.fdzc.springboot01.entity.Goods;
 import com.fdzc.springboot01.service.GoodsService;
@@ -59,6 +60,11 @@ public class GoodsController {
     @DeleteMapping("/buy/{id}")
     public Result deleteOneBuy(@PathVariable Integer id) {
         return Result.success(service.deleteOneBuy(id));
+    }
+
+    @PostMapping("/multiple")
+    public Result deleteMultipleGoods(@RequestBody IdDTO idDTO) {
+        return Result.success(service.deleteMultipleGoods(idDTO));
     }
 
 }

@@ -1,13 +1,16 @@
 package com.fdzc.springboot01.controller;
 
 import com.fdzc.springboot01.common.Result;
+import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.entity.UserTask;
 import com.fdzc.springboot01.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/tasks")
@@ -59,6 +62,11 @@ public class TaskController {
     @DeleteMapping("/userTask")
     public Result deleteOneUserTask(@RequestBody UserTask userTask) {
         return Result.success(service.deleteOneUserTask(userTask));
+    }
+
+    @PostMapping("/multiple")
+    public Result deleteMultipleTask(@RequestBody IdDTO idDTO) {
+        return Result.success(service.deleteMultipleTask(idDTO));
     }
 
     @GetMapping("/hot")

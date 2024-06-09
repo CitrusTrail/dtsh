@@ -2,6 +2,7 @@ package com.fdzc.springboot01.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
+import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.Buy;
 import com.fdzc.springboot01.entity.Goods;
 import com.fdzc.springboot01.mapper.BuyMapper;
@@ -32,38 +33,41 @@ public class GoodsService {
         return goodsMapper.selectById(id);
     }
 
-    public String addOneGoods(Goods goods) {
-        Integer res = goodsMapper.insert(goods);
-        return String.format("添加成功：%d，添加失败：%d", res, 1 - res);
+    public Integer addOneGoods(Goods goods) {
+        return goodsMapper.insert(goods);
     }
 
-    public String updateOneGoods(Goods goods) {
-        Integer res = goodsMapper.updateById(goods);
-        return String.format("修改成功：%d，修改失败：%d", res, 1 - res);
+    public Integer updateOneGoods(Goods goods) {
+        return goodsMapper.updateById(goods);
     }
 
-    public String deleteOneGoods(Integer id) {
-        Integer res = goodsMapper.deleteById(id);
-        return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
+    public Integer deleteOneGoods(Integer id) {
+        return goodsMapper.deleteById(id);
     }
 
     public List<Buy> findAllBuy() {
         return buyMapper.selectList(null);
     }
 
-    public String addOneBuy(Buy buy) {
-        Integer res = buyMapper.insert(buy);
-        return String.format("添加成功：%d，添加失败：%d", res, 1 - res);
+    public Integer addOneBuy(Buy buy) {
+        return buyMapper.insert(buy);
     }
 
-    public String updateOneBuy(Buy buy) {
-        Integer res = buyMapper.updateById(buy);
-        return String.format("修改成功：%d，修改失败：%d", res, 1 - res);
+    public Integer updateOneBuy(Buy buy) {
+        return buyMapper.updateById(buy);
     }
 
-    public String deleteOneBuy(Integer id) {
-        Integer res = buyMapper.deleteById(id);
-        return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
+    public Integer deleteOneBuy(Integer id) {
+        return buyMapper.deleteById(id);
+    }
+
+    public Integer deleteMultipleGoods(IdDTO idDTO) {
+        List<Integer> ids = idDTO.getIds();
+        Integer res = 0;
+        for (Integer id : ids) {
+            res += deleteOneGoods(id);
+        }
+        return res;
     }
 
 }

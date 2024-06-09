@@ -175,3 +175,33 @@ export function editUser(data) {
 export function delUser(data) {
   return request.delete('/users/'+data.id)
 }
+
+// 批量删除任务接口
+export function delMultipleTask(data) {
+  return request.post('/tasks/multiple', data)
+}
+
+// 批量删除出行接口
+export function delMultipleTravel(data) {
+  return request.post('/travels/multiple', data)
+}
+
+// 批量删除小组接口
+export function delMultipleGroup(data) {
+  return request.post('/groups/multiple', data)
+}
+
+// 批量删除分享接口
+export function delMultipleShare(data) {
+  return request.post('/shares/multiple', data)
+}
+
+// 批量删除商品接口
+export function delMultipleGoods(data) {
+  return request.post('/goods/multiple', data)
+}
+
+// 批量删除用户接口
+export function delMultipleUser(data) {
+  return request.post('/users/multiple', data)
+}

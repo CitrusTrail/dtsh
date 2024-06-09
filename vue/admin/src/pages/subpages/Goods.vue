@@ -5,13 +5,22 @@
     <el-dialog v-model="dialogVisible" :title="id ? '修改商品' : '新增商品'" :before-close="handleBeforeClose">
       <GoodsEdit ref="goodsForm" :id="id" @success="editSuccess" />
     </el-dialog>
+    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
     <!-- 商品列表 -->
-    <el-table :data="goodsList" style="width: 100%; margin-bottom: 20px" row-key="id" border default-expand-all>
+    <el-table
+      :data="goodsList"
+      style="width: 100%; margin-bottom: 20px" row-key="id"
+      border
+      default-expand-all
+      stripe
+      @selection-change="handleSelectionChange"
+    >
+      <el-table-column type="selection" width="55" />
       <el-table-column prop="id" label="商品编号" width="100" />
       <el-table-column prop="name" label="商品名称" width="100" />
       <el-table-column prop="point" label="积分" width="100" />
       <el-table-column prop="stock" label="库存量" width="100" />
-      <el-table-column prop="description" label="商品简介" />
+      <el-table-column prop="description" label="商品简介" show-overflow-tooltip />
       <el-table-column fixed="right" label="操作" width="200">
         <template #default="{ row }">
           <el-button type="warning" @click="editRow(row)">编辑</el-button>
@@ -32,7 +41,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getGoodsList, delGoods } from '../../api'
+import { getGoodsList, delGoods, delMultipleGoods } from '../../api'
 import GoodsEdit from '../../components/GoodsEdit.vue'
 import { ElMessageBox } from 'element-plus'
 
@@ -114,5 +123,24 @@ const handleBeforeClose  = () => {
       goodsForm.value.resetForm()
     }, 500)
   }).catch(() => {})
+}
+
+// 多选
+const multipleSelection = ref([])
+const handleSelectionChange = val => {
+  multipleSelection.value = val
+}
+
+// 批量删除
+const delMultipleRow = () => {
+ ElMessageBox.confirm('确定要删除选中的任务吗？', {
+   closeOnClickModal: false,
+   confirmButtonText: '确定',
+   cancelButtonText: '取消',
+ }).then(async () => {
+   if (await delMultipleGoods({ ids: multipleSelection.value.map(item=>item.id) })) {
+     loadGoodsList()
+   }
+ }).catch(() => {})
 }
 </script>

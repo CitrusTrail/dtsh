@@ -2,6 +2,7 @@ package com.fdzc.springboot01.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
+import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.common.vo.HotTaskVo;
 import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.entity.UserTask;
@@ -33,38 +34,41 @@ public class TaskService {
         return taskMapper.selectById(id);
     }
 
-    public String addOneTask(Task task) {
-        Integer res = taskMapper.insert(task);
-        return String.format("添加成功：%d，添加失败：%d", res, 1 - res);
+    public Integer addOneTask(Task task) {
+        return taskMapper.insert(task);
     }
 
-    public String updateOneTask(Task task) {
-        Integer res = taskMapper.updateById(task);
-        return String.format("修改成功：%d，修改失败：%d", res, 1 - res);
+    public Integer updateOneTask(Task task) {
+        return taskMapper.updateById(task);
     }
 
-    public String deleteOneTask(Integer id) {
-        Integer res = taskMapper.deleteById(id);
-        return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
+    public Integer deleteOneTask(Integer id) {
+        return taskMapper.deleteById(id);
     }
 
     public List<UserTask> findAllUserTask() {
         return userTaskMapper.selectList(null);
     }
 
-    public String addOneUserTask(UserTask userTask) {
-        Integer res = userTaskMapper.insert(userTask);
-        return String.format("添加成功：%d，添加失败：%d", res, 1 - res);
+    public Integer addOneUserTask(UserTask userTask) {
+        return userTaskMapper.insert(userTask);
     }
 
-    public String updateOneUserTask(UserTask userTask) {
-        Integer res = userTaskMapper.updateById(userTask);
-        return String.format("修改成功：%d，修改失败：%d", res, 1 - res);
+    public Integer updateOneUserTask(UserTask userTask) {
+        return userTaskMapper.updateById(userTask);
     }
 
-    public String deleteOneUserTask(UserTask userTask) {
-        Integer res = userTaskMapper.deleteById(userTask);
-        return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
+    public Integer deleteOneUserTask(UserTask userTask) {
+        return userTaskMapper.deleteById(userTask);
+    }
+
+    public Integer deleteMultipleTask(IdDTO idDTO) {
+        List<Integer> ids = idDTO.getIds();
+        Integer res = 0;
+        for (Integer id : ids) {
+            res += deleteOneTask(id);
+        }
+        return res;
     }
 
     public List<HotTaskVo> findHotTask(Integer num) {
