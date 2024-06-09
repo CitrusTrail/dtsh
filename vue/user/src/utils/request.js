@@ -26,21 +26,21 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(
   response => {
     closeToast()
-    const { errno, data, errmsg } = response.data
-    if (errno === 0) {
-      if (errmsg !== '') {
+    const { code, data, msg } = response.data
+    if (code === '200') {
+      if (msg !== '') {
         showToast({
-          message: errmsg,
+          message: msg,
           type: 'success'
         })
       }
       return data || true
     }
     showToast({
-      message: errmsg,
+      message: msg,
       type: 'error'
     })
-    if (errno === 2) {
+    if (code === '401') {
       router.push({ name: 'login' })
     }
     return false

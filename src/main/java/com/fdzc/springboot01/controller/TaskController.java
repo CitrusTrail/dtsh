@@ -61,4 +61,9 @@ public class TaskController {
         return Result.success(service.deleteOneUserTask(userTask));
     }
 
+    @GetMapping("/hot")
+    public Result findHotTask(Integer num) {
+        return Result.success(service.findHotTask(num));
+    }
+
 }

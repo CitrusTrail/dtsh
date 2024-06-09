@@ -10,19 +10,17 @@
   <!-- 轮播图 -->
   <home-swiper></home-swiper>
   <!-- 功能按钮区 -->
-  <home-grid></home-grid>
+  <home-grid class="grid" ></home-grid>
   <!-- 商品信息展示区 -->
-  <home-product></home-product>
   <home-new></home-new>
-  <home-top></home-top>
+  <home-hot></home-hot>
 </template>
 
 <script setup>
 import HomeSwiper from '../components/HomeSwiper.vue'
 import HomeGrid from '../components/HomeGrid.vue'
-import HomeProduct from '../components/HomeProduct.vue'
 import HomeNew from '../components/HomeNew.vue'
-import HomeTop from '../components/HomeTop.vue'
+import HomeHot from '../components/HomeHot.vue'
 
 import { ref } from 'vue'
 import { showToast } from 'vant'
@@ -32,3 +30,11 @@ const onSearch = val=> showToast(val)
 const onCancel = () => showToast('取消')
 </script>
 
+<style scoped>
+.grid {
+  width: 100%;
+  position: absolute;
+  top: 80px;
+  z-index: 10;
+}
+</style>

@@ -2,6 +2,7 @@ package com.fdzc.springboot01.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
+import com.fdzc.springboot01.common.vo.HotTaskVo;
 import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.entity.UserTask;
 import com.fdzc.springboot01.mapper.TaskMapper;
@@ -64,6 +65,10 @@ public class TaskService {
     public String deleteOneUserTask(UserTask userTask) {
         Integer res = userTaskMapper.deleteById(userTask);
         return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
+    }
+
+    public List<HotTaskVo> findHotTask(Integer num) {
+        return taskMapper.selectHotTask(num);
     }
 
 }

@@ -97,6 +97,13 @@ CREATE TABLE `user_task` (
 -- ----------------------------
 INSERT INTO `user_task` VALUES (1, 1, '2024-06-01 00:00:00');
 INSERT INTO `user_task` VALUES (2, 1, '2024-06-01 00:00:00');
+INSERT INTO `user_task` VALUES (3, 1, '2024-06-01 00:00:00');
+INSERT INTO `user_task` VALUES (2, 2, '2024-06-01 00:00:00');
+INSERT INTO `user_task` VALUES (1, 2, '2024-06-01 00:00:00');
+INSERT INTO `user_task` VALUES (3, 2, '2024-06-01 00:00:00');
+INSERT INTO `user_task` VALUES (1, 6, '2024-06-01 00:00:00');
+INSERT INTO `user_task` VALUES (2, 6, '2024-06-01 00:00:00');
+INSERT INTO `user_task` VALUES (1, 7, '2024-06-01 00:00:00');
 
 -- ----------------------------
 -- Table structure for travel
