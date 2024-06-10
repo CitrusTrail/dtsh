@@ -1,5 +1,18 @@
 <template>
   <div>
+    <el-form :model="form" label-width="auto" inline>
+      <el-input v-model="form.id" style="max-width:250px; margin-bottom:10px; margin-right:10px;" placeholder="请输入任务编号">
+        <template #prepend>任务编号</template>
+      </el-input>
+      <el-input v-model="form.name" style="max-width:250px; margin-bottom:10px; margin-right:10px;" placeholder="请输入任务名称">
+        <template #prepend>任务名称</template>
+      </el-input>
+      <el-input v-model="form.description" style="max-width:250px; margin-bottom:10px; margin-right:10px;" placeholder="请输入任务简介">
+        <template #prepend>任务简介</template>
+      </el-input>
+      <el-button type="primary" style="margin-bottom:10px;" @click="loadTaskList">查询</el-button>
+      <el-button type="info" style="margin-bottom: 10px;" @click="reset">重置</el-button>
+    </el-form>
     <el-button type="primary" style="margin-bottom: 10px;" @click="addRow">新增任务</el-button>
     <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
     <el-button type="success" style="margin-bottom: 10px;" @click="download">导出Excel</el-button>
@@ -54,6 +67,12 @@ const id = ref()
 const dialogVisible = ref(false)
 const taskForm = ref()
 
+const form = ref({
+  id: '',
+  name: '',
+  description: ''
+})
+
 onMounted(() => {
   loadTaskList()
 })
@@ -61,7 +80,10 @@ onMounted(() => {
 const loadTaskList = async () => {
   const params = {
     page: page.value,
-    pagesize: pagesize.value
+    pagesize: pagesize.value,
+    id: form.value.id,
+    name: form.value.name,
+    description: form.value.description
   }
   const data = await getTaskList(params)
   taskList.value = data.records
@@ -148,5 +170,16 @@ const delMultipleRow = () => {
 // 导出文件
 const download = async () => {
   await downloadTask()
+}
+
+// 重置
+const reset = () => {
+  page.value = 1
+  form.value = {
+    id: '',
+    name: '',
+    description: ''
+  }
+  loadTaskList()
 }
 </script>

@@ -21,8 +21,8 @@ public class TaskController {
     TaskService service;
 
     @GetMapping
-    public Result findAllTask(int page,int pagesize) {
-        return Result.success(service.findAllTask(page,pagesize));
+    public Result findAllTask(int page,int pagesize,Integer id,String name,String description) {
+        return Result.success(service.findAllTask(page,pagesize,id,name,description));
     }
 
     @GetMapping("/{id}")
