@@ -1,11 +1,11 @@
 <template>
   <div>
-    <el-button type="primary" style="margin-bottom: 10px;" @click="addRow">新增分享</el-button>
+    <!-- <el-button type="primary" style="margin-bottom: 10px;" @click="addRow">新增分享</el-button> -->
     <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
     <el-button type="success" style="margin-bottom: 10px;" @click="download">导出Excel</el-button>
     <!-- 新增分享的弹出框 -->
-    <el-dialog v-model="dialogVisible" :title="id ? '修改分享' : '新增分享'" :before-close="handleBeforeClose">
-      <ShareEdit ref="shareForm" :id="id" @success="editSuccess" />
+    <el-dialog v-model="dialogVisible" :title="id ? '分享详情' : '新增分享'" :before-close="handleBeforeClose">
+      <ShareDetail ref="shareForm" :id="id" @success="detailSuccess" />
     </el-dialog>
     <!-- 分享列表 -->
     <el-table
@@ -24,7 +24,7 @@
       <el-table-column prop="content" label="分享内容" show-overflow-tooltip />
       <el-table-column fixed="right" label="操作" width="200">
         <template #default="{ row }">
-          <el-button type="warning" @click="editRow(row)" plain >编辑</el-button>
+          <el-button type="success" @click="detailRow(row)" plain >详情</el-button>
           <el-button type="danger" @click="delRow(row)" plain >删除</el-button>
         </template>
       </el-table-column>
@@ -43,7 +43,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getShareList, delShare, delMultipleShare, downloadShare } from '../../api'
-import ShareEdit from '../../components/ShareEdit.vue'
+import ShareDetail from '../../components/ShareDetail.vue'
 import { ElMessageBox } from 'element-plus'
 
 const shareList = ref([])
@@ -78,7 +78,7 @@ const addRow = () => {
 }
 
 // 修改分享
-const editRow = row => {
+const detailRow = row => {
   if (shareForm.value) {
     shareForm.value.resetForm(row.id)
   }
@@ -106,7 +106,7 @@ const handleCurrentChange = value => {
 }
 
 // 编辑完成
-const editSuccess = () => {
+const detailSuccess = () => {
   loadShareList()
   dialogVisible.value = false
 }

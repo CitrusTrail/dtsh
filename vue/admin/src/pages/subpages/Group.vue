@@ -5,7 +5,7 @@
     <el-button type="success" style="margin-bottom: 10px;" @click="download">导出Excel</el-button>
     <!-- 新增小组的弹出框 -->
     <el-dialog v-model="dialogVisible" :title="id ? '小组详情' : '新增小组'" :before-close="handleBeforeClose">
-      <GroupEdit ref="groupForm" :id="id" @success="editSuccess" />
+      <GroupDetail ref="groupForm" :id="id" @success="detailSuccess" />
     </el-dialog>
     <!-- 小组列表 -->
     <el-table
@@ -23,7 +23,7 @@
       <el-table-column prop="description" label="小组简介" show-overflow-tooltip />
       <el-table-column fixed="right" label="操作" width="200">
         <template #default="{ row }">
-          <el-button type="success" @click="editRow(row)" plain >详情</el-button>
+          <el-button type="success" @click="detailRow(row)" plain >详情</el-button>
           <el-button type="danger" @click="delRow(row)" plain >删除</el-button>
         </template>
       </el-table-column>
@@ -42,7 +42,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getGroupList, delGroup, delMultipleGroup, downloadGroup } from '../../api'
-import GroupEdit from '../../components/GroupEdit.vue'
+import GroupDetail from '../../components/GroupDetail.vue'
 import { ElMessageBox } from 'element-plus'
 
 const groupList = ref([])
@@ -77,7 +77,7 @@ const addRow = () => {
 }
 
 // 修改小组
-const editRow = row => {
+const detailRow = row => {
   if (groupForm.value) {
     groupForm.value.resetForm(row.id)
   }
@@ -105,7 +105,7 @@ const handleCurrentChange = value => {
 }
 
 // 编辑完成
-const editSuccess = () => {
+const detailSuccess = () => {
   loadGroupList()
   dialogVisible.value = false
 }

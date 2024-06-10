@@ -1,11 +1,11 @@
 <template>
   <div>
-    <el-button type="primary" style="margin-bottom: 10px;" @click="addRow">新增出行</el-button>
+    <!-- <el-button type="primary" style="margin-bottom: 10px;" @click="addRow">新增出行</el-button> -->
     <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
     <el-button type="success" style="margin-bottom: 10px;" @click="download">导出Excel</el-button>
     <!-- 新增出行的弹出框 -->
-    <el-dialog v-model="dialogVisible" :title="id ? '修改出行' : '新增出行'" :before-close="handleBeforeClose">
-      <TravelEdit ref="travelForm" :id="id" @success="editSuccess" />
+    <el-dialog v-model="dialogVisible" :title="id ? '出行详情' : '新增出行'" :before-close="handleBeforeClose">
+      <TravelDetail ref="travelForm" :id="id" @success="detailSuccess" />
     </el-dialog>
     <!-- 出行列表 -->
     <el-table
@@ -24,7 +24,7 @@
       <el-table-column prop="description" label="出行详情" show-overflow-tooltip />
       <el-table-column fixed="right" label="操作" width="200">
         <template #default="{ row }">
-          <el-button type="warning" @click="editRow(row)" plain >编辑</el-button>
+          <el-button type="success" @click="detailRow(row)" plain >详情</el-button>
           <el-button type="danger" @click="delRow(row)" plain >删除</el-button>
         </template>
       </el-table-column>
@@ -43,7 +43,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getTravelList, delTravel, delMultipleTravel, downloadTravel } from '../../api'
-import TravelEdit from '../../components/TravelEdit.vue'
+import TravelDetail from '../../components/TravelDetail.vue'
 import { ElMessageBox } from 'element-plus'
 
 const travelList = ref([])
@@ -78,7 +78,7 @@ const addRow = () => {
 }
 
 // 修改出行
-const editRow = row => {
+const detailRow = row => {
   if (travelForm.value) {
     travelForm.value.resetForm(row.id)
   }
@@ -106,7 +106,7 @@ const handleCurrentChange = value => {
 }
 
 // 编辑完成
-const editSuccess = () => {
+const detailSuccess = () => {
   loadTravelList()
   dialogVisible.value = false
 }
