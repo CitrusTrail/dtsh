@@ -44,42 +44,47 @@ public class GroupController {
         return Result.success(service.deleteOneGroup(id));
     }
 
-    @GetMapping("/userGroups")
+    @GetMapping("/userGroup")
     public Result findAllUserGroup() {
         return Result.success(service.findAllUserGroup());
     }
 
-    @PostMapping("/userGroups")
+    @GetMapping("/groupUser/{id}")
+    public Result findGroupUser(@PathVariable Integer id) {
+        return Result.success(service.findGroupUser(id));
+    }
+
+    @PostMapping("/userGroup")
     public Result addOneUserGroup(@RequestBody UserGroup userGroup) {
         return Result.success(service.addOneUserGroup(userGroup));
     }
 
-    @PutMapping("/userGroups")
+    @PutMapping("/userGroup")
     public Result updateOneUserGroup(@RequestBody UserGroup userGroup) {
         return Result.success(service.updateOneUserGroup(userGroup));
     }
 
-    @DeleteMapping("/userGroups")
+    @DeleteMapping("/userGroup")
     public Result deleteOneUserGroup(@RequestBody UserGroup userGroup) {
         return Result.success(service.deleteOneUserGroup(userGroup));
     }
 
-    @GetMapping("/chats")
+    @GetMapping("/chat")
     public Result findAllChat() {
         return Result.success(service.findAllChat());
     }
 
-    @PostMapping("/chats")
+    @PostMapping("/chat")
     public Result addOneChat(@RequestBody Chat chat) {
         return Result.success(service.addOneChat(chat));
     }
 
-    @PutMapping("/chats")
+    @PutMapping("/chat")
     public Result updateOneChat(@RequestBody Chat chat) {
         return Result.success(service.updateOneChat(chat));
     }
 
-    @DeleteMapping("/chats/{id}")
+    @DeleteMapping("/chat/{id}")
     public Result deleteOneChat(@PathVariable Integer id) {
         return Result.success(service.deleteOneChat(id));
     }

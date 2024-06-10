@@ -1,29 +1,43 @@
 <template>
   <el-form ref="formRef" :model="form" label-width="120px">
+    <!-- 小组编号  -->
+    <!-- <el-form-item label="小组编号" prop="id" style="width: 92%">
+      <el-input v-model="form.id" placeholder="小组编号" disabled />
+    </el-form-item> -->
     <!-- 小组名称  -->
     <el-form-item label="小组名称" prop="userId" style="width: 92%">
-      <el-input v-model="form.name" placeholder="请填写小组名称" />
+      <el-input v-model="form.name" placeholder="小组名称" disabled />
     </el-form-item>
     <!-- 创建者  -->
-    <el-form-item label="创建者/组长" prop="mode" style="width: 92%">
-      <el-input v-model="form.creator" placeholder="请填写创建者/组长" />
+    <el-form-item label="创建者" prop="mode" style="width: 92%">
+      <el-input v-model="form.creator" placeholder="创建者" disabled />
     </el-form-item>
     <!-- 小组简介 -->
-    <el-form-item label="小组简介" prop="description" style="width: 92%" class="desc">
-      <Editor :init="initEditor" v-model="form.description"></Editor>
+    <el-form-item label="小组简介" prop="description" style="width: 92%">
+      <!-- <Editor :init="initEditor" v-model="form.description"></Editor> -->
+      <el-input v-model="form.description" placeholder="小组简介" type="textarea" disabled />
     </el-form-item>
     <!-- 操作按钮 -->
-    <el-form-item>
+    <!-- <el-form-item>
       <el-button type="primary" @click="editSubmit()" v-if="form.id">修改</el-button>
       <el-button type="primary" @click="addSubmit()" v-else>新增</el-button>
       <el-button @click="btnCancel">重置</el-button>
+    </el-form-item> -->
+    <!-- 小组用户 -->
+    <el-form-item label="小组成员" prop="groupUser" style="width: 92%">
+      <el-table :data="form.groupUser" border >
+        <el-table-column prop="id" label="用户编号" width="90" />
+        <el-table-column prop="name" label="用户名称" width="100" />
+        <el-table-column prop="tel" label="联系电话" width="120" />
+        <el-table-column prop="num" label="发言次数" />
+      </el-table>
     </el-form-item>
   </el-form>
 </template>
 
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
-import { getGroup, addGroup, editGroup } from '../api'
+import { getGroup, addGroup, editGroup, getGroupUser } from '../api'
 import useToken from '../stores/token'
 import { Plus } from '@element-plus/icons-vue'
 
@@ -40,7 +54,8 @@ const form = reactive({
   id: props.id,
   name: '',
   creator: '',
-  description: ''
+  description: '',
+  groupUser: []
 })
 const formRef = ref()
 const { token } = useToken()
@@ -61,6 +76,8 @@ const loadGroup = async () => {
   if (form.id) {
     const group = await getGroup({ id: form.id })
     Object.assign(form, group)
+    const groupUser = await getGroupUser({ id: form.id })
+    form.groupUser = groupUser
   }
 }
 
@@ -107,27 +124,6 @@ const uploadSuccess = response => {
     }
     form.picture = data.savepath
   }
-}
-
-import Editor from '@tinymce/tinymce-vue'
-
-import 'tinymce/tinymce'
-import 'tinymce/models/dom'
-import 'tinymce/themes/silver'
-import 'tinymce/icons/default'
-import 'tinymce/plugins/image'
-
-// 编辑器配置
-let initEditor = {
-  width: '100%',
-  skin_url: '/tinymce/skins/ui/oxide',
-  content_css: '/tinymce/skins/content/default/content.css',
-  language_url: '/tinymce/langs/zh-Hans.js',
-  language: 'zh-Hans',
-  menubar: false,
-  statusbar: false,
-  toolbar: 'bold underline italic strikethrough image undo redo',
-  plugins: 'image',
 }
 
 </script>

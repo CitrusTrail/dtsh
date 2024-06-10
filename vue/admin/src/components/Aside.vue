@@ -1,99 +1,82 @@
 <template>
-  <el-row>
-    <el-col :span="24">
-      <el-menu active-text-color="#white" class="el-menu-vertical-demo" :default-active="active" text-color="#333">
+      <el-menu
+        active-text-color="#fff"
+        class="el-menu-vertical-demo"
+        :default-active="$route.path"
+        text-color="#333"
+        mode="vertical"
+        :collapse="isCollapse"
+        router
+      >
         <!-- 首页 -->
-        <router-link :to="{ name: 'index' }">
-          <el-menu-item index="1">
+          <el-menu-item index="/index">
             <el-icon>
               <HomeFilled />
             </el-icon>
             <span>首页</span>
           </el-menu-item>
-        </router-link>
         <!-- 用户管理 -->
-        <router-link :to="{ name: 'user' }">
-          <el-menu-item index="2">
+          <el-menu-item index="/user">
             <el-icon>
               <UserFilled />
             </el-icon>
             <span>用户管理</span>
           </el-menu-item>
-        </router-link>
         <!-- 任务管理 -->
-        <router-link :to="{ name: 'task' }">
-          <el-menu-item index="3">
+          <el-menu-item index="/task">
             <el-icon>
               <List />
             </el-icon>
             <span>任务管理</span>
           </el-menu-item>
-        </router-link>
         <!-- 出行管理 -->
-        <router-link :to="{ name: 'travel' }">
-          <el-menu-item index="4">
+          <el-menu-item index="/travel">
             <el-icon>
               <MapLocation />
             </el-icon>
             <span>出行管理</span>
           </el-menu-item>
-        </router-link>
         <!-- 小组管理 -->
-        <router-link :to="{ name: 'group' }">
-          <el-menu-item index="5">
+          <el-menu-item index="/group">
             <el-icon>
               <Comment />
             </el-icon>
             <span>小组管理</span>
           </el-menu-item>
-        </router-link>
         <!-- 分享管理 -->
-        <router-link :to="{ name: 'share' }">
-          <el-menu-item index="6">
+          <el-menu-item index="/share">
             <el-icon>
               <Share />
             </el-icon>
             <span>分享管理</span>
           </el-menu-item>
-        </router-link>
         <!-- 商品管理 -->
-        <router-link :to="{ name: 'goods' }">
-          <el-menu-item index="7">
+          <el-menu-item index="/goods">
             <el-icon>
               <ShoppingBag />
             </el-icon>
             <span>商品管理</span>
           </el-menu-item>
-        </router-link>
         <!-- 个人中心 -->
-        <router-link :to="{ name: 'setting' }">
-          <el-menu-item index="8">
+          <el-menu-item index="/setting">
             <el-icon>
               <Setting />
             </el-icon>
             <span>个人中心</span>
           </el-menu-item>
-        </router-link>
       </el-menu>
-    </el-col>
-  </el-row>
+      <el-button @click="handlerCollapse" style="margin:5px 2px;" round>{{ prompt }}</el-button>
 </template>
   
 <script setup>
 import { HomeFilled, Setting, List, MapLocation, Comment, Share, ShoppingBag, UserFilled } from '@element-plus/icons-vue'
 import { ref } from 'vue'
-import router from '../router'
-const menuIndex = {
-  'index': '1',
-  'user': '2',
-  'task': '3',
-  'travel': '4',
-  'group': '5',
-  'share': '6',
-  'goods': '7',
-  'setting': '8'
+const isCollapse = ref(false)
+const prompt = ref('收起')
+const handlerCollapse = () => {
+  isCollapse.value = !isCollapse.value
+  prompt.value = isCollapse.value ? '展开' : '收起'
 }
-const active = ref(menuIndex[router.currentRoute.value.name] || '0')
 </script>
   
 <style lang="scss" scoped>
@@ -106,5 +89,9 @@ const active = ref(menuIndex[router.currentRoute.value.name] || '0')
     text-decoration: none;
     color: white;
   }
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
 }
 </style>

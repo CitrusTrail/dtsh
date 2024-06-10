@@ -33,7 +33,7 @@ import Aside from '../components/Aside.vue'
     color: #333;
   }
   .el-aside {
-    width: 200px;
+    width: auto;
     height: 100%;
     color: #333;
     background: white

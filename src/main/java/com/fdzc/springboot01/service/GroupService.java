@@ -4,6 +4,7 @@ import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fdzc.springboot01.common.dto.IdDTO;
+import com.fdzc.springboot01.common.vo.GroupUserVo;
 import com.fdzc.springboot01.entity.Chat;
 import com.fdzc.springboot01.entity.Group;
 import com.fdzc.springboot01.entity.Task;
@@ -55,6 +56,10 @@ public class GroupService {
 
     public List<UserGroup> findAllUserGroup() {
         return userGroupMapper.selectList(null);
+    }
+
+    public List<GroupUserVo> findGroupUser(Integer id) {
+        return userGroupMapper.selectGroupUser(id);
     }
 
     public Integer addOneUserGroup(UserGroup userGroup) {

@@ -235,3 +235,8 @@ export function downloadGoods() {
 export function downloadUser() {
   return request.get('/users/download',{ responseType: 'blob' })
 }
+
+// 查询小组用户接口
+export function getGroupUser(params) {
+  return request.get('/groups/groupUser/'+params.id)
+}

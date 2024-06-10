@@ -1,10 +1,10 @@
 <template>
   <div>
-    <el-button type="primary" style="margin-bottom: 10px;" @click="addRow">新增小组</el-button>
+    <!-- <el-button type="primary" style="margin-bottom: 10px;" @click="addRow">新增小组</el-button> -->
     <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
     <el-button type="success" style="margin-bottom: 10px;" @click="download">导出Excel</el-button>
     <!-- 新增小组的弹出框 -->
-    <el-dialog v-model="dialogVisible" :title="id ? '修改小组' : '新增小组'" :before-close="handleBeforeClose">
+    <el-dialog v-model="dialogVisible" :title="id ? '小组详情' : '新增小组'" :before-close="handleBeforeClose">
       <GroupEdit ref="groupForm" :id="id" @success="editSuccess" />
     </el-dialog>
     <!-- 小组列表 -->
@@ -19,11 +19,11 @@
       <el-table-column type="selection" width="55" />
       <el-table-column prop="id" label="小组编号" width="100" />
       <el-table-column prop="name" label="小组名称" width="200" />
-      <el-table-column prop="creator" label="创建者/组长" width="120" />
+      <el-table-column prop="creator" label="创建者" width="120" />
       <el-table-column prop="description" label="小组简介" show-overflow-tooltip />
       <el-table-column fixed="right" label="操作" width="200">
         <template #default="{ row }">
-          <el-button type="warning" @click="editRow(row)" plain >编辑</el-button>
+          <el-button type="success" @click="editRow(row)" plain >详情</el-button>
           <el-button type="danger" @click="delRow(row)" plain >删除</el-button>
         </template>
       </el-table-column>
