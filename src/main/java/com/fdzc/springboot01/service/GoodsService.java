@@ -1,9 +1,8 @@
 package com.fdzc.springboot01.service;
 
 import com.alibaba.excel.EasyExcel;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fdzc.springboot01.common.dto.IdDTO;
+import com.fdzc.springboot01.common.dto.PageDTO;
 import com.fdzc.springboot01.entity.Buy;
 import com.fdzc.springboot01.entity.Goods;
 import com.fdzc.springboot01.entity.Task;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GoodsService {
@@ -24,11 +24,12 @@ public class GoodsService {
     @Resource
     BuyMapper buyMapper;
 
-    public PageDTO<Goods> findAllGoods(int page, int pagesize) {
-        PageDTO<Goods> pageDTO = new PageDTO<>();
-        Page<Goods> taskPage = goodsMapper.selectPage(new Page<>(page, pagesize), null);
-        pageDTO.setRecords(taskPage.getRecords());
-        pageDTO.setTotal(taskPage.getTotal());
+    public PageDTO<Goods> findAllGoods(int page, int pagesize, Integer id, String name, String description) {
+        int offset = (page - 1) * pagesize;
+        com.fdzc.springboot01.common.dto.PageDTO<Goods> pageDTO = new com.fdzc.springboot01.common.dto.PageDTO<>();
+        List<Goods> goods = goodsMapper.selectAllGoods(id, name, description);
+        pageDTO.setRecords(goods.stream().skip(offset).limit(pagesize).collect(Collectors.toList()));
+        pageDTO.setTotal(goods.size());
         return pageDTO;
     }
 

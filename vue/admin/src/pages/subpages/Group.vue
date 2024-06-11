@@ -1,8 +1,8 @@
 <template>
   <div>
-    <!-- <el-button type="primary" style="margin-bottom: 10px;" @click="addRow">新增小组</el-button> -->
-    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
-    <el-button type="success" style="margin-bottom: 10px;" @click="download">导出Excel</el-button>
+    <!-- <el-button type="primary" style="margin-bottom: 10px;" @click="addRow" :icon="Plus">新增小组</el-button> -->
+    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow" :icon="Delete">批量删除</el-button>
+    <el-button type="success" style="margin-bottom: 10px;" @click="download" :icon="Download">导出Excel</el-button>
     <!-- 新增小组的弹出框 -->
     <el-dialog v-model="dialogVisible" :title="id ? '小组详情' : '新增小组'" :before-close="handleBeforeClose">
       <GroupDetail ref="groupForm" :id="id" @success="detailSuccess" />
@@ -44,6 +44,7 @@ import { ref, onMounted } from 'vue'
 import { getGroupList, delGroup, delMultipleGroup, downloadGroup } from '../../api'
 import GroupDetail from '../../components/GroupDetail.vue'
 import { ElMessageBox } from 'element-plus'
+import { Plus, Delete, Download } from '@element-plus/icons-vue'
 
 const groupList = ref([])
 const page = ref(1)

@@ -18,7 +18,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="loadTaskList" :icon="Search">查询</el-button>
-        <el-button type="info" @click="reset">重置</el-button>
+        <el-button type="info" @click="reset" :icon="RefreshRight">重置</el-button>
         <el-button type="primary" @click="addRow" :icon="Plus">新增任务</el-button>
         <el-button type="danger" @click="delMultipleRow" :icon="Delete">批量删除</el-button>
         <el-button type="success" @click="download" :icon="Download">导出Excel</el-button>
@@ -66,7 +66,7 @@ import { ref, onMounted } from 'vue'
 import { getTaskList, delTask, delMultipleTask, downloadTask } from '../../api'
 import TaskEdit from '../../components/TaskEdit.vue'
 import { ElMessageBox } from 'element-plus'
-import { Plus, Delete, Download, Search } from '@element-plus/icons-vue'
+import { Plus, Delete, Download, Search, RefreshRight } from '@element-plus/icons-vue'
 
 const taskList = ref([])
 const page = ref(1)

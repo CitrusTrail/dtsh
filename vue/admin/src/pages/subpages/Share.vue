@@ -1,8 +1,8 @@
 <template>
   <div>
-    <!-- <el-button type="primary" style="margin-bottom: 10px;" @click="addRow">新增分享</el-button> -->
-    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
-    <el-button type="success" style="margin-bottom: 10px;" @click="download">导出Excel</el-button>
+    <!-- <el-button type="primary" style="margin-bottom: 10px;" @click="addRow" :icon="Plus">新增分享</el-button> -->
+    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow" :icon="Delete">批量删除</el-button>
+    <el-button type="success" style="margin-bottom: 10px;" @click="download" :icon="Download">导出Excel</el-button>
     <!-- 新增分享的弹出框 -->
     <el-dialog v-model="dialogVisible" :title="id ? '分享详情' : '新增分享'" :before-close="handleBeforeClose">
       <ShareDetail ref="shareForm" :id="id" @success="detailSuccess" />
@@ -45,6 +45,7 @@ import { ref, onMounted } from 'vue'
 import { getShareList, delShare, delMultipleShare, downloadShare } from '../../api'
 import ShareDetail from '../../components/ShareDetail.vue'
 import { ElMessageBox } from 'element-plus'
+import { Plus, Delete, Download } from '@element-plus/icons-vue'
 
 const shareList = ref([])
 const page = ref(1)
