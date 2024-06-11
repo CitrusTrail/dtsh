@@ -19,7 +19,7 @@
       <el-form-item>
         <el-button type="primary" @click="loadGoodsList" :icon="Search">查询</el-button>
         <el-button type="info" @click="reset" :icon="RefreshRight">重置</el-button>
-        <el-button type="primary" @click="addRow" :icon="Plus">新增任务</el-button>
+        <el-button type="primary" @click="addRow" :icon="Plus">新增</el-button>
         <el-button type="danger" @click="delMultipleRow" :icon="Delete">批量删除</el-button>
         <el-button type="success" @click="download" :icon="Download">导出Excel</el-button>
       </el-form-item>

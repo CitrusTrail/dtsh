@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <el-button type="primary" style="margin-bottom: 10px;" @click="addRow" :icon="Plus">新增小组</el-button> -->
+    <!-- <el-button type="primary" style="margin-bottom: 10px;" @click="addRow" :icon="Plus">新增</el-button> -->
     <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow" :icon="Delete">批量删除</el-button>
     <el-button type="success" style="margin-bottom: 10px;" @click="download" :icon="Download">导出Excel</el-button>
     <!-- 新增小组的弹出框 -->

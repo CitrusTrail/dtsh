@@ -1,8 +1,24 @@
 <template>
   <div>
-    <el-button type="primary" style="margin-bottom: 10px;" @click="addRow" :icon="Plus">新增用户</el-button>
-    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow" :icon="Delete">批量删除</el-button>
-    <el-button type="success" style="margin-bottom: 10px;" @click="download" :icon="Download">导出Excel</el-button>
+    <el-form :model="form" label-width="auto" ref="formRef" inline>
+      <el-form-item prop="id">
+        <el-input v-model="form.id" style="max-width:250px;" placeholder="请输入用户编号">
+          <template #prepend>用户编号</template>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="name">
+        <el-input v-model="form.name" style="max-width:250px;" placeholder="请输入用户名称">
+          <template #prepend>用户名称</template>
+        </el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="loadUserList" :icon="Search">查询</el-button>
+        <el-button type="info" @click="reset" :icon="RefreshRight">重置</el-button>
+        <el-button type="primary" @click="addRow" :icon="Plus">新增</el-button>
+        <el-button type="danger" @click="delMultipleRow" :icon="Delete">批量删除</el-button>
+        <el-button type="success" @click="download" :icon="Download">导出Excel</el-button>
+      </el-form-item>
+    </el-form>
     <!-- 新增用户的弹出框 -->
     <el-dialog v-model="dialogVisible" :title="id ? '修改用户' : '新增用户'" :before-close="handleBeforeClose">
       <UserEdit ref="userForm" :id="id" @success="editSuccess" />
@@ -45,7 +61,7 @@ import { ref, onMounted } from 'vue'
 import { getUserList, delUser, delMultipleUser, downloadUser } from '../../api'
 import UserEdit from '../../components/UserEdit.vue'
 import { ElMessageBox } from 'element-plus'
-import { Plus, Delete, Download } from '@element-plus/icons-vue'
+import { Plus, Delete, Download, Search, RefreshRight } from '@element-plus/icons-vue'
 
 const userList = ref([])
 const page = ref(1)
@@ -55,6 +71,12 @@ const id = ref()
 const dialogVisible = ref(false)
 const userForm = ref()
 
+const form = ref({
+  id: '',
+  name: ''
+})
+const formRef = ref()
+
 onMounted(() => {
   loadUserList()
 })
@@ -62,7 +84,9 @@ onMounted(() => {
 const loadUserList = async () => {
   const params = {
     page: page.value,
-    pagesize: pagesize.value
+    pagesize: pagesize.value,
+    id: form.value.id,
+    name: form.value.name
   }
   const data = await getUserList(params)
   userList.value = data.records
@@ -149,5 +173,12 @@ const delMultipleRow = () => {
 // 导出文件
 const download = async () => {
   await downloadUser()
+}
+
+// 重置
+const reset = () => {
+  page.value = 1
+  formRef.value.resetFields()
+  loadUserList()
 }
 </script>
