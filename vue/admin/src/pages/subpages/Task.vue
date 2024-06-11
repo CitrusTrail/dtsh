@@ -1,21 +1,29 @@
 <template>
   <div>
-    <el-form :model="form" label-width="auto" inline>
-      <el-input v-model="form.id" style="max-width:250px; margin-bottom:10px; margin-right:10px;" placeholder="请输入任务编号">
-        <template #prepend>任务编号</template>
-      </el-input>
-      <el-input v-model="form.name" style="max-width:250px; margin-bottom:10px; margin-right:10px;" placeholder="请输入任务名称">
-        <template #prepend>任务名称</template>
-      </el-input>
-      <el-input v-model="form.description" style="max-width:250px; margin-bottom:10px; margin-right:10px;" placeholder="请输入任务简介">
-        <template #prepend>任务简介</template>
-      </el-input>
-      <el-button type="primary" style="margin-bottom:10px;" @click="loadTaskList">查询</el-button>
-      <el-button type="info" style="margin-bottom: 10px;" @click="reset">重置</el-button>
+    <el-form :model="form" label-width="auto" ref="formRef" inline>
+      <el-form-item prop="id">
+        <el-input v-model="form.id" style="max-width:250px;" placeholder="请输入任务编号">
+          <template #prepend>任务编号</template>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="name">
+        <el-input v-model="form.name" style="max-width:250px;" placeholder="请输入任务名称">
+          <template #prepend>任务名称</template>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="description">
+        <el-input v-model="form.description" style="max-width:250px;" placeholder="请输入任务简介">
+          <template #prepend>任务简介</template>
+        </el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="loadTaskList" :icon="Search">查询</el-button>
+        <el-button type="info" @click="reset">重置</el-button>
+        <el-button type="primary" @click="addRow" :icon="Plus">新增任务</el-button>
+        <el-button type="danger" @click="delMultipleRow" :icon="Delete">批量删除</el-button>
+        <el-button type="success" @click="download" :icon="Download">导出Excel</el-button>
+      </el-form-item>
     </el-form>
-    <el-button type="primary" style="margin-bottom: 10px;" @click="addRow">新增任务</el-button>
-    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
-    <el-button type="success" style="margin-bottom: 10px;" @click="download">导出Excel</el-button>
     <!-- 新增任务的弹出框 -->
     <el-dialog v-model="dialogVisible" :title="id ? '修改任务' : '新增任务'" :before-close="handleBeforeClose">
       <TaskEdit ref="taskForm" :id="id" @success="editSuccess" />
@@ -58,6 +66,7 @@ import { ref, onMounted } from 'vue'
 import { getTaskList, delTask, delMultipleTask, downloadTask } from '../../api'
 import TaskEdit from '../../components/TaskEdit.vue'
 import { ElMessageBox } from 'element-plus'
+import { Plus, Delete, Download, Search } from '@element-plus/icons-vue'
 
 const taskList = ref([])
 const page = ref(1)
@@ -72,6 +81,7 @@ const form = ref({
   name: '',
   description: ''
 })
+const formRef = ref()
 
 onMounted(() => {
   loadTaskList()
@@ -175,11 +185,7 @@ const download = async () => {
 // 重置
 const reset = () => {
   page.value = 1
-  form.value = {
-    id: '',
-    name: '',
-    description: ''
-  }
+  formRef.value.resetFields()
   loadTaskList()
 }
 </script>

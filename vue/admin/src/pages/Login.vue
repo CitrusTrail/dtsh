@@ -7,15 +7,14 @@
         </div>
       </template>
       <el-form ref="ruleFormRef" status-icon :model="form" :rules="rules" label-width="120px">
-        <el-form-item prop="username" label="用户名：">
-          <el-input v-model="form.username" placeholder="请输入用户名"  />
+        <el-form-item prop="username" label-width="0">
+          <el-input v-model="form.username" placeholder="请输入用户名" size="large" />
         </el-form-item>
-        <el-form-item prop="password" label="密　码：">
-          <el-input v-model="form.password" type="password" show-password placeholder="请输入密码" />
+        <el-form-item prop="password" label-width="0">
+          <el-input v-model="form.password" type="password" show-password placeholder="请输入密码" size="large" />
         </el-form-item>
-        <el-form-item>
-          <el-button class="button" @click="submitForm(ruleFormRef)" type="primary" size="large">登录</el-button>
-          <el-button class="button" @click="resetForm" type="info" size="large">重置</el-button>
+        <el-form-item label-width="0">
+          <el-button class="button" @click="submitForm(ruleFormRef)" type="primary" size="large" style="width:100%;">登录</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -62,11 +61,6 @@ const submitForm = formEl => {
   })
 }
 
-// 表单重置
-const resetForm = () => {
-  ruleFormRef.value.resetFields()
-}
-
 const rules = reactive({
   username: [
     { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -88,7 +82,7 @@ const rules = reactive({
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 70%;
+    width: 30%;
     max-width: 750px;
     transform: translate(-50%, -50%);
     .card-header {

@@ -3,6 +3,7 @@ import { reactive } from 'vue'
 
 const useAdmin = defineStore('admin', () => {
     const defaultAdmin = {
+      id: '',
       username: '',
       avatar: ''
     }
