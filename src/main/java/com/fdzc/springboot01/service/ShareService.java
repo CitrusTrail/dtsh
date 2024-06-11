@@ -1,17 +1,16 @@
 package com.fdzc.springboot01.service;
 
 import com.alibaba.excel.EasyExcel;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fdzc.springboot01.common.dto.IdDTO;
+import com.fdzc.springboot01.common.dto.PageDTO;
 import com.fdzc.springboot01.entity.Share;
-import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.mapper.ShareMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ShareService {
@@ -19,11 +18,12 @@ public class ShareService {
     @Resource
     ShareMapper shareMapper;
 
-    public PageDTO<Share> findAllShare(int page,int pagesize) {
-        PageDTO<Share> pageDTO = new PageDTO<>();
-        Page<Share> taskPage = shareMapper.selectPage(new Page<>(page, pagesize), null);
-        pageDTO.setRecords(taskPage.getRecords());
-        pageDTO.setTotal(taskPage.getTotal());
+    public PageDTO<Share> findAllShare(int page, int pagesize, Integer id, Integer userId, String content) {
+        int offset = (page - 1) * pagesize;
+        com.fdzc.springboot01.common.dto.PageDTO<Share> pageDTO = new com.fdzc.springboot01.common.dto.PageDTO<>();
+        List<Share> shares = shareMapper.selectAllShare(id, userId, content);
+        pageDTO.setRecords(shares.stream().skip(offset).limit(pagesize).collect(Collectors.toList()));
+        pageDTO.setTotal(shares.size());
         return pageDTO;
     }
 
