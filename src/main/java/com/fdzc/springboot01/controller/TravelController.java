@@ -17,8 +17,8 @@ public class TravelController {
     TravelService service;
 
     @GetMapping
-    public Result findAllTravel(int page,int pagesize) {
-        return Result.success(service.findAllTravel(page,pagesize));
+    public Result findAllTravel(int page,int pagesize,Integer id,Integer userId,String mode) {
+        return Result.success(service.findAllTravel(page,pagesize,id,userId,mode));
     }
 
     @GetMapping("/{id}")

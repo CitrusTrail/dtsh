@@ -1,10 +1,8 @@
 package com.fdzc.springboot01.service;
 
 import com.alibaba.excel.EasyExcel;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fdzc.springboot01.common.dto.IdDTO;
-import com.fdzc.springboot01.entity.Task;
+import com.fdzc.springboot01.common.dto.PageDTO;
 import com.fdzc.springboot01.entity.Travel;
 import com.fdzc.springboot01.mapper.TravelMapper;
 import org.springframework.stereotype.Service;
@@ -12,6 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TravelService {
@@ -19,11 +18,12 @@ public class TravelService {
     @Resource
     TravelMapper travelMapper;
 
-    public PageDTO<Travel> findAllTravel(int page, int pagesize) {
+    public PageDTO<Travel> findAllTravel(int page, int pagesize, Integer id, Integer userId, String mode) {
+        int offset = (page - 1) * pagesize;
         PageDTO<Travel> pageDTO = new PageDTO<>();
-        Page<Travel> taskPage = travelMapper.selectPage(new Page<>(page, pagesize), null);
-        pageDTO.setRecords(taskPage.getRecords());
-        pageDTO.setTotal(taskPage.getTotal());
+        List<Travel> travels = travelMapper.selectAllTravel(id, userId, mode);
+        pageDTO.setRecords(travels.stream().skip(offset).limit(pagesize).collect(Collectors.toList()));
+        pageDTO.setTotal(travels.size());
         return pageDTO;
     }
 

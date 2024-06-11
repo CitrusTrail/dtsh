@@ -1,8 +1,29 @@
 <template>
   <div>
-    <!-- <el-button type="primary" style="margin-bottom: 10px;" @click="addRow" :icon="Plus">新增出行</el-button> -->
-    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow" :icon="Delete">批量删除</el-button>
-    <el-button type="success" style="margin-bottom: 10px;" @click="download" :icon="Download">导出Excel</el-button>
+    <el-form :model="form" label-width="auto" ref="formRef" inline>
+      <el-form-item prop="id">
+        <el-input v-model="form.id" style="max-width:250px;" placeholder="请输入出行编号">
+          <template #prepend>出行编号</template>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="userId">
+        <el-input v-model="form.userId" style="max-width:250px;" placeholder="请输入用户编号">
+          <template #prepend>用户编号</template>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="mode">
+        <el-input v-model="form.mode" style="max-width:250px;" placeholder="请输入出行方式">
+          <template #prepend>出行方式</template>
+        </el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="loadTravelList" :icon="Search">查询</el-button>
+        <el-button type="info" @click="reset" :icon="RefreshRight">重置</el-button>
+        <el-button type="primary" @click="addRow" :icon="Plus">新增任务</el-button>
+        <el-button type="danger" @click="delMultipleRow" :icon="Delete">批量删除</el-button>
+        <el-button type="success" @click="download" :icon="Download">导出Excel</el-button>
+      </el-form-item>
+    </el-form>
     <!-- 新增出行的弹出框 -->
     <el-dialog v-model="dialogVisible" :title="id ? '出行详情' : '新增出行'" :before-close="handleBeforeClose">
       <TravelDetail ref="travelForm" :id="id" @success="detailSuccess" />
@@ -45,7 +66,7 @@ import { ref, onMounted } from 'vue'
 import { getTravelList, delTravel, delMultipleTravel, downloadTravel } from '../../api'
 import TravelDetail from '../../components/TravelDetail.vue'
 import { ElMessageBox } from 'element-plus'
-import { Plus, Delete, Download } from '@element-plus/icons-vue'
+import { Plus, Delete, Download, Search, RefreshRight } from '@element-plus/icons-vue'
 
 const travelList = ref([])
 const page = ref(1)
@@ -55,6 +76,13 @@ const id = ref()
 const dialogVisible = ref(false)
 const travelForm = ref()
 
+const form = ref({
+  id: '',
+  userId: '',
+  mode: ''
+})
+const formRef = ref()
+
 onMounted(() => {
   loadTravelList()
 })
@@ -62,7 +90,10 @@ onMounted(() => {
 const loadTravelList = async () => {
   const params = {
     page: page.value,
-    pagesize: pagesize.value
+    pagesize: pagesize.value,
+    id: form.value.id,
+    userId: form.value.userId,
+    mode: form.value.mode
   }
   const data = await getTravelList(params)
   travelList.value = data.records
@@ -149,5 +180,11 @@ const delMultipleRow = () => {
 // 导出文件
 const download = async () => {
   await downloadTravel()
+}
+
+const reset = () => {
+  page.value = 1
+  formRef.value.resetFields()
+  loadTravelList()
 }
 </script>
