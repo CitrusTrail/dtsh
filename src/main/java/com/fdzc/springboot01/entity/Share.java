@@ -1,76 +1,22 @@
 package com.fdzc.springboot01.entity;
 
+import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Component
+@Data
 public class Share {
-
+    @TableId
+    @ExcelProperty(value = "分享编号")
     private Integer id;
+    @ExcelProperty(value = "用户编号")
     private Integer userId;
+    @ExcelProperty(value = "分享内容")
     private String content;
+    @ExcelProperty(value = "发送时间")
     private String time;
+    @ExcelProperty(value = "点赞数")
     private Integer likes;
-
-    public Share() {
-    }
-
-    public Share(Integer id, Integer userId, String content, String time, Integer likes) {
-        this.id = id;
-        this.userId = userId;
-        this.content = content;
-        this.time = time;
-        this.likes = likes;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
-    public Integer getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Integer likes) {
-        this.likes = likes;
-    }
-
-    @Override
-    public String toString() {
-        return "Share{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", content='" + content + '\'' +
-                ", time='" + time + '\'' +
-                ", likes=" + likes +
-                '}';
-    }
 }

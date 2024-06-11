@@ -20,6 +20,11 @@ public class AdminController {
         return Result.success(adminService.findAllAdmin());
     }
 
+    @GetMapping("/{id}")
+    public Result findById(@PathVariable Integer id) {
+        return Result.success(adminService.findById(id));
+    }
+
     @PostMapping
     public Result addOneAdmin(@RequestBody Admin admin) {
         return Result.success(adminService.addOneAdmin(admin));

@@ -1,11 +1,13 @@
 package com.fdzc.springboot01.controller;
 
 import com.fdzc.springboot01.common.Result;
+import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.User;
 import com.fdzc.springboot01.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -16,8 +18,13 @@ public class UserController {
     UserService userService;
 
     @GetMapping
-    public Result findAll() {
-        return Result.success(userService.findAllUser());
+    public Result findAll(int page,int pagesize) {
+        return Result.success(userService.findAllUser(page,pagesize));
+    }
+
+    @GetMapping("/{id}")
+    public Result findById(@PathVariable Integer id) {
+        return Result.success(userService.findById(id));
     }
 
     @PostMapping
@@ -35,4 +42,13 @@ public class UserController {
         return Result.success(userService.deleteOneUser(id));
     }
 
+    @PostMapping("/multiple")
+    public Result deleteMultipleUser(@RequestBody IdDTO idDTO) {
+        return Result.success(userService.deleteMultipleUser(idDTO));
+    }
+
+    @GetMapping("/download")
+    public void download(HttpServletResponse response) {
+        userService.download(response);
+    }
 }
