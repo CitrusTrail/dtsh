@@ -20,8 +20,8 @@ public class GroupController {
     GroupService service;
 
     @GetMapping
-    public Result findAllGroup(int page,int pagesize) {
-        return Result.success(service.findAllGroup(page,pagesize));
+    public Result findAllGroup(int page,int pagesize,Integer id,String name,String description) {
+        return Result.success(service.findAllGroup(page,pagesize,id,name,description));
     }
 
     @GetMapping("/{id}")

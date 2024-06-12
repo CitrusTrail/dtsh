@@ -52,7 +52,7 @@
                 </div>
               </div>
             </el-col>
-            <!-- 用户访问次数 -->
+            <!-- 用户参与活动次数 -->
             <el-col :span="8">
               <div class="card-container">
                 <div class="card-left-container" style=" background-color: #63B8FF;">
@@ -62,7 +62,7 @@
                 </div>
                 <div class="card-right-container">
                   <p class="number">121</p>
-                  <p>用户访问(次)</p>
+                  <p>参与活动(次)</p>
                 </div>
               </div>
             </el-col>
@@ -74,13 +74,11 @@
   <!-- 图表区域 -->
   <el-row :gutter="20">
     <el-col :span="12">
-      <!-- 通过折线图展示2022年月度销售额 -->
       <el-card class="box-card">
         <div id="salesVolume" style="width: auto; height:400px;"></div>
       </el-card>
     </el-col>
     <el-col :span="12">
-      <!-- 通过柱状图展示2022年订单数量 -->
       <el-card class="box-card">
         <div id="orderQuantity" style="width: auto; height:400px;"></div>
       </el-card>
@@ -111,9 +109,9 @@ onMounted(() => {
 })
 
 const loadAdmin = async () => {
-  let data = await getAdmin()
+  let data = await getAdmin({ id: admin.id })
   updateAdmin({
-    username: data.username,
+    username: data.name,
     avatar: data.avatar
   })
 }
@@ -122,12 +120,12 @@ const loadLogin = () => {
   loginInfo.loginTime = new Date().toLocaleString()
 }
 
-// 图表1：月度网站访问量
+// 图表1：月度绿色出行次数
 const initCharts1 = () => {
   const myChart = echarts.init(document.getElementById('salesVolume'))
   myChart.setOption({
     color: ['#1493fa'],
-    title: { text: '2023年网站访问量' },
+    title: { text: '2023年绿色出行次数' },
     xAxis: {
       data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
       name: '月份',
@@ -147,9 +145,9 @@ const initCharts1 = () => {
     legend: {},
     series: [
       {
-        data: [6, 7, 8.5, 8, 9, 10, 13, 12, 10, 16, 15, 14],
+        data: [6, 7, 5, 8, 9, 10, 13, 12, 10, 16, 15, 14],
         type: 'line',
-        name: '访问量',
+        name: '绿色出行',
         smooth: true,
         label: {
           show: true,
@@ -194,7 +192,7 @@ const initCharts2 = () => {
     },
     series: [
       {
-        data: [400, 450, 300, 230, 250, 300, 400, 350, 160, 350, 380, 400],
+        data: [4, 4.5, 3, 2.3, 2.5, 3, 4, 3.5, 1.6, 3.5, 3.8, 4],
         type: 'bar',
         barWidth: '60%',
         name: '碳排放量',

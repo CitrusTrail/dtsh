@@ -240,3 +240,8 @@ export function downloadUser() {
 export function getGroupUser(params) {
   return request.get('/groups/groupUser/'+params.id)
 }
+
+// 查询出行方式
+export function getMode(params) {
+  return request.get('/travels/mode', params)
+}

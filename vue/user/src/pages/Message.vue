@@ -2,6 +2,15 @@
   <van-cell-group v-for="item in lists" :key="item">
     <van-cell center :icon="item.img" :title="item.title" :value="item.value" :label="item.label" />
   </van-cell-group>
+  <div>
+      <iframe
+        :src="url"
+        width="100%"
+        height="600"
+        frameborder="0"
+        allowfullscreen
+      ></iframe>
+  </div>
 </template>
 
 <script setup>
@@ -31,6 +40,8 @@ const lists = [
     label: "食品旗舰店：大量新品到货，速来选购"
   }
 ]
+
+let url = 'https://map.baidu.com'
 </script>
 
 <style lang="less" scoped>
