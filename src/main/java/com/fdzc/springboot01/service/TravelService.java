@@ -3,6 +3,7 @@ package com.fdzc.springboot01.service;
 import com.alibaba.excel.EasyExcel;
 import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.common.dto.PageDTO;
+import com.fdzc.springboot01.common.vo.ModeVo;
 import com.fdzc.springboot01.entity.Travel;
 import com.fdzc.springboot01.mapper.TravelMapper;
 import org.springframework.stereotype.Service;
@@ -61,6 +62,10 @@ public class TravelService {
             EasyExcel.write(response.getOutputStream(),Travel.class).autoCloseStream(Boolean.FALSE).sheet("出行列表").doWrite(list);
         } catch (Exception e) {
         }
+    }
+
+    public List<ModeVo> findAllMode() {
+        return travelMapper.selectAllMode();
     }
 
 }

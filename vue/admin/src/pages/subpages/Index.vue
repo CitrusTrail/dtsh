@@ -74,13 +74,11 @@
   <!-- 图表区域 -->
   <el-row :gutter="20">
     <el-col :span="12">
-      <!-- 通过折线图展示2022年月度销售额 -->
       <el-card class="box-card">
         <div id="salesVolume" style="width: auto; height:400px;"></div>
       </el-card>
     </el-col>
     <el-col :span="12">
-      <!-- 通过柱状图展示2022年订单数量 -->
       <el-card class="box-card">
         <div id="orderQuantity" style="width: auto; height:400px;"></div>
       </el-card>
@@ -122,7 +120,7 @@ const loadLogin = () => {
   loginInfo.loginTime = new Date().toLocaleString()
 }
 
-// 图表1：月度网站访问量
+// 图表1：月度绿色出行次数
 const initCharts1 = () => {
   const myChart = echarts.init(document.getElementById('salesVolume'))
   myChart.setOption({

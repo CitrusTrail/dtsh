@@ -119,13 +119,17 @@ CREATE TABLE `travel` (
   `carbon` decimal(10, 2),  -- 此次出行的减少的碳排放量
   `description` text,  -- 路线详情或其他备注
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of travel
 -- ----------------------------
 INSERT INTO `travel` VALUES (1, 1, '2024-06-01 00:00:00', '2024-06-01 12:00:00', 999, '骑行', 999.99, '从旗山湖公园出发，途径金山公园，最后到达飞凤山公园');
 INSERT INTO `travel` VALUES (2, 2, '2024-06-01 00:00:00', '2024-06-01 12:00:00', 999, '步行', 999.99, NULL);
+INSERT INTO `travel` VALUES (3, 2, '2024-06-01 00:00:00', '2024-06-01 12:00:00', 999, '地铁', 999.99, NULL);
+INSERT INTO `travel` VALUES (4, 3, '2024-06-01 00:00:00', '2024-06-01 12:00:00', 999, '公交', 999.99, NULL);
+INSERT INTO `travel` VALUES (5, 2, '2024-06-01 00:00:00', '2024-06-01 12:00:00', 999, '骑行', 999.99, NULL);
+INSERT INTO `travel` VALUES (6, 4, '2024-06-01 00:00:00', '2024-06-01 12:00:00', 999, '公交', 999.99, NULL);
 
 -- ----------------------------
 -- Table structure for group

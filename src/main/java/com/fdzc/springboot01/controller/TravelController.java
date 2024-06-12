@@ -50,4 +50,9 @@ public class TravelController {
     public void download(HttpServletResponse response) {
         service.download(response);
     }
+
+    @GetMapping("/mode")
+    public Result findAllMode() {
+        return Result.success(service.findAllMode());
+    }
 }
