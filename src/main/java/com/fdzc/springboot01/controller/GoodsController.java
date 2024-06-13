@@ -19,8 +19,8 @@ public class GoodsController {
     GoodsService service;
 
     @GetMapping
-    public Result findAllGoods(int page,int pagesize) {
-        return Result.success(service.findAllGoods(page,pagesize));
+    public Result findAllGoods(int page,int pagesize,Integer id,String name,String description) {
+        return Result.success(service.findAllGoods(page,pagesize,id,name,description));
     }
 
     @GetMapping("/{id}")

@@ -1,13 +1,12 @@
 package com.fdzc.springboot01.service;
 
 import com.alibaba.excel.EasyExcel;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fdzc.springboot01.common.dto.IdDTO;
+import com.fdzc.springboot01.common.dto.PageDTO;
 import com.fdzc.springboot01.common.vo.GroupUserVo;
+import com.fdzc.springboot01.common.vo.HotGroupVo;
 import com.fdzc.springboot01.entity.Chat;
 import com.fdzc.springboot01.entity.Group;
-import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.entity.UserGroup;
 import com.fdzc.springboot01.mapper.ChatMapper;
 import com.fdzc.springboot01.mapper.GroupMapper;
@@ -17,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GroupService {
@@ -30,11 +30,12 @@ public class GroupService {
     @Resource
     UserGroupMapper userGroupMapper;
 
-    public PageDTO<Group> findAllGroup(int page,int pagesize) {
+    public PageDTO<Group> findAllGroup(int page,int pagesize, Integer id, String name, String description) {
+        int offset = (page - 1) * pagesize;
         PageDTO<Group> pageDTO = new PageDTO<>();
-        Page<Group> taskPage = groupMapper.selectPage(new Page<>(page, pagesize), null);
-        pageDTO.setRecords(taskPage.getRecords());
-        pageDTO.setTotal(taskPage.getTotal());
+        List<Group> groups = groupMapper.selectAllGroup(id, name, description);
+        pageDTO.setRecords(groups.stream().skip(offset).limit(pagesize).collect(Collectors.toList()));
+        pageDTO.setTotal(groups.size());
         return pageDTO;
     }
 
@@ -108,6 +109,10 @@ public class GroupService {
             EasyExcel.write(response.getOutputStream(),Group.class).autoCloseStream(Boolean.FALSE).sheet("小组列表").doWrite(list);
         } catch (Exception e) {
         }
+    }
+
+    public List<HotGroupVo> findHotGroup(Integer num) {
+        return groupMapper.selectHotGroup(num);
     }
 
 }

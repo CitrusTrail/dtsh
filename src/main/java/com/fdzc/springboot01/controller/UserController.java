@@ -18,8 +18,8 @@ public class UserController {
     UserService userService;
 
     @GetMapping
-    public Result findAll(int page,int pagesize) {
-        return Result.success(userService.findAllUser(page,pagesize));
+    public Result findAll(int page,int pagesize,Integer id,String name) {
+        return Result.success(userService.findAllUser(page,pagesize,id,name));
     }
 
     @GetMapping("/{id}")

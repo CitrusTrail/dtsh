@@ -1,8 +1,35 @@
 <template>
+  <el-row :gutter="20">
+    <el-col :span="12">
+      <el-card class="box-card">
+        <div id="modePie" style="width: auto; height:250px;"></div>
+      </el-card>
+    </el-col>
+  </el-row>
   <div>
-    <!-- <el-button type="primary" style="margin-bottom: 10px;" @click="addRow">新增出行</el-button> -->
-    <el-button type="danger" style="margin-bottom: 10px;" @click="delMultipleRow">批量删除</el-button>
-    <el-button type="success" style="margin-bottom: 10px;" @click="download">导出Excel</el-button>
+    <el-form :model="form" label-width="auto" ref="formRef" inline>
+      <el-form-item prop="id">
+        <el-input v-model="form.id" style="max-width:250px;" placeholder="请输入出行编号">
+          <template #prepend>出行编号</template>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="userId">
+        <el-input v-model="form.userId" style="max-width:250px;" placeholder="请输入用户编号">
+          <template #prepend>用户编号</template>
+        </el-input>
+      </el-form-item>
+      <el-form-item prop="mode">
+        <el-input v-model="form.mode" style="max-width:250px;" placeholder="请输入出行方式">
+          <template #prepend>出行方式</template>
+        </el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="loadTravelList" :icon="Search">查询</el-button>
+        <el-button type="info" @click="reset" :icon="RefreshRight">重置</el-button>
+        <el-button type="danger" @click="delMultipleRow" :icon="Delete">批量删除</el-button>
+        <el-button type="success" @click="download" :icon="Download">导出Excel</el-button>
+      </el-form-item>
+    </el-form>
     <!-- 新增出行的弹出框 -->
     <el-dialog v-model="dialogVisible" :title="id ? '出行详情' : '新增出行'" :before-close="handleBeforeClose">
       <TravelDetail ref="travelForm" :id="id" @success="detailSuccess" />
@@ -42,9 +69,11 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { getTravelList, delTravel, delMultipleTravel, downloadTravel } from '../../api'
+import { getTravelList, delTravel, delMultipleTravel, downloadTravel, getMode } from '../../api'
 import TravelDetail from '../../components/TravelDetail.vue'
 import { ElMessageBox } from 'element-plus'
+import { Plus, Delete, Download, Search, RefreshRight } from '@element-plus/icons-vue'
+import * as echarts from 'echarts'
 
 const travelList = ref([])
 const page = ref(1)
@@ -54,14 +83,25 @@ const id = ref()
 const dialogVisible = ref(false)
 const travelForm = ref()
 
+const form = ref({
+  id: '',
+  userId: '',
+  mode: ''
+})
+const formRef = ref()
+
 onMounted(() => {
   loadTravelList()
+  initCharts1()
 })
 
 const loadTravelList = async () => {
   const params = {
     page: page.value,
-    pagesize: pagesize.value
+    pagesize: pagesize.value,
+    id: form.value.id,
+    userId: form.value.userId,
+    mode: form.value.mode
   }
   const data = await getTravelList(params)
   travelList.value = data.records
@@ -149,4 +189,75 @@ const delMultipleRow = () => {
 const download = async () => {
   await downloadTravel()
 }
+
+// 重置
+const reset = () => {
+  page.value = 1
+  formRef.value.resetFields()
+  loadTravelList()
+}
+
+// 图表
+// 图表1：出行方式饼状图
+const initCharts1 = async () => {
+  const data = await getMode()
+  const myChart = echarts.init(document.getElementById('modePie'))
+  myChart.setOption({
+      title: { text: '出行方式统计' },
+      series: [
+        {
+          name: 'Nightingale Chart',
+          type: 'pie',
+          radius: [20, 110],
+          center: ['50%', '50%'],
+          roseType: 'area',
+          itemStyle: {
+            borderRadius: 8
+          },
+          data
+        }
+      ]
+  })
+  // 图表自适应大小
+  window.onresize = () => {
+    myChart.resize()
+  }
+}
 </script>
+<style lang="scss" scoped>
+.el-row {
+  margin-bottom: 20px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .el-col {
+    .box-card {
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .info {
+        font-size: 14px;
+      }
+    }
+  }
+}
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e4e7ed;
+  text-align: center;
+  padding-right: 20px;
+  .card-left-container {
+    color: white;
+  }
+  .card-right-container {
+    .number {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+}
+</style>
