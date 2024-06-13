@@ -3,9 +3,9 @@
     <div class="goods-item" v-for="item in goodsList" :key="item.id">
       <router-link :to="{ name: 'goodsDetail', params: { id: item.id } }">
         <van-image width="150" height="150" :src="item.picture" />
-        <h1 class="title">{{ item.name }}<span class="small">{{ item.spec }}</span></h1>
+        <h1 class="title">{{ item.name }}</h1>
         <p class="info">
-          <span class="price">¥{{ item.price }}</span>
+          <span class="price">{{ item.point }}积分</span>
           <span class="sell">剩余 {{ item.stock }} 件</span>
         </p>
       </router-link>
@@ -31,11 +31,8 @@ import { showToast  } from 'vant'
 const goodsList = ref([])
 const is_last = ref(false)
 
-let last_id = '0'
-
-const props = defineProps({
-  category_id: String
-})
+const page = ref(1)
+const pagesize = ref(4)
 
 onMounted(() => {
   loadGoodList()
@@ -43,14 +40,16 @@ onMounted(() => {
 
 const loadGoodList = async () => {
   let params = { 
-    last_id,
-    category_id: props.category_id,
-    pagesize: 4
+    page: page.value,
+    pagesize: pagesize.value,
+    id: '',
+    name: '',
+    description: ''
   }
   const data = await getGoodsList(params)
-  if (data.length > 0) {
-    goodsList.value = goodsList.value.concat(data)
-    last_id = data[data.length - 1].id
+  if (data.records.length > 0) {
+    goodsList.value = goodsList.value.concat(data.records)
+    page.value = page.value + 1
   } else if (goodsList.value.length > 0) {
     showToast({
       message: '已经到达底部',

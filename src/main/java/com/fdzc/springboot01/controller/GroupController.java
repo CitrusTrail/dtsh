@@ -98,4 +98,9 @@ public class GroupController {
     public void download(HttpServletResponse response) {
         service.download(response);
     }
+
+    @GetMapping("/hot")
+    public Result findHotGroup(Integer num) {
+        return Result.success(service.findHotGroup(num));
+    }
 }

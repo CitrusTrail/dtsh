@@ -17,4 +17,23 @@
             </if>
         </where>
     </select>
+
+    <select id="selectHotGroup" resultType="com.fdzc.springboot01.common.vo.HotGroupVo">
+        select
+            id,
+            name,
+            count(u.user_id) num
+        from
+            `group` g
+                left join
+            user_group u
+            on
+                g.id = u.group_id
+        group by
+            g.id
+        order by
+            count(u.user_id) desc
+        limit
+            #{num}
+    </select>
 </mapper>
