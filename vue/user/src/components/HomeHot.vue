@@ -34,7 +34,6 @@ const loadTaskList = async () => {
   }
   const data = await getHotTask(params)
   hotList.value = data
-  console.log(data)
   hotList.value[0].list_pic_url = hot1
   hotList.value[1].list_pic_url = hot2
   hotList.value[2].list_pic_url = hot3

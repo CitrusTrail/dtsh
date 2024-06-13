@@ -14,22 +14,22 @@ const router = createRouter({
         meta: { title: '首页', name: 'home', isTab: true }
       },
       { 
-        path: '/category', 
-        component: () => import('../pages/Category.vue'), 
-        name: 'category',
+        path: '/chat',
+        component: () => import('../pages/Chat.vue'),
+        name: 'chat',
         meta: { title: '讨论', isTab: true, isShowNav: true }
       },
       {
-        path: '/message',
-        component: () => import('../pages/Message.vue'),
-        name: 'message',
+        path: '/travel',
+        component: () => import('../pages/Travel.vue'),
+        name: 'travel',
         meta: { title: '出行', isTab: true, isShowNav: true }
       },
       {
-        path: '/cart' ,
-        component: () => import('../pages/Cart.vue'),
-        name: 'cart' ,
-        meta: { title: '兑换', isTab: true, isShowNav: true, isShowBack: true }
+        path: '/goods' ,
+        component: () => import('../pages/GoodsList.vue'),
+        name: 'goods' ,
+        meta: { title: '兑换', isTab: true, isShowNav: true }
       },
       { 
         path: '/user', 
