@@ -20,8 +20,8 @@ public class GroupController {
     GroupService service;
 
     @GetMapping
-    public Result findAllGroup(int page,int pagesize,Integer id,String name,String description) {
-        return Result.success(service.findAllGroup(page,pagesize,id,name,description));
+    public Result findAllGroup(int page,int pagesize) {
+        return Result.success(service.findAllGroup(page,pagesize));
     }
 
     @GetMapping("/{id}")
@@ -97,10 +97,5 @@ public class GroupController {
     @GetMapping("/download")
     public void download(HttpServletResponse response) {
         service.download(response);
-    }
-
-    @GetMapping("/hot")
-    public Result findHotGroup(Integer num) {
-        return Result.success(service.findHotGroup(num));
     }
 }

@@ -1,8 +1,10 @@
 package com.fdzc.springboot01.service;
 
 import com.alibaba.excel.EasyExcel;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.plugins.pagination.PageDTO;
 import com.fdzc.springboot01.common.dto.IdDTO;
-import com.fdzc.springboot01.common.dto.PageDTO;
+import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.entity.User;
 import com.fdzc.springboot01.mapper.UserMapper;
 import org.springframework.stereotype.Service;
@@ -10,7 +12,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -18,12 +19,11 @@ public class UserService {
     @Resource
     UserMapper userMapper;
 
-    public PageDTO<User> findAllUser(int page, int pagesize, Integer id, String name) {
-        int offset = (page - 1) * pagesize;
+    public PageDTO<User> findAllUser(int page, int pagesize) {
         PageDTO<User> pageDTO = new PageDTO<>();
-        List<User> users = userMapper.selectAllUser(id, name);
-        pageDTO.setRecords(users.stream().skip(offset).limit(pagesize).collect(Collectors.toList()));
-        pageDTO.setTotal(users.size());
+        Page<User> taskPage = userMapper.selectPage(new Page<>(page, pagesize), null);
+        pageDTO.setRecords(taskPage.getRecords());
+        pageDTO.setTotal(taskPage.getTotal());
         return pageDTO;
     }
 

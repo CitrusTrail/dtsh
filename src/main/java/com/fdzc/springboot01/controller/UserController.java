@@ -4,6 +4,8 @@ import com.fdzc.springboot01.common.Result;
 import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.User;
 import com.fdzc.springboot01.service.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -26,6 +28,7 @@ public class UserController {
     public Result findById(@PathVariable Integer id) {
         return Result.success(userService.findById(id));
     }
+
 
     @PostMapping
     public Result addOne(@RequestBody User user) {
