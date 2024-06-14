@@ -12,7 +12,20 @@ b2dbd3d (测试)
 <<<<<<< sda
 dsada
 dsadsa
+<<<<<<< HEAD
+测试连接
+power7865 login suceess
+hahahah
+8888
+0613 
+3030 this is charper here
+whewe
+=======
 aaaa
 ttttttt
 ccc
 ddd
+>>>>>>> origin/master
+>
+sdasdwd
+justbin
