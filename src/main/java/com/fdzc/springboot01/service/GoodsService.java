@@ -1,19 +1,13 @@
 package com.fdzc.springboot01.service;
 
-import com.alibaba.excel.EasyExcel;
-import com.fdzc.springboot01.common.dto.IdDTO;
-import com.fdzc.springboot01.common.dto.PageDTO;
 import com.fdzc.springboot01.entity.Buy;
 import com.fdzc.springboot01.entity.Goods;
-import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.mapper.BuyMapper;
 import com.fdzc.springboot01.mapper.GoodsMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class GoodsService {
@@ -24,65 +18,42 @@ public class GoodsService {
     @Resource
     BuyMapper buyMapper;
 
-    public PageDTO<Goods> findAllGoods(int page, int pagesize, Integer id, String name, String description) {
-        int offset = (page - 1) * pagesize;
-        com.fdzc.springboot01.common.dto.PageDTO<Goods> pageDTO = new com.fdzc.springboot01.common.dto.PageDTO<>();
-        List<Goods> goods = goodsMapper.selectAllGoods(id, name, description);
-        pageDTO.setRecords(goods.stream().skip(offset).limit(pagesize).collect(Collectors.toList()));
-        pageDTO.setTotal(goods.size());
-        return pageDTO;
-    }
-
-    public Goods findById(Integer id) {
-        return goodsMapper.selectById(id);
-    }
-
-    public Integer addOneGoods(Goods goods) {
-        return goodsMapper.insert(goods);
-    }
-
-    public Integer updateOneGoods(Goods goods) {
-        return goodsMapper.updateById(goods);
-    }
-
-    public Integer deleteOneGoods(Integer id) {
-        return goodsMapper.deleteById(id);
+    public List<Goods> findAllGoods() {
+        return goodsMapper.selectList(null);
     }
 
     public List<Buy> findAllBuy() {
         return buyMapper.selectList(null);
     }
 
-    public Integer addOneBuy(Buy buy) {
-        return buyMapper.insert(buy);
+    public String addOneGoods(Goods goods) {
+        Integer res = goodsMapper.insert(goods);
+        return String.format("添加成功：%d，添加失败：%d", res, 1 - res);
     }
 
-    public Integer updateOneBuy(Buy buy) {
-        return buyMapper.updateById(buy);
+    public String addOneBuy(Buy buy) {
+        Integer res = buyMapper.insert(buy);
+        return String.format("添加成功：%d，添加失败：%d", res, 1 - res);
     }
 
-    public Integer deleteOneBuy(Integer id) {
-        return buyMapper.deleteById(id);
+    public String updateOneGoods(Goods goods) {
+        Integer res = goodsMapper.updateById(goods);
+        return String.format("修改成功：%d，修改失败：%d", res, 1 - res);
     }
 
-    public Integer deleteMultipleGoods(IdDTO idDTO) {
-        List<Integer> ids = idDTO.getIds();
-        Integer res = 0;
-        for (Integer id : ids) {
-            res += deleteOneGoods(id);
-        }
-        return res;
+    public String updateOneBuy(Buy buy) {
+        Integer res = buyMapper.updateById(buy);
+        return String.format("修改成功：%d，修改失败：%d", res, 1 - res);
     }
 
-    public void download(HttpServletResponse response) {
-        List<Goods> list = goodsMapper.selectList(null);
-        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        response.setCharacterEncoding("UTF-8");
-        try {
-            response.setHeader("Content-disposition", "attachment;filename=export.xlsx");
-            EasyExcel.write(response.getOutputStream(),Goods.class).autoCloseStream(Boolean.FALSE).sheet("商品列表").doWrite(list);
-        } catch (Exception e) {
-        }
+    public String deleteOneGoods(Integer id) {
+        Integer res = goodsMapper.deleteById(id);
+        return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
+    }
+
+    public String deleteOneBuy(Integer id) {
+        Integer res = buyMapper.deleteById(id);
+        return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
     }
 
 }

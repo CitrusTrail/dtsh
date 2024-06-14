@@ -1,22 +1,76 @@
 package com.fdzc.springboot01.entity;
 
-import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
 import org.springframework.stereotype.Component;
 
 @Component
-@Data
 public class Task {
-    @TableId
-    @ExcelProperty(value = "任务编号")
+
     private Integer id;
-    @ExcelProperty(value = "任务名称")
     private String name;
-    @ExcelProperty(value = "任务简介")
     private String description;
-    @ExcelProperty(value = "碳排放")
     private Double carbon;
-    @ExcelProperty(value = "积分")
     private Integer point;
+
+    public Task() {
+    }
+
+    public Task(Integer id, String name, String description, Double carbon, Integer point) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.carbon = carbon;
+        this.point = point;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getCarbon() {
+        return carbon;
+    }
+
+    public void setCarbon(Double carbon) {
+        this.carbon = carbon;
+    }
+
+    public Integer getPoint() {
+        return point;
+    }
+
+    public void setPoint(Integer point) {
+        this.point = point;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", carbon=" + carbon +
+                ", point=" + point +
+                '}';
+    }
 }

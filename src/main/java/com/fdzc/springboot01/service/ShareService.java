@@ -1,16 +1,11 @@
 package com.fdzc.springboot01.service;
 
-import com.alibaba.excel.EasyExcel;
-import com.fdzc.springboot01.common.dto.IdDTO;
-import com.fdzc.springboot01.common.dto.PageDTO;
 import com.fdzc.springboot01.entity.Share;
 import com.fdzc.springboot01.mapper.ShareMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ShareService {
@@ -18,49 +13,23 @@ public class ShareService {
     @Resource
     ShareMapper shareMapper;
 
-    public PageDTO<Share> findAllShare(int page, int pagesize, Integer id, Integer userId, String content) {
-        int offset = (page - 1) * pagesize;
-        com.fdzc.springboot01.common.dto.PageDTO<Share> pageDTO = new com.fdzc.springboot01.common.dto.PageDTO<>();
-        List<Share> shares = shareMapper.selectAllShare(id, userId, content);
-        pageDTO.setRecords(shares.stream().skip(offset).limit(pagesize).collect(Collectors.toList()));
-        pageDTO.setTotal(shares.size());
-        return pageDTO;
+    public List<Share> findAllShare() {
+        return shareMapper.selectList(null);
     }
 
-    public Share findById(Integer id) {
-        return shareMapper.selectById(id);
+    public String addOneShare(Share share) {
+        Integer res = shareMapper.insert(share);
+        return String.format("添加成功：%d，添加失败：%d", res, 1 - res);
     }
 
-    public Integer addOneShare(Share share) {
-        return shareMapper.insert(share);
+    public String updateOneShare(Share share) {
+        Integer res = shareMapper.updateById(share);
+        return String.format("修改成功：%d，修改失败：%d", res, 1 - res);
     }
 
-    public Integer updateOneShare(Share share) {
-        return shareMapper.updateById(share);
-    }
-
-    public Integer deleteOneShare(Integer id) {
-        return shareMapper.deleteById(id);
-    }
-
-    public Integer deleteMultipleShare(IdDTO idDTO) {
-        List<Integer> ids = idDTO.getIds();
-        Integer res = 0;
-        for (Integer id : ids) {
-            res += deleteOneShare(id);
-        }
-        return res;
-    }
-
-    public void download(HttpServletResponse response) {
-        List<Share> list = shareMapper.selectList(null);
-        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        response.setCharacterEncoding("UTF-8");
-        try {
-            response.setHeader("Content-disposition", "attachment;filename=export.xlsx");
-            EasyExcel.write(response.getOutputStream(),Share.class).autoCloseStream(Boolean.FALSE).sheet("分享列表").doWrite(list);
-        } catch (Exception e) {
-        }
+    public String deleteOneShare(Integer id) {
+        Integer res = shareMapper.deleteById(id);
+        return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
     }
 
 }
