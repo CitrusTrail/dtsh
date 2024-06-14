@@ -1,14 +1,12 @@
 package com.fdzc.springboot01.controller;
 
 import com.fdzc.springboot01.common.Result;
-import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.Buy;
 import com.fdzc.springboot01.entity.Goods;
 import com.fdzc.springboot01.service.GoodsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -19,27 +17,22 @@ public class GoodsController {
     GoodsService service;
 
     @GetMapping
-    public Result findAllGoods(int page,int pagesize,Integer id,String name,String description) {
-        return Result.success(service.findAllGoods(page,pagesize,id,name,description));
-    }
-
-    @GetMapping("/{id}")
-    public Result findById(@PathVariable Integer id) {
-        return Result.success(service.findById(id));
+    public Result findAllGoods() {
+        return Result.success(service.findAllGoods());
     }
 
     @PostMapping
-    public Result addOneGoods(@RequestBody Goods goods) {
+    public Result addOneGoods(Goods goods) {
         return Result.success(service.addOneGoods(goods));
     }
 
     @PutMapping
-    public Result updateOneGoods(@RequestBody Goods goods) {
+    public Result updateOneGoods(Goods goods) {
         return Result.success(service.updateOneGoods(goods));
     }
 
     @DeleteMapping("/{id}")
-    public Result deleteOneGoods(@PathVariable Integer id) {
+    public Result deleteOneGoods(Integer id) {
         return Result.success(service.deleteOneGoods(id));
     }
 
@@ -49,28 +42,18 @@ public class GoodsController {
     }
 
     @PostMapping("/buy")
-    public Result addOneBuy(@RequestBody Buy buy) {
+    public Result addOneBuy(Buy buy) {
         return Result.success(service.addOneBuy(buy));
     }
 
     @PutMapping("/buy")
-    public Result updateOneBuy(@RequestBody Buy buy) {
+    public Result updateOneBuy(Buy buy) {
         return Result.success(service.updateOneBuy(buy));
     }
 
     @DeleteMapping("/buy/{id}")
-    public Result deleteOneBuy(@PathVariable Integer id) {
+    public Result deleteOneBuy(Integer id) {
         return Result.success(service.deleteOneBuy(id));
-    }
-
-    @PostMapping("/multiple")
-    public Result deleteMultipleGoods(@RequestBody IdDTO idDTO) {
-        return Result.success(service.deleteMultipleGoods(idDTO));
-    }
-
-    @GetMapping("/download")
-    public void download(HttpServletResponse response) {
-        service.download(response);
     }
 
 }

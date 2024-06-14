@@ -17,16 +17,19 @@ public class CarbonService {
         return userCarbonMapper.selectList(null);
     }
 
-    public Integer addOneUserCarbon(UserCarbon userCarbon) {
-        return userCarbonMapper.insert(userCarbon);
+    public String addOneUserCarbon(UserCarbon userCarbon) {
+        Integer res = userCarbonMapper.insert(userCarbon);
+        return String.format("添加成功：%d，添加失败：%d", res, 1 - res);
     }
 
-    public Integer updateOneUserCarbon(UserCarbon userCarbon) {
-        return userCarbonMapper.updateById(userCarbon);
+    public String updateOneUserCarbon(UserCarbon userCarbon) {
+        Integer res = userCarbonMapper.updateById(userCarbon);
+        return String.format("修改成功：%d，修改失败：%d", res, 1 - res);
     }
 
-    public Integer deleteOneUserCarbon(UserCarbon userCarbon) {
-        return userCarbonMapper.deleteById(userCarbon);
+    public String deleteOneUserCarbon(Integer id) {
+        Integer res = userCarbonMapper.deleteById(id);
+        return String.format("删除成功：%d，删除失败：%d", res, 1 - res);
     }
 
 }
