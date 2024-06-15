@@ -1,9 +1,10 @@
-package com.fdzc.springboot01.service;
+package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
 import com.fdzc.springboot01.common.dto.AvatarDTO;
 import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.mapper.TaskMapper;
+import com.fdzc.springboot01.service.IFileService;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class FileService {
+public class FileService implements IFileService {
     @Resource
     private TaskMapper mapper;
 

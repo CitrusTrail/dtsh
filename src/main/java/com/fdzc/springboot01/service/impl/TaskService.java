@@ -1,7 +1,6 @@
-package com.fdzc.springboot01.service;
+package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.common.dto.PageDTO;
 import com.fdzc.springboot01.common.vo.HotTaskVo;
@@ -9,6 +8,7 @@ import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.entity.UserTask;
 import com.fdzc.springboot01.mapper.TaskMapper;
 import com.fdzc.springboot01.mapper.UserTaskMapper;
+import com.fdzc.springboot01.service.ITaskService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TaskService {
+public class TaskService implements ITaskService {
 
     @Resource
     TaskMapper taskMapper;

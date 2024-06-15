@@ -3,12 +3,11 @@ package com.fdzc.springboot01.controller;
 import com.fdzc.springboot01.common.Result;
 import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.User;
-import com.fdzc.springboot01.service.UserService;
+import com.fdzc.springboot01.service.impl.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @RestController
 @RequestMapping("/users")

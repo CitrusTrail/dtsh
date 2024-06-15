@@ -5,12 +5,11 @@ import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.Chat;
 import com.fdzc.springboot01.entity.Group;
 import com.fdzc.springboot01.entity.UserGroup;
-import com.fdzc.springboot01.service.GroupService;
+import com.fdzc.springboot01.service.impl.GroupService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @RestController
 @RequestMapping("/groups")

@@ -1,4 +1,4 @@
-package com.fdzc.springboot01.service;
+package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
 import com.fdzc.springboot01.common.dto.IdDTO;
@@ -11,6 +11,7 @@ import com.fdzc.springboot01.entity.UserGroup;
 import com.fdzc.springboot01.mapper.ChatMapper;
 import com.fdzc.springboot01.mapper.GroupMapper;
 import com.fdzc.springboot01.mapper.UserGroupMapper;
+import com.fdzc.springboot01.service.IGroupService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class GroupService {
+public class GroupService implements IGroupService {
 
     @Resource
     ChatMapper chatMapper;

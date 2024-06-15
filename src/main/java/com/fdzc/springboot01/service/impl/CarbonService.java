@@ -1,14 +1,15 @@
-package com.fdzc.springboot01.service;
+package com.fdzc.springboot01.service.impl;
 
 import com.fdzc.springboot01.entity.UserCarbon;
 import com.fdzc.springboot01.mapper.UserCarbonMapper;
+import com.fdzc.springboot01.service.ICarbonService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class CarbonService {
+public class CarbonService implements ICarbonService {
 
     @Resource
     UserCarbonMapper userCarbonMapper;

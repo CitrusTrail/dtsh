@@ -1,4 +1,4 @@
-package com.fdzc.springboot01.service;
+package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
 import com.fdzc.springboot01.common.dto.IdDTO;
@@ -6,6 +6,7 @@ import com.fdzc.springboot01.common.dto.PageDTO;
 import com.fdzc.springboot01.common.vo.ModeVo;
 import com.fdzc.springboot01.entity.Travel;
 import com.fdzc.springboot01.mapper.TravelMapper;
+import com.fdzc.springboot01.service.ITravelService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TravelService {
+public class TravelService implements ITravelService {
 
     @Resource
     TravelMapper travelMapper;

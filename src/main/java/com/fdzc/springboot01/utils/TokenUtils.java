@@ -3,7 +3,7 @@ package com.fdzc.springboot01.utils;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fdzc.springboot01.entity.Admin;
-import com.fdzc.springboot01.service.AdminService;
+import com.fdzc.springboot01.service.impl.AdminService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;

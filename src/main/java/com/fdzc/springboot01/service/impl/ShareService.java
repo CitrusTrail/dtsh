@@ -1,10 +1,11 @@
-package com.fdzc.springboot01.service;
+package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
 import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.common.dto.PageDTO;
 import com.fdzc.springboot01.entity.Share;
 import com.fdzc.springboot01.mapper.ShareMapper;
+import com.fdzc.springboot01.service.IShareService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ShareService {
+public class ShareService implements IShareService {
 
     @Resource
     ShareMapper shareMapper;

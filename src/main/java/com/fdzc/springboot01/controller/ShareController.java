@@ -3,12 +3,11 @@ package com.fdzc.springboot01.controller;
 import com.fdzc.springboot01.common.Result;
 import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.Share;
-import com.fdzc.springboot01.service.ShareService;
+import com.fdzc.springboot01.service.impl.ShareService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @RestController
 @RequestMapping("/shares")

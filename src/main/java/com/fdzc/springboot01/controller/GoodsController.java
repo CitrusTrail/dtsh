@@ -4,12 +4,11 @@ import com.fdzc.springboot01.common.Result;
 import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.Buy;
 import com.fdzc.springboot01.entity.Goods;
-import com.fdzc.springboot01.service.GoodsService;
+import com.fdzc.springboot01.service.impl.GoodsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.util.List;
 
 @RestController
 @RequestMapping("/goods")
