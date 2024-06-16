@@ -1,6 +1,6 @@
 <template>
   <el-row :gutter="20">
-    <el-col :span="12">
+    <el-col :span="24">
       <el-card class="box-card">
         <div id="modePie" style="width: auto; height:250px;"></div>
       </el-card>
