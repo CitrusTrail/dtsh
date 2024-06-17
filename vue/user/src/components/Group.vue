@@ -7,7 +7,6 @@
       <van-cell
         v-for="item in hotList"
         :key="item.id"
-        label=""
         :title="item.name"
         is-link
       >{{item.num}}人</van-cell>
@@ -39,7 +38,8 @@ const loadGroupList = async () => {
 .home-new {
   .home-new-title {
     font-size: 16px;
-    height: 50px;
+    height: 40px;
+    margin-top: 20px;
     h3 {
       font-size: 22px;
       width: 50%;
