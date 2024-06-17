@@ -1,7 +1,7 @@
 package com.fdzc.springboot01.controller;
 
 import com.fdzc.springboot01.common.Result;
-import com.fdzc.springboot01.common.dto.IdDTO;
+import com.fdzc.springboot01.entity.dto.IdDTO;
 import com.fdzc.springboot01.entity.Chat;
 import com.fdzc.springboot01.entity.Group;
 import com.fdzc.springboot01.entity.UserGroup;

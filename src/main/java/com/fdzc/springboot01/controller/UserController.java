@@ -1,8 +1,9 @@
 package com.fdzc.springboot01.controller;
 
 import com.fdzc.springboot01.common.Result;
-import com.fdzc.springboot01.common.dto.IdDTO;
+import com.fdzc.springboot01.entity.dto.IdDTO;
 import com.fdzc.springboot01.entity.User;
+import com.fdzc.springboot01.entity.dto.UserDTO;
 import com.fdzc.springboot01.service.impl.UserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,5 +50,15 @@ public class UserController {
     @GetMapping("/download")
     public void download(HttpServletResponse response) {
         userService.download(response);
+    }
+
+    @PostMapping("/login")
+    public Result login(@RequestBody UserDTO userDTO) {
+        return Result.success(userService.login(userDTO));
+    }
+
+    @PostMapping("/register")
+    public Result register(@RequestBody UserDTO userDTO) {
+        return Result.success(userService.register(userDTO));
     }
 }

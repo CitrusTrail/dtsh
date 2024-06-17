@@ -4,6 +4,7 @@ import { reactive } from 'vue'
 const useUser = defineStore('user', () => {
   const defaultUser = {
     isLogin: false,
+    id: '',
     username: '',
     avatar: ''
   }

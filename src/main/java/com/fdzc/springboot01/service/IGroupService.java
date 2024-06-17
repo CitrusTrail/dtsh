@@ -1,9 +1,9 @@
 package com.fdzc.springboot01.service;
 
-import com.fdzc.springboot01.common.dto.IdDTO;
-import com.fdzc.springboot01.common.dto.PageDTO;
-import com.fdzc.springboot01.common.vo.GroupUserVo;
-import com.fdzc.springboot01.common.vo.HotGroupVo;
+import com.fdzc.springboot01.entity.dto.IdDTO;
+import com.fdzc.springboot01.entity.dto.PageDTO;
+import com.fdzc.springboot01.entity.vo.GroupUserVo;
+import com.fdzc.springboot01.entity.vo.HotGroupVo;
 import com.fdzc.springboot01.entity.Chat;
 import com.fdzc.springboot01.entity.Group;
 import com.fdzc.springboot01.entity.UserGroup;

@@ -1,8 +1,8 @@
 package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
-import com.fdzc.springboot01.common.dto.IdDTO;
-import com.fdzc.springboot01.common.dto.PageDTO;
+import com.fdzc.springboot01.entity.dto.IdDTO;
+import com.fdzc.springboot01.entity.dto.PageDTO;
 import com.fdzc.springboot01.entity.Buy;
 import com.fdzc.springboot01.entity.Goods;
 import com.fdzc.springboot01.mapper.BuyMapper;
@@ -26,7 +26,7 @@ public class GoodsService implements IGoodsService {
 
     public PageDTO<Goods> findAllGoods(int page, int pagesize, Integer id, String name, String description) {
         int offset = (page - 1) * pagesize;
-        com.fdzc.springboot01.common.dto.PageDTO<Goods> pageDTO = new com.fdzc.springboot01.common.dto.PageDTO<>();
+        com.fdzc.springboot01.entity.dto.PageDTO<Goods> pageDTO = new com.fdzc.springboot01.entity.dto.PageDTO<>();
         List<Goods> goods = goodsMapper.selectAllGoods(id, name, description);
         pageDTO.setRecords(goods.stream().skip(offset).limit(pagesize).collect(Collectors.toList()));
         pageDTO.setTotal(goods.size());

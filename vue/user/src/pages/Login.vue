@@ -39,8 +39,8 @@ const { updateUser } = useUser()
 const router = useRouter()
 
 const form = reactive({
-  username: 'demo1',
-  password: '123456'
+  username: '',
+  password: ''
 })
 const ruleFormRef = ref()
 
@@ -58,9 +58,10 @@ const submitForm = async values => {
   const data = await login(values)
   if (data) {
     updateToken(data.token)
-    const user = await getUser()
+    const user = await getUser({ id: data.id })
     updateUser({
       isLogin: true,
+      id: user.id,
       username: user.username,
       avatar: user.avatar
     })

@@ -2,12 +2,12 @@ import request from '../utils/request'
 
 // 登录接口
 export function login(data) {
-  return request.post('/home/login', data)
+  return request.post('/users/login', data)
 }
 
 // 注册接口
 export function register(data) {
-  return request.post('/home/register', data)
+  return request.post('/users/register', data)
 }
 
 // 商品相册接口

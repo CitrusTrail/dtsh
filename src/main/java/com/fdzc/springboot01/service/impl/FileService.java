@@ -1,7 +1,7 @@
 package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
-import com.fdzc.springboot01.common.dto.AvatarDTO;
+import com.fdzc.springboot01.entity.dto.AvatarDTO;
 import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.mapper.TaskMapper;
 import com.fdzc.springboot01.service.IFileService;

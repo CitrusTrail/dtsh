@@ -1,11 +1,14 @@
 package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
-import com.fdzc.springboot01.common.dto.IdDTO;
-import com.fdzc.springboot01.common.dto.PageDTO;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.fdzc.springboot01.entity.dto.IdDTO;
+import com.fdzc.springboot01.entity.dto.PageDTO;
 import com.fdzc.springboot01.entity.User;
+import com.fdzc.springboot01.entity.dto.UserDTO;
 import com.fdzc.springboot01.mapper.UserMapper;
 import com.fdzc.springboot01.service.IUserService;
+import com.fdzc.springboot01.utils.TokenUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -62,6 +65,39 @@ public class UserService implements IUserService {
             EasyExcel.write(response.getOutputStream(),User.class).autoCloseStream(Boolean.FALSE).sheet("用户列表").doWrite(list);
         } catch (Exception e) {
         }
+    }
+
+    public User findByNamePassword(UserDTO userDTO) {
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("name", userDTO.getUsername());
+        queryWrapper.eq("password", userDTO.getPassword());
+        User one = null;
+        try {
+            one = userMapper.selectOne(queryWrapper); // 从数据库查询用户信息
+        } catch (Exception e) {
+        }
+        return one;
+    }
+
+    public UserDTO login(UserDTO userDTO) {
+        User one = findByNamePassword(userDTO);
+        if (one != null) {
+            // 设置token
+            String token = TokenUtils.genToken(one.getId().toString(), one.getPassword());
+            userDTO.setToken(token);
+            userDTO.setId(one.getId());
+        }
+        return userDTO;
+    }
+
+    public UserDTO register(UserDTO userDTO) {
+        if (findByNamePassword(userDTO) == null) {
+            User user = new User();
+            user.setName(userDTO.getUsername());
+            user.setPassword(userDTO.getPassword());
+            addOneUser(user);
+        }
+        return login(userDTO);
     }
 
 }

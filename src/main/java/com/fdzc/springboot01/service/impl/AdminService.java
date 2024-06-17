@@ -1,7 +1,7 @@
 package com.fdzc.springboot01.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.fdzc.springboot01.common.dto.UserDTO;
+import com.fdzc.springboot01.entity.dto.UserDTO;
 import com.fdzc.springboot01.entity.Admin;
 import com.fdzc.springboot01.mapper.AdminMapper;
 import com.fdzc.springboot01.utils.TokenUtils;

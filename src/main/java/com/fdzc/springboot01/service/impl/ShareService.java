@@ -1,8 +1,8 @@
 package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
-import com.fdzc.springboot01.common.dto.IdDTO;
-import com.fdzc.springboot01.common.dto.PageDTO;
+import com.fdzc.springboot01.entity.dto.IdDTO;
+import com.fdzc.springboot01.entity.dto.PageDTO;
 import com.fdzc.springboot01.entity.Share;
 import com.fdzc.springboot01.mapper.ShareMapper;
 import com.fdzc.springboot01.service.IShareService;
@@ -21,7 +21,7 @@ public class ShareService implements IShareService {
 
     public PageDTO<Share> findAllShare(int page, int pagesize, Integer id, Integer userId, String content) {
         int offset = (page - 1) * pagesize;
-        com.fdzc.springboot01.common.dto.PageDTO<Share> pageDTO = new com.fdzc.springboot01.common.dto.PageDTO<>();
+        com.fdzc.springboot01.entity.dto.PageDTO<Share> pageDTO = new com.fdzc.springboot01.entity.dto.PageDTO<>();
         List<Share> shares = shareMapper.selectAllShare(id, userId, content);
         pageDTO.setRecords(shares.stream().skip(offset).limit(pagesize).collect(Collectors.toList()));
         pageDTO.setTotal(shares.size());

@@ -1,8 +1,8 @@
 package com.fdzc.springboot01.service;
 
-import com.fdzc.springboot01.common.dto.IdDTO;
-import com.fdzc.springboot01.common.dto.PageDTO;
-import com.fdzc.springboot01.common.vo.ModeVo;
+import com.fdzc.springboot01.entity.dto.IdDTO;
+import com.fdzc.springboot01.entity.dto.PageDTO;
+import com.fdzc.springboot01.entity.vo.ModeVo;
 import com.fdzc.springboot01.entity.Travel;
 
 import javax.servlet.http.HttpServletResponse;

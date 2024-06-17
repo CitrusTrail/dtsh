@@ -1,4 +1,4 @@
-package com.fdzc.springboot01.common.dto;
+package com.fdzc.springboot01.entity.dto;
 
 import lombok.Data;
 

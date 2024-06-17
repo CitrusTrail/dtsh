@@ -1,7 +1,7 @@
 package com.fdzc.springboot01.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.fdzc.springboot01.common.vo.HotTaskVo;
+import com.fdzc.springboot01.entity.vo.HotTaskVo;
 import com.fdzc.springboot01.entity.Task;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

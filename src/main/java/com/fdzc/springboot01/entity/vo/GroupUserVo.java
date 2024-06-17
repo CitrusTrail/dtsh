@@ -1,4 +1,4 @@
-package com.fdzc.springboot01.common.vo;
+package com.fdzc.springboot01.entity.vo;
 
 import lombok.Data;
 

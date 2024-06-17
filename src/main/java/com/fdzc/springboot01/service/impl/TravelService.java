@@ -1,9 +1,9 @@
 package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
-import com.fdzc.springboot01.common.dto.IdDTO;
-import com.fdzc.springboot01.common.dto.PageDTO;
-import com.fdzc.springboot01.common.vo.ModeVo;
+import com.fdzc.springboot01.entity.dto.IdDTO;
+import com.fdzc.springboot01.entity.dto.PageDTO;
+import com.fdzc.springboot01.entity.vo.ModeVo;
 import com.fdzc.springboot01.entity.Travel;
 import com.fdzc.springboot01.mapper.TravelMapper;
 import com.fdzc.springboot01.service.ITravelService;

@@ -1,7 +1,7 @@
 package com.fdzc.springboot01.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.fdzc.springboot01.common.vo.ModeVo;
+import com.fdzc.springboot01.entity.vo.ModeVo;
 import com.fdzc.springboot01.entity.Travel;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

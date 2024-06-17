@@ -18,7 +18,7 @@
         </where>
     </select>
 
-    <select id="selectHotTask" resultType="com.fdzc.springboot01.common.vo.HotTaskVo">
+    <select id="selectHotTask" resultType="com.fdzc.springboot01.entity.vo.HotTaskVo">
         select
             name,
             count(u.user_id) num

@@ -1,7 +1,7 @@
 package com.fdzc.springboot01.controller;
 
 import com.fdzc.springboot01.common.Result;
-import com.fdzc.springboot01.common.dto.IdDTO;
+import com.fdzc.springboot01.entity.dto.IdDTO;
 import com.fdzc.springboot01.entity.Buy;
 import com.fdzc.springboot01.entity.Goods;
 import com.fdzc.springboot01.service.impl.GoodsService;

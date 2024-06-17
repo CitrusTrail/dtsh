@@ -1,6 +1,6 @@
 package com.fdzc.springboot01.service;
 
-import com.fdzc.springboot01.common.dto.UserDTO;
+import com.fdzc.springboot01.entity.dto.UserDTO;
 import com.fdzc.springboot01.entity.Admin;
 
 import java.util.List;

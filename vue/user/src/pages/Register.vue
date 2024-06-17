@@ -83,9 +83,10 @@ const submitForm = async () => {
   const data = await register(form)
   if (data) {
     updateToken(data.token)
-    const user = await getUser()
+    const user = await getUser({ id: data.id })
     updateUser({
       isLogin: true,
+      id: user.id,
       username: user.username,
       avatar: user.avatar
     })
