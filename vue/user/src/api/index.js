@@ -189,3 +189,8 @@ export function delUser(data) {
 export function addUserTask(data) {
   return request.post('/tasks/userTask', data)
 }
+
+// 添加订单
+export function addBuy(data) {
+  return request.post('/goods/buy', data)
+}

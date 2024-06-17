@@ -1,18 +1,12 @@
 <template>
   <div class="goods" v-if="!isNotFound">
-    <van-swipe class="goods-swipe" :autoplay="3000">
-      <van-swipe-item v-for="item in album" :key="item.id">
-        <img :src="item.picture" height="414">
-      </van-swipe-item>
-    </van-swipe>
     <van-cell-group>
       <van-cell>
         <template #title>
-          <span class="goods-top">新品</span>
+          <van-image width="100%" :src="goods.image" />
           <div class="goods-price">
-            <span class="small">￥</span>
-            {{ goods.price }}
-            <span class="spec">{{ goods.spec }}</span>
+            {{ goods.point }}
+            <span class="small">积分</span>
           </div>
           <div class="goods-title">
             <span class="small"> {{ goods.name }}</span>
@@ -21,37 +15,16 @@
       </van-cell>
       <van-cell class="goods-express">
         <template #title>
-          <van-col span="10">运费：10</van-col>
           <van-col span="14">剩余：{{ goods.stock }}</van-col>
         </template>
       </van-cell>
     </van-cell-group>
-    <van-cell-group class="goods-cell-group">
-      <van-cell>
-        <template #title>
-          <span class="van-cell-text">发货　陕西宝鸡</span>
-        </template>
-      </van-cell>
-      <van-cell>
-        <template #title>
-          <span class="van-cell-text">保障　坏单包赔·假一赔四·极速退款</span>
-        </template>
-      </van-cell>
-      <van-cell>
-        <template #title>
-          <span class="van-cell-text">参数　品牌：枝纯　价格：100-200</span>
-        </template>
-      </van-cell>
-    </van-cell-group>
     <div class="goods-cell-title">
-      —— 宝贝详情 ——
+      —— 商品详情 ——
     </div>
     <div class="goods-description" v-html="goods.description"></div>
     <van-action-bar>
-      <van-action-bar-icon icon="chat-o" @click="sorry" text="客服" />
-      <van-action-bar-icon icon="cart-o" :badge="cartCount()" @click="onClickCart" text="购物车" />
-      <van-action-bar-button type="warning" @click="addCart" text="加入购物车" />
-      <van-action-bar-button type="danger" @click="sorry" text="立即购买" />
+      <van-action-bar-button type="danger" @click="onClick" text="立即兑换" />
     </van-action-bar>
   </div>
   <div class="goods-not-found" v-else>商品不存在</div>
@@ -59,17 +32,16 @@
 
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
-import { getGoodsAlbum, getGoodsDetail } from '../api'
-import useCart from '../stores/cart'
+import { getGoodsAlbum, getGoods, addBuy } from '../api'
+import useUser from '../stores/user'
 
-const { cartCount, addToCart } = useCart()
+const { user } = useUser()
 
 const props = defineProps({
   id: String
 })
 
 const goods = reactive({})
-const album = ref([])
 const isNotFound = ref(false)
 
 onMounted(() => {
@@ -78,39 +50,30 @@ onMounted(() => {
 
 // 加载商品详情
 const loadGoodsDetail = async () => {
-  const data1 = await getGoodsDetail({ id: props.id })
-  if (!data1.id) {
+  const data = await getGoods({ id: props.id })
+  if (!data.id) {
     isNotFound.value = true
     return
   }
-  const data2 = await getGoodsAlbum({ goods_id: props.id })
-  if (data2.length === 0 && data1.picture !== '') {
-    data2.push({ picture: data1.picture })
-  }
-  Object.assign(goods, data1)
-  album.value = data2
+  Object.assign(goods, data)
 }
 
 
-import { showToast } from 'vant'
+import { showToast, showSuccessToast } from 'vant'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const sorry = () => {
-  showToast('暂无后续逻辑~')
-}
-
-const onClickCart = () => {
-  router.push({ name: 'cart' })
-}
-
-const addCart = () => {
-  addToCart({ id: props.id, num: 1, checked: true })
-  showToast({
-    message: '添加成功'
+const onClick = async () => {
+  const data = await addBuy({
+    userId: user.id,
+    goodsId: props.id
   })
+  if (data == 1) {
+    showSuccessToast('兑换成功');
+  }
 }
+
 </script>
 
 <style lang="less" scoped>
@@ -169,9 +132,6 @@ const addCart = () => {
     padding: 5px 15px;
     :deep(.van-col) {
       float: left;
-    }
-    :deep(.van-col--14){
-      width: 58%;
     }
   }
  .goods-cell-group {

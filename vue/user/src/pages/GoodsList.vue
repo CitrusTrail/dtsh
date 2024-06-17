@@ -47,7 +47,6 @@ const loadGoodList = async () => {
     description: ''
   }
   const data = await getGoodsList(params)
-  console.log(data)
   if (data.records.length > 0) {
     goodsList.value = goodsList.value.concat(data.records)
     page.value = page.value + 1

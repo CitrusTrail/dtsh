@@ -61,8 +61,8 @@ import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const onClick = () => {
-  const data = addUserTask({
+const onClick = async () => {
+  const data = await addUserTask({
     userId: user.id,
     taskId: props.id
   })
