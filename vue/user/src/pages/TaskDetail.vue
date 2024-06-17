@@ -3,49 +3,25 @@
     <van-cell-group>
       <van-cell>
         <template #title>
-          <span class="task-top">新品</span>
-          <div class="task-price">
-            <span class="small">￥</span>
-            {{ task.price }}
-            <span class="spec">{{ task.spec }}</span>
-          </div>
+          <van-image width="100%" :src="task.image" />
           <div class="task-title">
             <span class="small"> {{ task.name }}</span>
           </div> 
         </template>
       </van-cell>
-      <van-cell class="task-express">
-        <template #title>
-          <van-col span="10">运费：10</van-col>
-          <van-col span="14">剩余：{{ task.stock }}</van-col>
-        </template>
-      </van-cell>
-    </van-cell-group>
-    <van-cell-group class="task-cell-group">
-      <van-cell>
-        <template #title>
-          <span class="van-cell-text">发货　陕西宝鸡</span>
-        </template>
-      </van-cell>
-      <van-cell>
-        <template #title>
-          <span class="van-cell-text">保障　坏单包赔·假一赔四·极速退款</span>
-        </template>
-      </van-cell>
-      <van-cell>
-        <template #title>
-          <span class="van-cell-text">参数　品牌：枝纯　价格：100-200</span>
-        </template>
-      </van-cell>
     </van-cell-group>
     <div class="task-cell-title">
-      —— 宝贝详情 ——
+      —— 任务详情 ——
     </div>
     <div class="task-description" v-html="task.description"></div>
+    <div class="task-cell-title">
+      —— 任务奖励 ——
+    </div>
+    <div class="task-price">
+      {{ task.point }}<span class="small">积分</span>
+    </div>
     <van-action-bar>
-      <van-action-bar-icon icon="chat-o" @click="sorry" text="客服" />
-      <van-action-bar-button type="warning" @click="addCart" text="加入购物车" />
-      <van-action-bar-button type="danger" @click="sorry" text="立即购买" />
+      <van-action-bar-button color="#4c4" text="立即参与" @click="onClick" />
     </van-action-bar>
   </div>
   <div class="task-not-found" v-else>任务不存在</div>
@@ -53,8 +29,10 @@
 
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
-import { getTask } from '../api'
+import { getTask, addUserTask } from '../api'
+import useUser from '../stores/user'
 
+const { user } = useUser()
 
 const props = defineProps({
   id: String
@@ -69,34 +47,30 @@ onMounted(() => {
 
 // 加载任务详情
 const loadTaskDetail = async () => {
-  const data1 = await getTask({ id: props.id })
-  if (!data1.id) {
+  const data = await getTask({ id: props.id })
+  if (!data.id) {
     isNotFound.value = true
     return
   }
-  Object.assign(task, data1)
+  Object.assign(task, data)
 }
 
 
-import { showToast } from 'vant'
+import { showToast, showSuccessToast } from 'vant'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
-const sorry = () => {
-  showToast('暂无后续逻辑~')
-}
-
-const onClickCart = () => {
-  router.push({ name: 'cart' })
-}
-
-const addCart = () => {
-  addToCart({ id: props.id, num: 1, checked: true })
-  showToast({
-    message: '添加成功'
+const onClick = () => {
+  const data = addUserTask({
+    userId: user.id,
+    taskId: props.id
   })
+  if (data == 1) {
+    showSuccessToast('参与成功');
+  }
 }
+
 </script>
 
 <style lang="less" scoped>
@@ -124,8 +98,9 @@ const addCart = () => {
     }
   }
   .task-price {
+    margin: 0 auto;
     color: #f44;
-    text-align: left;
+    text-align: center;
     font-size: 20px;
     .small {
       font-size: 12px;

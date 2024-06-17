@@ -16,6 +16,6 @@ const { cartCount } = useCart()
 
 <style scoped>
 .van-tabbar-item {
-  --van-tabbar-item-active-color: #00DD00;
+  --van-tabbar-item-active-color: #4c4;
 }
 </style>

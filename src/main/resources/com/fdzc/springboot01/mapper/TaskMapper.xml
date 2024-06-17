@@ -20,6 +20,7 @@
 
     <select id="selectHotTask" resultType="com.fdzc.springboot01.entity.vo.HotTaskVo">
         select
+            t.id id,
             name,
             image,
             count(u.user_id) num

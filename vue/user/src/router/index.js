@@ -65,15 +65,16 @@ const router = createRouter({
       },
       {
         path: '/tasklist',
-        name: 'tasklist',
         component: () => import('../pages/TaskList.vue'),
-        meta: { title: '任务列表', name: 'tasklist', isTab: true }
+        name: 'tasklist',
+        meta: { title: '任务列表', isTab: true, isShowNav: true, isShowBack: true }
       },
       {
         path: '/taskDetail/:id',
-        name: 'taskDetail',
         component: () => import('../pages/TaskDetail.vue'),
-        meta: { title: '任务详情', name: 'taskDetail', isTab: true }
+        props: true,
+        name: 'taskDetail',
+        meta: { title: '任务详情', isTab: false, isShowNav: true, isShowBack: true }
       }
   ]
 })

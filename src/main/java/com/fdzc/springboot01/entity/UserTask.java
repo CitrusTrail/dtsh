@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class UserTask {
-
     private Integer userId;
     private Integer taskId;
     private String completedTime;

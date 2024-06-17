@@ -48,7 +48,7 @@ const loadGroupList = async () => {
     }
   }
   .content {
-    --van-tag-primary-color: #00DD00;
+    --van-tag-primary-color: #4c4;
     --van-card-font-size: 16px;
     --van-card-background: #f9f9f9;
     --van-card-thumb-size: 60px;

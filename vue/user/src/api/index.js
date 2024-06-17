@@ -184,3 +184,8 @@ export function editUser(data) {
 export function delUser(data) {
   return request.delete('/users/'+data.id)
 }
+
+// 添加用户任务接口
+export function addUserTask(data) {
+  return request.post('/tasks/userTask', data)
+}

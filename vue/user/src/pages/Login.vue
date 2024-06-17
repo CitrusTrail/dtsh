@@ -61,7 +61,7 @@ const submitForm = async values => {
     const user = await getUser({ id: data.id })
     updateUser({
       isLogin: true,
-      id: user.id,
+      id: data.id,
       username: user.username,
       avatar: user.avatar
     })

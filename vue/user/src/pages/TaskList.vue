@@ -132,7 +132,7 @@ const getMore = () => {
           margin: 0.5rem 0;
         }
         span {
-          color: #00DD00;
+          color: #4c4;
           font-size: 12px;
         }
       }

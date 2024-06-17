@@ -10,9 +10,11 @@
     </div>
     <ul>
       <li v-for="item in hotList" :key="item.id">
-        <img :src="item.image" alt="" />
-        <p>{{ item.name }}</p>
-        <p>{{ item.num }}<span>人参加</span></p>
+        <router-link :to="{ name: 'taskDetail', params: { id: item.id } }">
+          <img :src="item.image" alt="" />
+          <p>{{ item.name }}</p>
+          <p>{{ item.num }}<span>人参加</span></p>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -21,9 +23,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getHotTask } from '../api'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
 
 const hotList = ref([])
 const num = ref(4)
@@ -70,7 +69,7 @@ const loadTaskList = async () => {
         margin: 0.5rem 0;
       }
       span {
-        color: #00DD00;
+        color: #4c4;
         font-size: 12px;
       }
     }
