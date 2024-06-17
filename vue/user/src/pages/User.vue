@@ -1,7 +1,7 @@
 <template>
   <!-- 已登录 -->
   <van-row v-if="user.isLogin" class="user-info">
-    <van-image v-if="user.avatar" round width="100" height="100" src="{{ user.avatar }}" />
+    <van-image v-if="user.avatar" round width="100" height="100" :src="user.avatar" />
     <van-image v-else round width="100" height="100" :src="avatar_default" />
     <span class="user-info-name">{{ user.username }}</span>
     <van-button plain type="danger" size="mini" @click="onLogout">退出</van-button>

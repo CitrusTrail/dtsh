@@ -31,8 +31,8 @@ const GoodsList = [
 <style lang="less" scoped>
 .home-new {
   .home-new-title {
-    font-size: 16px;
-    height: 50px;
+    height: 40px;
+    margin-top: 20px;
     h3 {
       font-size: 22px;
       width: 50%;
