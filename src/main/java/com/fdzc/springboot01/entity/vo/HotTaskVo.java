@@ -5,5 +5,6 @@ import lombok.Data;
 @Data
 public class HotTaskVo {
     private String name;
+    private String image;
     private String num;
 }

@@ -16,24 +16,6 @@
         <span class="user-info-name">注册</span>
       </router-link>
   </van-row>
-  <van-row class="user-links">
-    <van-col span="6">
-      <van-icon name="pending-payment" />
-      待付款
-    </van-col>
-    <van-col span="6">
-      <van-icon name="records" :badge="user.isLogin ? '7' : ''" />
-      待收货
-    </van-col>
-    <van-col span="6">
-      <van-icon name="tosend" :badge="user.isLogin ? '40' : ''" />
-      待评价
-    </van-col>
-    <van-col span="6">
-      <van-icon name="logistics" :badge="user.isLogin ? '1' : ''" />
-      退换/售后
-    </van-col>
-  </van-row>
   <van-cell-group class="user-group my-title">
     <van-cell icon="records" title="全部订单" is-link />
   </van-cell-group>

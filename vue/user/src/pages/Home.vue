@@ -9,8 +9,6 @@
   </van-search>
   <!-- 轮播图 -->
   <home-swiper></home-swiper>
-  <!-- 功能按钮区 -->
-  <home-grid class="grid" ></home-grid>
   <!-- 商品信息展示区 -->
   <home-new></home-new>
   <home-hot></home-hot>
@@ -18,7 +16,6 @@
 
 <script setup>
 import HomeSwiper from '../components/HomeSwiper.vue'
-import HomeGrid from '../components/HomeGrid.vue'
 import HomeNew from '../components/HomeNew.vue'
 import HomeHot from '../components/HomeHot.vue'
 

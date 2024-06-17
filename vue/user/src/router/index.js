@@ -50,7 +50,7 @@ const router = createRouter({
         meta: { title: '注册', isTab: true, isShowNav: true, isShowBack: true } 
       },
       { 
-        path: '/goodslist/:category_id',
+        path: '/goodslist',
         component: () => import('../pages/GoodsList.vue'), 
         props: true, 
         name: 'goodslist', 
@@ -62,6 +62,18 @@ const router = createRouter({
         props: true, 
         name: 'goodsDetail', 
         meta: { title: '商品详情', isTab: false, isShowNav: true, isShowBack: true } 
+      },
+      {
+        path: '/tasklist',
+        name: 'tasklist',
+        component: () => import('../pages/TaskList.vue'),
+        meta: { title: '任务列表', name: 'tasklist', isTab: true }
+      },
+      {
+        path: '/taskDetail/:id',
+        name: 'taskDetail',
+        component: () => import('../pages/TaskDetail.vue'),
+        meta: { title: '任务详情', name: 'taskDetail', isTab: true }
       }
   ]
 })

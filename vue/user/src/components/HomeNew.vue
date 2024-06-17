@@ -3,19 +3,16 @@
     <div class="home-new-title">
       <h3>公告</h3>
     </div>
-    <div class="content">
-      <van-card
-        v-for="item in GoodsList"
-        :key="item.id"
-        :desc="item.goods_brief"
-        :title="item.name"
-      >
-      </van-card>
-    </div>
+    <van-notice-bar
+      left-icon="volume-o"
+      scrollable
+      text="低碳生活app上线啦! 使用低碳生活app，开启您的低碳生活之旅! 新注册用户可领取20积分"
+    />
   </div>
 </template>
 
 <script setup>
+import { NoticeBar } from 'vant'
 const GoodsList = [
   {
     name: '低碳生活app上线啦',
@@ -41,7 +38,7 @@ const GoodsList = [
     }
   }
   .content {
-    --van-tag-primary-color: #FF8000;
+    --van-tag-primary-color: #00DD00;
     --van-card-font-size: 16px;
     --van-card-background: #f9f9f9;
     --van-card-thumb-size: 60px;

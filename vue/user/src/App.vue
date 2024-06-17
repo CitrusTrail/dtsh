@@ -50,9 +50,10 @@ onMounted(() => {
 })
 
 const loadUser = async () => {
-  const data = await getUser()
+  const data = await getUser({ id: user.id })
   updateUser({
     isLogin: true,
+    id: data.id,
     username: data.username,
     avatar: data.avatar
   })

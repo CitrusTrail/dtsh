@@ -32,7 +32,7 @@ const goodsList = ref([])
 const is_last = ref(false)
 
 const page = ref(1)
-const pagesize = ref(4)
+const pagesize = ref(6)
 
 onMounted(() => {
   loadGoodList()

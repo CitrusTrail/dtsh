@@ -1,11 +1,16 @@
 <template>
   <div class="home-hot">
     <div class="home-hot-title">
-      <h3>热门任务</h3>
+      <h3 style="float:left;">热门任务</h3>
+      <div style="float:right;">
+        <router-link :to="{ name: 'tasklist' }">
+          <span style="color:blue;" @click="jump">更多任务>></span>
+        </router-link>
+      </div>
     </div>
     <ul>
       <li v-for="item in hotList" :key="item.id">
-        <img :src="item.list_pic_url" alt="" />
+        <img :src="item.image" alt="" />
         <p>{{ item.name }}</p>
         <p>{{ item.num }}<span>人参加</span></p>
       </li>
@@ -16,10 +21,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { getHotTask } from '../api'
-import hot1 from '/images/new1.jpg'
-import hot2 from '/images/new2.jpg'
-import hot3 from '/images/new3.jpg'
-import hot4 from '/images/new4.jpg'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const hotList = ref([])
 const num = ref(4)
@@ -34,10 +38,6 @@ const loadTaskList = async () => {
   }
   const data = await getHotTask(params)
   hotList.value = data
-  hotList.value[0].list_pic_url = hot1
-  hotList.value[1].list_pic_url = hot2
-  hotList.value[2].list_pic_url = hot3
-  hotList.value[3].list_pic_url = hot4
 }
 
 </script>
@@ -70,7 +70,7 @@ const loadTaskList = async () => {
         margin: 0.5rem 0;
       }
       span {
-        color: #FF8000;
+        color: #00DD00;
         font-size: 12px;
       }
     }

@@ -19,4 +19,6 @@ public class Task {
     private Double carbon;
     @ExcelProperty(value = "积分")
     private Integer point;
+    @ExcelProperty(value = "图片")
+    private String image;
 }
