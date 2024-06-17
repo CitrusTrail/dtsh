@@ -19,4 +19,6 @@ public class Goods {
     private Integer stock;
     @ExcelProperty(value = "商品简介")
     private String description;
+    @ExcelProperty(value = "图片")
+    private String image;
 }

@@ -2,7 +2,7 @@
   <div class="goods-list">
     <div class="goods-item" v-for="item in goodsList" :key="item.id">
       <router-link :to="{ name: 'goodsDetail', params: { id: item.id } }">
-        <van-image width="150" height="150" :src="item.picture" />
+        <van-image width="100%" :src="item.image" />
         <h1 class="title">{{ item.name }}</h1>
         <p class="info">
           <span class="price">{{ item.point }}积分</span>
@@ -26,7 +26,7 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { getGoodsList } from '../api'
-import { showToast  } from 'vant'
+import { showToast } from 'vant'
 
 const goodsList = ref([])
 const is_last = ref(false)
@@ -47,6 +47,7 @@ const loadGoodList = async () => {
     description: ''
   }
   const data = await getGoodsList(params)
+  console.log(data)
   if (data.records.length > 0) {
     goodsList.value = goodsList.value.concat(data.records)
     page.value = page.value + 1
