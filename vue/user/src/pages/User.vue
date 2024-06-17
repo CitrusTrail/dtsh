@@ -17,12 +17,15 @@
       </router-link>
   </van-row>
   <van-cell-group class="user-group my-title">
-    <van-cell icon="records" title="全部订单" is-link />
+    <van-cell icon="records" title="个人信息" is-link />
   </van-cell-group>
   <van-cell-group  class="my-title">
-    <van-cell icon="points" title="我的积分" is-link />
-    <van-cell icon="gold-coin-o" title="我的优惠券" is-link />
-    <van-cell icon="gift-o" title="我的红包" is-link />
+    <van-cell icon="points" title="我的积分" :value="user.point" />
+    <van-cell icon="gold-coin-o" title="我的碳排放" is-link />
+    <van-cell icon="gift-o" title="我的小组" is-link />
+    <van-cell icon="gift-o" title="我的分享" is-link />
+    <van-cell icon="gift-o" title="我的出行" is-link />
+    <van-cell icon="gift-o" title="我的兑换" is-link />
   </van-cell-group>
 </template>
 

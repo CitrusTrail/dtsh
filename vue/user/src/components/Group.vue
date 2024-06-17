@@ -4,13 +4,13 @@
       <h3>热门小组</h3>
     </div>
     <div class="content">
-      <van-card
+      <van-cell
         v-for="item in hotList"
         :key="item.id"
-        :num="item.num"
+        label=""
         :title="item.name"
-      >
-      </van-card>
+        is-link
+      >{{item.num}}人</van-cell>
     </div>
   </div>
 </template>

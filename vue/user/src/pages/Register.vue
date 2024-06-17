@@ -88,7 +88,8 @@ const submitForm = async () => {
       isLogin: true,
       id: user.id,
       username: user.username,
-      avatar: user.avatar
+      avatar: user.avatar,
+      point: user.point
     })
     router.push({ name: 'user' })
   }

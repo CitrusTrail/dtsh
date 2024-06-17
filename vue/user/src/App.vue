@@ -55,7 +55,8 @@ const loadUser = async () => {
     isLogin: true,
     id: data.id,
     username: data.username,
-    avatar: data.avatar
+    avatar: data.avatar,
+    point: data.point
   })
 }
 </script>
