@@ -1,7 +1,6 @@
 package com.fdzc.springboot01.controller;
 
 import com.fdzc.springboot01.common.Result;
-import com.fdzc.springboot01.common.dto.IdDTO;
 import com.fdzc.springboot01.entity.Chat;
 import com.fdzc.springboot01.entity.Group;
 import com.fdzc.springboot01.entity.UserGroup;
@@ -9,7 +8,6 @@ import com.fdzc.springboot01.service.GroupService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
@@ -20,87 +18,63 @@ public class GroupController {
     GroupService service;
 
     @GetMapping
-    public Result findAllGroup(int page,int pagesize,Integer id,String name,String description) {
-        return Result.success(service.findAllGroup(page,pagesize,id,name,description));
-    }
-
-    @GetMapping("/{id}")
-    public Result findById(@PathVariable Integer id) {
-        return Result.success(service.findById(id));
+    public Result findAllGroup() {
+        return Result.success(service.findAllGroup());
     }
 
     @PostMapping
-    public Result addOneGroup(@RequestBody Group group) {
+    public Result addOneGroup(Group group) {
         return Result.success(service.addOneGroup(group));
     }
 
     @PutMapping
-    public Result updateOneGroup(@RequestBody Group group) {
+    public Result updateOneGroup(Group group) {
         return Result.success(service.updateOneGroup(group));
     }
 
     @DeleteMapping("/{id}")
-    public Result deleteOneGroup(@PathVariable Integer id) {
+    public Result deleteOneGroup(Integer id) {
         return Result.success(service.deleteOneGroup(id));
     }
 
-    @GetMapping("/userGroup")
+    @GetMapping("/userGroups")
     public Result findAllUserGroup() {
         return Result.success(service.findAllUserGroup());
     }
 
-    @GetMapping("/groupUser/{id}")
-    public Result findGroupUser(@PathVariable Integer id) {
-        return Result.success(service.findGroupUser(id));
-    }
-
-    @PostMapping("/userGroup")
-    public Result addOneUserGroup(@RequestBody UserGroup userGroup) {
+    @PostMapping("/userGroups")
+    public Result addOneUserGroup(UserGroup userGroup) {
         return Result.success(service.addOneUserGroup(userGroup));
     }
 
-    @PutMapping("/userGroup")
-    public Result updateOneUserGroup(@RequestBody UserGroup userGroup) {
+    @PutMapping("/userGroups")
+    public Result updateOneUserGroup(UserGroup userGroup) {
         return Result.success(service.updateOneUserGroup(userGroup));
     }
 
-    @DeleteMapping("/userGroup")
-    public Result deleteOneUserGroup(@RequestBody UserGroup userGroup) {
-        return Result.success(service.deleteOneUserGroup(userGroup));
+    @DeleteMapping("/userGroups/{id}")
+    public Result deleteOneUserGroup(Integer id) {
+        return Result.success(service.deleteOneUserGroup(id));
     }
 
-    @GetMapping("/chat")
+    @GetMapping("/chats")
     public Result findAllChat() {
         return Result.success(service.findAllChat());
     }
 
-    @PostMapping("/chat")
-    public Result addOneChat(@RequestBody Chat chat) {
+    @PostMapping("/chats")
+    public Result addOneChat(Chat chat) {
         return Result.success(service.addOneChat(chat));
     }
 
-    @PutMapping("/chat")
-    public Result updateOneChat(@RequestBody Chat chat) {
+    @PutMapping("/chats")
+    public Result updateOneChat(Chat chat) {
         return Result.success(service.updateOneChat(chat));
     }
 
-    @DeleteMapping("/chat/{id}")
-    public Result deleteOneChat(@PathVariable Integer id) {
+    @DeleteMapping("/chats/{id}")
+    public Result deleteOneChat(Integer id) {
         return Result.success(service.deleteOneChat(id));
     }
 
-    @PostMapping("/multiple")
-    public Result deleteMultipleGroup(@RequestBody IdDTO idDTO) {
-        return Result.success(service.deleteMultipleGroup(idDTO));
-    }
-
-    @GetMapping("/download")
-    public void download(HttpServletResponse response) {
-        service.download(response);
-    }
-
-    @GetMapping("/hot")
-    public Result findHotGroup(Integer num) {
-        return Result.success(service.findHotGroup(num));
-    }
 }
