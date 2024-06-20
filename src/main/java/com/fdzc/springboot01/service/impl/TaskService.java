@@ -98,4 +98,8 @@ public class TaskService implements ITaskService {
         return taskMapper.selectHotTask(num);
     }
 
+    public Long countNum() {
+        return taskMapper.selectCount(null);
+    }
+
 }

@@ -48,7 +48,8 @@ const submitForm = formEl => {
       if (data) {
         updateToken(data.token)
         updateAdmin({
-          id: data.id
+          id: data.id,
+          loginTime: new Date().toLocaleString()
         })
         router.push({ name: 'index' })
       }
@@ -77,7 +78,7 @@ const rules = reactive({
 <style lang="scss" scoped>
 .box-card {
   height: 100%;
-  background: rgba(38, 72, 176) url('/images/loginBg.jpg') center / cover no-repeat;
+  background: rgba(248, 160, 89) url('/images/loginBg.jpg') center / cover no-repeat;
   .box-form {
     position: absolute;
     top: 50%;

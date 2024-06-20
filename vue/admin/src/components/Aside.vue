@@ -83,7 +83,7 @@ const handlerCollapse = () => {
 .el-menu {
   border: 0 !important;
   .is-active {
-    background: linear-gradient(90deg, #1493fa, #01c6fa) !important
+    background: linear-gradient(90deg, #164, #494) !important
   }
   a {
     text-decoration: none;

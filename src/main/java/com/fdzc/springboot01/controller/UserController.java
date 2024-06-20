@@ -61,4 +61,9 @@ public class UserController {
     public Result register(@RequestBody UserDTO userDTO) {
         return Result.success(userService.register(userDTO));
     }
+
+    @GetMapping("/num")
+    public Result countNum() {
+        return Result.success(userService.countNum());
+    }
 }

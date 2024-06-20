@@ -77,4 +77,8 @@ public class TaskController {
         return Result.success(service.findHotTask(num));
     }
 
+    @GetMapping("/num")
+    public Result countNum() {
+        return Result.success(service.countNum());
+    }
 }

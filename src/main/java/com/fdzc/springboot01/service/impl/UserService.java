@@ -100,4 +100,8 @@ public class UserService implements IUserService {
         return login(userDTO);
     }
 
+    public Long countNum() {
+        return userMapper.selectCount(null);
+    }
+
 }

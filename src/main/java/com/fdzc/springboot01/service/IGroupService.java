@@ -47,4 +47,6 @@ public interface IGroupService {
 
     List<HotGroupVo> findHotGroup(Integer num);
 
+    Long countNum();
+
 }

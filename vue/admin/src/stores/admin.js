@@ -5,7 +5,8 @@ const useAdmin = defineStore('admin', () => {
     const defaultAdmin = {
       id: '',
       username: '',
-      avatar: ''
+      avatar: '',
+      loginTime: ''
     }
     const admin = reactive(Object.assign({}, defaultAdmin))
     const updateAdmin = options => {

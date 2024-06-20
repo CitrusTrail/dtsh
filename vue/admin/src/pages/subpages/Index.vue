@@ -10,7 +10,6 @@
         </template>
         <div class="info">
           <p>登录时间：{{ loginInfo.loginTime }}</p>
-          <p>登录地点：{{ loginInfo.loginPlace }}</p>
         </div>
       </el-card>
     </el-col>
@@ -19,7 +18,7 @@
       <el-card class="box-card">
         <template #header>
           <div class="card-header">
-            6月统计信息
+            统计信息
           </div>
         </template>
         <div class="info">
@@ -27,13 +26,13 @@
             <!-- 用户数量 -->
             <el-col :span="8">
               <div class="card-container">
-                <div class="card-left-container" style="background-color: #EEAD0E;">
+                <div class="card-left-container" style="background-color: #5470C6;">
                   <el-icon :size="90">
-                    <Memo />
+                    <UserFilled />
                   </el-icon>
                 </div>
                 <div class="card-right-container">
-                  <p class="number">500</p>
+                  <p class="number">{{ userNum }}</p>
                   <p>用户数量(个)</p>
                 </div>
               </div>
@@ -41,13 +40,13 @@
             <!-- 小组数量 -->
             <el-col :span="8">
               <div class="card-container">
-                <div class="card-left-container" style="background-color: #AB82FF;">
+                <div class="card-left-container" style="background-color: #FAC858;">
                   <el-icon :size="90">
-                    <Memo />
+                    <Comment />
                   </el-icon>
                 </div>
                 <div class="card-right-container">
-                  <p class="number">20</p>
+                  <p class="number">{{ groupNum }}</p>
                   <p>小组数量(个)</p>
                 </div>
               </div>
@@ -55,13 +54,13 @@
             <!-- 用户参与活动次数 -->
             <el-col :span="8">
               <div class="card-container">
-                <div class="card-left-container" style=" background-color: #63B8FF;">
+                <div class="card-left-container" style=" background-color: #EE6666;">
                   <el-icon :size="90">
-                    <Memo />
+                    <Checked />
                   </el-icon>
                 </div>
                 <div class="card-right-container">
-                  <p class="number">121</p>
+                  <p class="number">{{ taskNum }}</p>
                   <p>参与活动(次)</p>
                 </div>
               </div>
@@ -71,41 +70,32 @@
       </el-card>
     </el-col>
   </el-row>
-  <!-- 图表区域 -->
-  <el-row :gutter="20">
-    <el-col :span="12">
-      <el-card class="box-card">
-        <div id="salesVolume" style="width: auto; height:400px;"></div>
-      </el-card>
-    </el-col>
-    <el-col :span="12">
-      <el-card class="box-card">
-        <div id="orderQuantity" style="width: auto; height:400px;"></div>
-      </el-card>
-    </el-col>
-  </el-row>
 </template>
 
 <script setup>
-import { reactive, onMounted } from 'vue'
-import { getAdmin } from '../../api'
+import { ref, reactive, onMounted } from 'vue'
+import { getAdmin, getUserNum, getGroupNum, getTaskNum } from '../../api'
 import useAdmin from '../../stores/admin'
-import { Memo } from '@element-plus/icons-vue'
+import { Memo, UserFilled, Comment, Checked } from '@element-plus/icons-vue'
 import * as echarts from 'echarts'
 
 const { admin, updateAdmin } = useAdmin()
 
 // 用户登录信息（模拟数据）
 const loginInfo = reactive({
-  loginTime: '2024-06-01 09:00:00',
-  loginPlace: '福州'
+  loginTime: '2024-06-01 09:00:00'
 })
+
+const userNum = ref(0);
+const groupNum = ref(0);
+const taskNum = ref(0);
 
 onMounted(() => {
   loadAdmin()
   loadLogin()
-  initCharts1()
-  initCharts2()
+  loadUserNum()
+  loadGroupNum()
+  loadTaskNum()
 })
 
 const loadAdmin = async () => {
@@ -117,97 +107,21 @@ const loadAdmin = async () => {
 }
 
 const loadLogin = () => {
-  loginInfo.loginTime = new Date().toLocaleString()
+  loginInfo.loginTime = admin.loginTime
 }
 
-// 图表1：月度绿色出行次数
-const initCharts1 = () => {
-  const myChart = echarts.init(document.getElementById('salesVolume'))
-  myChart.setOption({
-    color: ['#1493fa'],
-    title: { text: '2023年绿色出行次数' },
-    xAxis: {
-      data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-      name: '月份',
-      axisLabel: {
-        interval: 0
-      },
-    },
-    yAxis: {
-      name: '单位（次）',
-    },
-    grid: {
-      left: '3%',
-      right: '8%',
-      bottom: '5%',
-      containLabel: true,
-    },
-    legend: {},
-    series: [
-      {
-        data: [6, 7, 5, 8, 9, 10, 13, 12, 10, 16, 15, 14],
-        type: 'line',
-        name: '绿色出行',
-        smooth: true,
-        label: {
-          show: true,
-          position: 'top',
-        }
-      }
-    ]
-  })
-  // 图表自适应大小
-  window.onresize = () => {
-    myChart.resize()
-  }
+const loadUserNum = async () => {
+  userNum.value = await getUserNum()
 }
 
-// 图表2：2023年碳排放情况
-const initCharts2 = () => {
-  const myChart = echarts.init(document.getElementById('orderQuantity'))
-  myChart.setOption({
-    title: { text: '2023年碳排放量' },
-    color: ['#67c23a'],
-    grid: {
-      left: '3%',
-      right: '8%',
-      bottom: '3%',
-      containLabel: true,
-    },
-    xAxis: {
-      type: 'category',
-      data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-      name: '月份',
-      // 类目轴中在 boundaryGap 为 true 的时候有效，可以保证刻度线和标签对齐
-      axisTick: {
-        alignWithLabel: true,
-      },
-      axisLabel: {
-        interval: 0,rotate: 45 // 设置刻度标签旋转角度为45度
-      },
-    },
-    legend: {},
-    yAxis: {
-      name: '单位（吨）',
-    },
-    series: [
-      {
-        data: [4, 4.5, 3, 2.3, 2.5, 3, 4, 3.5, 1.6, 3.5, 3.8, 4],
-        type: 'bar',
-        barWidth: '60%',
-        name: '碳排放量',
-        label: {
-          show: true,
-          position: 'top',
-        }
-      }
-    ]
-  })
-  // 图表自适应大小
-  window.onresize = () => {
-    myChart.resize()
-  }
+const loadGroupNum = async () => {
+  groupNum.value = await getGroupNum()
 }
+
+const loadTaskNum = async () => {
+  taskNum.value = await getTaskNum()
+}
+
 
 </script>
 

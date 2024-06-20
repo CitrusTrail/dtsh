@@ -40,6 +40,13 @@
       <el-table-column type="selection" width="55" />
       <el-table-column prop="id" label="商品编号" width="100" />
       <el-table-column prop="name" label="商品名称" width="100" />
+      <el-table-column label="商品图片" width="100">
+        <template #default="scope">
+            <div style="display: flex; align-items: center">
+                <el-image :src="scope.row.image"/>
+            </div>
+        </template>
+      </el-table-column>
       <el-table-column prop="point" label="积分" width="100" />
       <el-table-column prop="stock" label="库存量" width="100" />
       <el-table-column prop="description" label="商品简介" show-overflow-tooltip />

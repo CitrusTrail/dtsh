@@ -102,4 +102,9 @@ public class GroupController {
     public Result findHotGroup(Integer num) {
         return Result.success(service.findHotGroup(num));
     }
+
+    @GetMapping("/num")
+    public Result countNum() {
+        return Result.success(service.countNum());
+    }
 }

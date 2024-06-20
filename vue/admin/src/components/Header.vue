@@ -51,7 +51,7 @@ const onLogout = async () => {
 
 <style scoped lang="scss">
 .el-menu-demo {
-  background: linear-gradient(90deg, #1493fa, #01c6fa);
+  background: linear-gradient(90deg, #164, #494);
 }
 .navbar {
   color: white;

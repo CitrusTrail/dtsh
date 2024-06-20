@@ -245,3 +245,18 @@ export function getGroupUser(params) {
 export function getMode(params) {
   return request.get('/travels/mode', params)
 }
+
+// 获取用户数量
+export function getUserNum(params) {
+  return request.get('/users/num', params)
+}
+
+// 获取小组数量
+export function getGroupNum(params) {
+  return request.get('/groups/num', params)
+}
+
+// 获取任务数量
+export function getTaskNum(params) {
+  return request.get('/tasks/num', params)
+}

@@ -116,4 +116,7 @@ public class GroupService implements IGroupService {
         return groupMapper.selectHotGroup(num);
     }
 
+    public Long countNum() {
+        return groupMapper.selectCount(null);
+    }
 }

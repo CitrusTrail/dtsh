@@ -37,4 +37,6 @@ public interface ITaskService {
 
     List<HotTaskVo> findHotTask(Integer num);
 
+    Long countNum();
+
 }

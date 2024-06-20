@@ -203,19 +203,30 @@ const initCharts1 = async () => {
   const data = await getMode()
   const myChart = echarts.init(document.getElementById('modePie'))
   myChart.setOption({
-      title: { text: '出行方式统计' },
+      title: {
+        text: '出行方式统计',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'item'
+      },
+      legend: {
+        orient: 'vertical',
+        left: 'left'
+      },
       series: [
-        {
-          name: 'Nightingale Chart',
-          type: 'pie',
-          radius: [20, 110],
-          center: ['50%', '50%'],
-          roseType: 'area',
-          itemStyle: {
-            borderRadius: 8
-          },
-          data
-        }
+          {
+            type: 'pie',
+            radius: '70%',
+            data,
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
       ]
   })
   // 图表自适应大小

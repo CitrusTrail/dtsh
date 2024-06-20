@@ -27,7 +27,7 @@ import Aside from '../components/Aside.vue'
 .el-container {
   height: 100%;
   .el-header {
-    background: -webkit-gradient(linear, left top, right top, from(#1493fa), to(#01c6fa));
+    background: -webkit-gradient(linear, left top, right top, from(#164), to(#494));
     text-align: center;
     line-height: 60px;
     color: #333;

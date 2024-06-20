@@ -29,4 +29,6 @@ public interface IUserService {
 
     UserDTO register(UserDTO userDTO);
 
+    Long countNum();
+
 }
