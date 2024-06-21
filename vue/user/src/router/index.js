@@ -55,6 +55,12 @@ const router = createRouter({
         name: 'userGroup',
         meta: { title: '我的小组', isTab: true,isShowNav: true, isShowBack: true }
       },
+      {
+        path: '/buy',
+        component: () => import('../pages/UserGoods.vue'),
+        name: 'buy',
+        meta: { title: '我的兑换', isTab: true,isShowNav: true, isShowBack: true }
+      },
       { 
         path: '/login',
         component: () => import('../pages/Login.vue'), 

@@ -1,12 +1,16 @@
 package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
+import com.fdzc.springboot01.entity.Group;
+import com.fdzc.springboot01.entity.User;
 import com.fdzc.springboot01.entity.dto.IdDTO;
 import com.fdzc.springboot01.entity.dto.PageDTO;
 import com.fdzc.springboot01.entity.Buy;
 import com.fdzc.springboot01.entity.Goods;
+import com.fdzc.springboot01.entity.vo.BuyVo;
 import com.fdzc.springboot01.mapper.BuyMapper;
 import com.fdzc.springboot01.mapper.GoodsMapper;
+import com.fdzc.springboot01.mapper.UserMapper;
 import com.fdzc.springboot01.service.IGoodsService;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +27,9 @@ public class GoodsService implements IGoodsService {
 
     @Resource
     BuyMapper buyMapper;
+
+    @Resource
+    UserMapper userMapper;
 
     public PageDTO<Goods> findAllGoods(int page, int pagesize, Integer id, String name, String description) {
         int offset = (page - 1) * pagesize;
@@ -54,7 +61,14 @@ public class GoodsService implements IGoodsService {
     }
 
     public Integer addOneBuy(Buy buy) {
-        return buyMapper.insert(buy);
+        int res = buyMapper.insert(buy);
+        if(res == 1){
+            Integer point = goodsMapper.selectById(buy.getGoodsId()).getPoint();
+            User user = userMapper.selectById(buy.getUserId());
+            user.setPoint(user.getPoint()-point);
+            userMapper.updateById(user);
+        }
+        return res;
     }
 
     public Integer updateOneBuy(Buy buy) {
@@ -83,6 +97,10 @@ public class GoodsService implements IGoodsService {
             EasyExcel.write(response.getOutputStream(),Goods.class).autoCloseStream(Boolean.FALSE).sheet("商品列表").doWrite(list);
         } catch (Exception e) {
         }
+    }
+
+    public List<BuyVo> findUserGoods(Integer id) {
+        return buyMapper.selectUserGoods(id);
     }
 
 }

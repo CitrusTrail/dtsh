@@ -27,7 +27,7 @@
     <van-cell icon="records" title="我的小组" is-link to="userGroup" />
     <van-cell icon="records" title="我的分享" is-link />
     <van-cell icon="records" title="我的出行" is-link />
-    <van-cell icon="records" title="我的兑换" is-link />
+    <van-cell icon="records" title="我的兑换" is-link to="buy" />
   </van-cell-group>
 </div>
 </template>

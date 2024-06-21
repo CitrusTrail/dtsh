@@ -72,4 +72,9 @@ public class GoodsController {
         service.download(response);
     }
 
+    @GetMapping("/buy/{id}")
+    public Result findUserGoods(@PathVariable Integer id) {
+        return Result.success(service.findUserGoods(id));
+    }
+
 }

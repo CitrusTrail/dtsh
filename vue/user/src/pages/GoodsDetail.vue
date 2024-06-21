@@ -23,9 +23,13 @@
       —— 商品详情 ——
     </div>
     <div class="goods-description" v-html="goods.description"></div>
-    <van-action-bar>
-      <van-action-bar-button type="danger" @click="onClick" text="立即兑换" />
-    </van-action-bar>
+    <van-button type="danger" @click="showPopup" size="large" round>立即兑换</van-button>
+    <van-popup :show="isShow" @close="onClose" position="bottom" style="height: 30%; padding: 50px 0;">
+        <div>兑换数量：<van-stepper value="num" @change="onChange" /></div>
+        <van-action-bar>
+          <van-action-bar-button type="danger" @click="onClick" text="确定" />
+        </van-action-bar>
+    </van-popup>
   </div>
   <div class="goods-not-found" v-else>商品不存在</div>
 </template>
@@ -41,6 +45,7 @@ const props = defineProps({
   id: String
 })
 
+const num = ref(1)
 const goods = reactive({})
 const isNotFound = ref(false)
 
@@ -65,17 +70,40 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const onClick = async () => {
-  if(user.id!=''){
-    const data = await addBuy({
-      userId: user.id,
-      goodsId: props.id
-    })
-    if (data == 1) {
-      showSuccessToast('兑换成功');
+  if(user.id != ''){
+    if(user.point >= goods.point){
+      const data = await addBuy({
+        userId: user.id,
+        goodsId: props.id,
+        point: goods.point,
+        num: num.value,
+        time: new Date().toLocaleString()
+      })
+      if (data == 1) {
+        user.point -= goods.point;
+        showSuccessToast('兑换成功');
+      }
+    }else{
+      showToast('您的积分不足');
     }
+    isShow.value = false
   }else{
     router.push({ path: '/login' })
   }
+}
+
+const isShow = ref(false)
+
+const showPopup = () => {
+  isShow.value = true
+}
+
+const onClose = () => {
+  isShow.value = false
+}
+
+const onChange = (val) => {
+  num.value = val
 }
 
 </script>

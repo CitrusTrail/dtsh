@@ -233,14 +233,14 @@ CREATE TABLE `goods` (
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES (1, '玩偶', 999, 999, '吉祥物','http://localhost:8099/upload/picture/goods.png');
-INSERT INTO `goods` VALUES (2, '水杯', 999, 999, '印有绿叶图案的水杯','http://localhost:8099/upload/picture/goods.png');
-INSERT INTO `goods` VALUES (3, '灯泡', 999, 999, '绿源节能灯泡采用先进的LED技术，相较于传统白炽灯，能够节省高达85%的能源。它的设计寿命长，减少了频繁更换灯泡的需求，同时也降低了电子垃圾的产生。此外，它的光线柔和舒适，为家庭提供环保且健康的照明环境。','http://localhost:8099/upload/picture/goods.png');
-INSERT INTO `goods` VALUES (4, '笔记本', 999, 999, '碳迹竹制笔记本使用可再生的竹子作为原材料，减少了对树木的砍伐。每一页纸张都经过特殊处理，确保书写流畅且易于保存。这款笔记本不仅环保，而且其独特的竹质纹理也为使用者带来了独特的书写体验。','http://localhost:8099/upload/picture/goods.png');
-INSERT INTO `goods` VALUES (5, '背包', 999, 999, '绿途环保背包采用可回收材料制成，如再生聚酯纤维，减少了新材料的开采和加工过程。背包设计有多个口袋和隔层，方便用户整理和携带物品。此外，它的肩带和背部都有舒适的透气设计，确保用户在长时间背负时仍能保持舒适。','http://localhost:8099/upload/picture/goods.png');
-INSERT INTO `goods` VALUES (6, '绿荫植物盆栽', 999, 999, '绿荫植物盆栽不仅能为室内增添绿色，还有助于净化空气，吸收二氧化碳并释放氧气。这些盆栽植物种类繁多，包括绿萝、吊兰等易于养护的品种，适合放在办公室或家中。通过养植这些植物，人们可以更加接近自然，同时也为环保贡献一份力量。','http://localhost:8099/upload/picture/goods.png');
-INSERT INTO `goods` VALUES (7, '大米', 999, 999, '一袋东北大米','http://localhost:8099/upload/picture/goods.png');
-INSERT INTO `goods` VALUES (8, '花生油', 999, 999, '家庭炒菜必备','http://localhost:8099/upload/picture/goods.png');
+INSERT INTO `goods` VALUES (1, '玩偶', 999, 999, '吉祥物','http://localhost:8099/image/goods/1.png');
+INSERT INTO `goods` VALUES (2, '水杯', 999, 999, '印有绿叶图案的水杯','http://localhost:8099/image/goods/2.png');
+INSERT INTO `goods` VALUES (3, '灯泡', 999, 999, '绿源节能灯泡采用先进的LED技术，相较于传统白炽灯，能够节省高达85%的能源。它的设计寿命长，减少了频繁更换灯泡的需求，同时也降低了电子垃圾的产生。此外，它的光线柔和舒适，为家庭提供环保且健康的照明环境。','http://localhost:8099/image/goods/3.png');
+INSERT INTO `goods` VALUES (4, '笔记本', 999, 999, '碳迹竹制笔记本使用可再生的竹子作为原材料，减少了对树木的砍伐。每一页纸张都经过特殊处理，确保书写流畅且易于保存。这款笔记本不仅环保，而且其独特的竹质纹理也为使用者带来了独特的书写体验。','http://localhost:8099/image/goods/4.png');
+INSERT INTO `goods` VALUES (5, '背包', 999, 999, '绿途环保背包采用可回收材料制成，如再生聚酯纤维，减少了新材料的开采和加工过程。背包设计有多个口袋和隔层，方便用户整理和携带物品。此外，它的肩带和背部都有舒适的透气设计，确保用户在长时间背负时仍能保持舒适。','http://localhost:8099/image/goods/5.png');
+INSERT INTO `goods` VALUES (6, '绿荫植物盆栽', 999, 999, '绿荫植物盆栽不仅能为室内增添绿色，还有助于净化空气，吸收二氧化碳并释放氧气。这些盆栽植物种类繁多，包括绿萝、吊兰等易于养护的品种，适合放在办公室或家中。通过养植这些植物，人们可以更加接近自然，同时也为环保贡献一份力量。','http://localhost:8099/image/goods/6.png');
+INSERT INTO `goods` VALUES (7, '大米', 999, 999, '一袋东北大米','http://localhost:8099/image/goods/7.png');
+INSERT INTO `goods` VALUES (8, '花生油', 999, 999, '家庭炒菜必备','http://localhost:8099/image/goods/8.png');
 
 -- ----------------------------
 -- Table structure for buy

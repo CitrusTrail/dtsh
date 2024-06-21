@@ -204,3 +204,13 @@ export function addBuy(data) {
 export function getUserGroup(params) {
   return request.get('/groups/userGroup/'+params.id)
 }
+
+// 获取用户的所有兑换
+export function getBuy(params) {
+  return request.get('/goods/buy/'+params.id)
+}
+
+// 获取用户的所有兑换
+export function delBuy(data) {
+  return request.delete('/goods/buy/'+data.id)
+}

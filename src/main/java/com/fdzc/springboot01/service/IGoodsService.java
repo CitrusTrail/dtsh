@@ -4,6 +4,7 @@ import com.fdzc.springboot01.entity.dto.IdDTO;
 import com.fdzc.springboot01.entity.dto.PageDTO;
 import com.fdzc.springboot01.entity.Buy;
 import com.fdzc.springboot01.entity.Goods;
+import com.fdzc.springboot01.entity.vo.BuyVo;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -31,5 +32,7 @@ public interface IGoodsService {
     Integer deleteMultipleGoods(IdDTO idDTO);
 
     void download(HttpServletResponse response);
+
+    List<BuyVo> findUserGoods(Integer id);
 
 }
