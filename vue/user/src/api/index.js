@@ -185,6 +185,11 @@ export function delUser(data) {
   return request.delete('/users/'+data.id)
 }
 
+// 获取用户任务接口
+export function getUserTask(params) {
+  return request.get('/tasks/userTask/'+params.id)
+}
+
 // 添加用户任务接口
 export function addUserTask(data) {
   return request.post('/tasks/userTask', data)
@@ -193,4 +198,9 @@ export function addUserTask(data) {
 // 添加订单
 export function addBuy(data) {
   return request.post('/goods/buy', data)
+}
+
+// 获取用户的所有小组
+export function getUserGroup(params) {
+  return request.get('/groups/userGroup/'+params.id)
 }

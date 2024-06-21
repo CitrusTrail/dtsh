@@ -37,6 +37,24 @@ const router = createRouter({
         name: 'user', 
         meta: { title: '我的', isTab: true }
       },
+      {
+        path: '/userDetail',
+        component: () => import('../pages/UserDetail.vue'),
+        name: 'userDetail',
+        meta: { title: '个人信息', isTab: true,isShowNav: true, isShowBack: true }
+      },
+      {
+        path: '/userTask',
+        component: () => import('../pages/UserTask.vue'),
+        name: 'userTask',
+        meta: { title: '我的任务', isTab: true,isShowNav: true, isShowBack: true }
+      },
+      {
+        path: '/userGroup',
+        component: () => import('../pages/UserGroup.vue'),
+        name: 'userGroup',
+        meta: { title: '我的小组', isTab: true,isShowNav: true, isShowBack: true }
+      },
       { 
         path: '/login',
         component: () => import('../pages/Login.vue'), 

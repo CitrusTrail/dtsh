@@ -1,4 +1,5 @@
 <template>
+<div style="background:#FFF;">
   <!-- 已登录 -->
   <van-row v-if="user.isLogin" class="user-info">
     <van-image v-if="user.avatar" round width="100" height="100" :src="user.avatar" />
@@ -16,17 +17,19 @@
         <span class="user-info-name">注册</span>
       </router-link>
   </van-row>
-  <van-cell-group class="user-group my-title">
-    <van-cell icon="records" title="个人信息" is-link />
+  <van-cell-group class="user-group my-title" v-if="user.id!=''" >
+    <van-cell icon="records" title="个人信息" is-link to="userDetail" />
   </van-cell-group>
-  <van-cell-group  class="my-title">
+  <van-cell-group  class="my-title" v-if="user.id!=''" >
     <van-cell icon="records" title="我的积分" :value="user.point" />
     <van-cell icon="records" title="我的碳排放" is-link />
-    <van-cell icon="records" title="我的小组" is-link />
+    <van-cell icon="records" title="我的任务" is-link to="userTask" />
+    <van-cell icon="records" title="我的小组" is-link to="userGroup" />
     <van-cell icon="records" title="我的分享" is-link />
     <van-cell icon="records" title="我的出行" is-link />
     <van-cell icon="records" title="我的兑换" is-link />
   </van-cell-group>
+</div>
 </template>
 
 <script setup>

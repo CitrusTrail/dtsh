@@ -63,6 +63,7 @@ const loadUser = async () => {
 
 <style>
 #app {
+  background: #F7F8FA;
   color: #2c3e50;
   line-height: 24px;
   --van-nav-bar-background: #494;

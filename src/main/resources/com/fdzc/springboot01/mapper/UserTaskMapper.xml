@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fdzc.springboot01.mapper.UserTaskMapper">
+    <select id="selectUserTask" resultType="com.fdzc.springboot01.entity.Task">
+        select
+            t.id id,
+            name,
+            description
+        from
+            user_task u
+                left join
+            task t
+            on
+                u.task_id = t.id
+        where
+            u.user_id = #{id}
+    </select>
+</mapper>

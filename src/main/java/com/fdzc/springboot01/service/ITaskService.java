@@ -23,6 +23,8 @@ public interface ITaskService {
 
     List<UserTask> findAllUserTask();
 
+    List<Task> findUserTask(Integer id);
+
     UserTask findUserTaskById(UserTask userTask);
 
     Integer addOneUserTask(UserTask userTask);

@@ -60,6 +60,10 @@ public class GroupService implements IGroupService {
         return userGroupMapper.selectList(null);
     }
 
+    public List<Group> findUserGroup(Integer id) {
+        return userGroupMapper.selectUserGroup(id);
+    }
+
     public List<GroupUserVo> findGroupUser(Integer id) {
         return userGroupMapper.selectGroupUser(id);
     }

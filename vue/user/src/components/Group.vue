@@ -3,14 +3,9 @@
     <div class="home-new-title">
       <h3>热门小组</h3>
     </div>
-    <div class="content">
-      <van-cell
-        v-for="item in hotList"
-        :key="item.id"
-        :title="item.name"
-        is-link
-      >{{item.num}}人</van-cell>
-    </div>
+    <van-cell-group inset v-for="group in hotList" style="margin-bottom:10px;">
+        <van-cell :title="group.name" :label="group.description.length>20?group.description.substr(0,20).concat('...'):group.description">{{group.num}}人参与</van-cell>
+    </van-cell-group>
   </div>
 </template>
 
@@ -36,10 +31,11 @@ const loadGroupList = async () => {
 
 <style lang="less" scoped>
 .home-new {
+  background: #F7F8FA;
   .home-new-title {
     font-size: 16px;
     height: 40px;
-    margin-top: 20px;
+    padding-top: 20px;
     h3 {
       font-size: 22px;
       width: 50%;

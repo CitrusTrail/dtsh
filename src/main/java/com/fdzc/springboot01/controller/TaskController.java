@@ -47,6 +47,11 @@ public class TaskController {
         return Result.success(service.findAllUserTask());
     }
 
+    @GetMapping("/userTask/{id}")
+    public Result findUserTask(@PathVariable Integer id) {
+        return Result.success(service.findUserTask(id));
+    }
+
     @PostMapping("/userTask")
     public Result addOneUserTask(@RequestBody UserTask userTask) {
         return Result.success(service.addOneUserTask(userTask));

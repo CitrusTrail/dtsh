@@ -77,13 +77,14 @@ const getMore = () => {
   padding-left: 10px;
   clear: both;
   .goods-item {
+    background: #FFF;
     width: calc(calc(100% / 2) - 12px);
     margin: 10px 10px 0 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 10px;
-    border: 1px solid #efeff4;
+    border: 0px solid #efeff4;
     padding: 10px 0;
     clear: both;
     .title {

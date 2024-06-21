@@ -9,9 +9,6 @@
 </template>
 
 <script setup>
-import useCart from '../stores/cart'
-
-const { cartCount } = useCart()
 </script>
 
 <style scoped>

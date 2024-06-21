@@ -1,4 +1,5 @@
 <template>
+<div style="background:#FFF;">
   <van-search
     shape="round"
     v-model="value"
@@ -12,6 +13,7 @@
   <!-- 商品信息展示区 -->
   <home-new></home-new>
   <home-hot></home-hot>
+</div>
 </template>
 
 <script setup>

@@ -22,6 +22,7 @@
         select
             id,
             name,
+            description,
             count(u.user_id) num
         from
             `group` g

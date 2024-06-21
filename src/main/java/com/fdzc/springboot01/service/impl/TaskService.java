@@ -54,6 +54,10 @@ public class TaskService implements ITaskService {
         return userTaskMapper.selectList(null);
     }
 
+    public List<Task> findUserTask(Integer id) {
+        return userTaskMapper.selectUserTask(id);
+    }
+
     public UserTask findUserTaskById(UserTask userTask) {
         return userTaskMapper.selectUserTaskById(userTask);
     }

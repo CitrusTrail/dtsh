@@ -25,6 +25,8 @@ public interface IGroupService {
 
     List<UserGroup> findAllUserGroup();
 
+    List<Group> findUserGroup(Integer id);
+
     List<GroupUserVo> findGroupUser(Integer id);
 
     Integer addOneUserGroup(UserGroup userGroup);

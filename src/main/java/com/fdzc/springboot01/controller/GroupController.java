@@ -48,6 +48,11 @@ public class GroupController {
         return Result.success(service.findAllUserGroup());
     }
 
+    @GetMapping("/userGroup/{id}")
+    public Result findUserGroup(@PathVariable Integer id) {
+        return Result.success(service.findUserGroup(id));
+    }
+
     @GetMapping("/groupUser/{id}")
     public Result findGroupUser(@PathVariable Integer id) {
         return Result.success(service.findGroupUser(id));
