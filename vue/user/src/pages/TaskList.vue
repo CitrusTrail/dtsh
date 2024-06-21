@@ -25,6 +25,9 @@
 import { onMounted, ref } from 'vue'
 import { getTaskList } from '../api'
 import { showToast } from 'vant'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const taskList = ref([])
 const is_last = ref(false)
@@ -41,7 +44,7 @@ const loadTaskList = async () => {
     page: page.value,
     pagesize: pagesize.value,
     id: '',
-    name: '',
+    name: route.query.name,
     description: ''
   }
   const data = await getTaskList(params)

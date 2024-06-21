@@ -18,12 +18,19 @@
 import HomeSwiper from '../components/HomeSwiper.vue'
 import HomeNew from '../components/HomeNew.vue'
 import HomeHot from '../components/HomeHot.vue'
+import { getTaskList } from '../api'
 
 import { ref } from 'vue'
 import { showToast } from 'vant'
 
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
 const value = ref('')
-const onSearch = val=> showToast(val)
+const onSearch = val => {
+  router.push({ path:'/tasklist', query:{ name: val } })
+}
 const onCancel = () => showToast('取消')
 </script>
 

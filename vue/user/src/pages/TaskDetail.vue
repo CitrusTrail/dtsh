@@ -62,12 +62,16 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const onClick = async () => {
-  const data = await addUserTask({
-    userId: user.id,
-    taskId: props.id
-  })
-  if (data == 1) {
-    showSuccessToast('参与成功');
+  if(user.id!=''){
+    const data = await addUserTask({
+      userId: user.id,
+      taskId: props.id
+    })
+    if (data == 1) {
+      showSuccessToast('参与成功');
+    }
+  }else{
+    router.push({ path: '/login' })
   }
 }
 

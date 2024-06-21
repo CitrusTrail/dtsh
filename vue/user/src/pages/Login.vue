@@ -23,8 +23,11 @@
     </van-cell-group>
     <van-cell-group>
       <van-button block round type="primary" native-type="submit">登录</van-button>
-    </van-cell-group> 
+    </van-cell-group>
   </van-form>
+  <div class="tip">
+    <router-link to="/register">没有账号？立即注册</router-link>
+  </div>
 </template>
 
 <script setup>
@@ -77,6 +80,14 @@ const onFailed = errorInfo => {
 <style lang="less" scoped>
 button {
   position: fixed;
-  top: 200px;
+  top: 270px;
+}
+.tip {
+  position: fixed;
+  top: 330px;
+  text-align: center;
+  width: 100%;
+  font-size: 14px;
+  color: #666;
 }
 </style>
