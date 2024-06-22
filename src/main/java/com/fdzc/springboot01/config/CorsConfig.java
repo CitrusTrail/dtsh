@@ -30,7 +30,7 @@ public class CorsConfig extends WebMvcConfigurationSupport {
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/upload/picture/**")
                 .addResourceLocations("classpath:/static/upload/picture/");
-        registry.addResourceHandler("/image/**")
-                .addResourceLocations("classpath:/static/image/");
+        registry.addResourceHandler("/server/**")
+                .addResourceLocations("classpath:/static/server/");
     }
 }

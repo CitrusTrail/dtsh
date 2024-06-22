@@ -71,7 +71,7 @@ const router = useRouter()
 
 const onClick = async () => {
   if(user.id != ''){
-    if(user.point >= goods.point){
+    if(user.point >= goods.point * num.value){
       const data = await addBuy({
         userId: user.id,
         goodsId: props.id,

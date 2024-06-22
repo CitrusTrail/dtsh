@@ -36,6 +36,7 @@ public class UserService implements IUserService {
     }
 
     public Integer addOneUser(User user) {
+        user.setPoint(0);
         return userMapper.insert(user);
     }
 
