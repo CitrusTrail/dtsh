@@ -195,6 +195,11 @@ export function addUserTask(data) {
   return request.post('/tasks/userTask', data)
 }
 
+// 删除用户任务接口
+export function delUserTask(data) {
+  return request.put('/tasks/userTask', data)
+}
+
 // 添加订单
 export function addBuy(data) {
   return request.post('/goods/buy', data)
@@ -210,7 +215,7 @@ export function getBuy(params) {
   return request.get('/goods/buy/'+params.id)
 }
 
-// 获取用户的所有兑换
+// 取消兑换
 export function delBuy(data) {
   return request.delete('/goods/buy/'+data.id)
 }

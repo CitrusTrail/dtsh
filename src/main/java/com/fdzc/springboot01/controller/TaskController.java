@@ -57,12 +57,12 @@ public class TaskController {
         return Result.success(service.addOneUserTask(userTask));
     }
 
-    @PutMapping("/userTask")
-    public Result updateOneUserTask(@RequestBody UserTask userTask) {
-        return Result.success(service.updateOneUserTask(userTask));
-    }
+//    @PutMapping("/userTask")
+//    public Result updateOneUserTask(@RequestBody UserTask userTask) {
+//        return Result.success(service.updateOneUserTask(userTask));
+//    }
 
-    @DeleteMapping("/userTask")
+    @PutMapping("/userTask")
     public Result deleteOneUserTask(@RequestBody UserTask userTask) {
         return Result.success(service.deleteOneUserTask(userTask));
     }

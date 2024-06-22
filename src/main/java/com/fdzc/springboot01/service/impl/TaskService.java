@@ -75,7 +75,7 @@ public class TaskService implements ITaskService {
     }
 
     public Integer deleteOneUserTask(UserTask userTask) {
-        return userTaskMapper.deleteById(userTask);
+        return userTaskMapper.deleteUserTask(userTask);
     }
 
     public Integer deleteMultipleTask(IdDTO idDTO) {
