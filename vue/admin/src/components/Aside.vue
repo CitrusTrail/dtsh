@@ -44,7 +44,7 @@
             <span>分享管理</span>
           </el-menu-item>
         <!-- 兑换管理 -->
-        <el-sub-menu index="/goods">
+        <el-sub-menu>
           <template #title>
             <el-icon><ShoppingBag /></el-icon>
             <span>兑换管理</span>

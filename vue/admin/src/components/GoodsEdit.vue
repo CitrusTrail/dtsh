@@ -14,7 +14,7 @@
     </el-form-item>
     <!-- 商品简介 -->
     <el-form-item label="商品简介" prop="description" style="width: 92%" class="desc">
-      <Editor :init="initEditor" v-model="form.description"></Editor>
+      <el-input v-model="form.description" placeholder="请填写商品简介" type="textarea" />
     </el-form-item>
     <!-- 操作按钮 -->
     <el-form-item>
@@ -112,27 +112,6 @@ const uploadSuccess = response => {
     }
     form.picture = data.savepath
   }
-}
-
-import Editor from '@tinymce/tinymce-vue'
-
-import 'tinymce/tinymce'
-import 'tinymce/models/dom'
-import 'tinymce/themes/silver'
-import 'tinymce/icons/default'
-import 'tinymce/plugins/image'
-
-// 编辑器配置
-let initEditor = {
-  width: '100%',
-  skin_url: '/tinymce/skins/ui/oxide',
-  content_css: '/tinymce/skins/content/default/content.css',
-  language_url: '/tinymce/langs/zh-Hans.js',
-  language: 'zh-Hans',
-  menubar: false,
-  statusbar: false,
-  toolbar: 'bold underline italic strikethrough image undo redo',
-  plugins: 'image',
 }
 
 </script>

@@ -16,6 +16,8 @@
                 and description like concat('%',#{description},'%')
             </if>
         </where>
+        order by
+            id desc
     </select>
 
     <select id="selectHotTask" resultType="com.fdzc.springboot01.entity.vo.HotTaskVo">
