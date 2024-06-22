@@ -35,12 +35,6 @@ const router = createRouter({
           meta: { title: '出行管理' },
         },
         {
-          path: '/group',
-          name: 'group',
-          component: () => import('../pages/subpages/Group.vue'),
-          meta: { title: '小组管理' },
-        },
-        {
           path: '/share',
           name: 'share',
           component: () => import('../pages/subpages/Share.vue'),

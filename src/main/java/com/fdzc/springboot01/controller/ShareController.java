@@ -50,4 +50,9 @@ public class ShareController {
     public void download(HttpServletResponse response) {
         service.download(response);
     }
+
+    @GetMapping("/num")
+    public Result countNum() {
+        return Result.success(service.countNum());
+    }
 }

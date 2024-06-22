@@ -13,7 +13,7 @@
         </div>
       </el-card>
     </el-col>
-    <!-- 单月统计信息展示 -->
+    <!-- 统计信息展示 -->
     <el-col :span="18">
       <el-card class="box-card">
         <template #header>
@@ -37,7 +37,7 @@
                 </div>
               </div>
             </el-col>
-            <!-- 小组数量 -->
+            <!-- 分享数量 -->
             <el-col :span="8">
               <div class="card-container">
                 <div class="card-left-container" style="background-color: #FAC858;">
@@ -46,8 +46,8 @@
                   </el-icon>
                 </div>
                 <div class="card-right-container">
-                  <p class="number">{{ groupNum }}</p>
-                  <p>小组数量(个)</p>
+                  <p class="number">{{ shareNum }}</p>
+                  <p>分享数量(个)</p>
                 </div>
               </div>
             </el-col>
@@ -74,7 +74,7 @@
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
-import { getAdmin, getUserNum, getGroupNum, getTaskNum } from '../../api'
+import { getAdmin, getUserNum, getShareNum, getTaskNum } from '../../api'
 import useAdmin from '../../stores/admin'
 import { Memo, UserFilled, Comment, Checked } from '@element-plus/icons-vue'
 import * as echarts from 'echarts'
@@ -87,14 +87,14 @@ const loginInfo = reactive({
 })
 
 const userNum = ref(0);
-const groupNum = ref(0);
+const shareNum = ref(0);
 const taskNum = ref(0);
 
 onMounted(() => {
   loadAdmin()
   loadLogin()
   loadUserNum()
-  loadGroupNum()
+  loadShareNum()
   loadTaskNum()
 })
 
@@ -114,8 +114,8 @@ const loadUserNum = async () => {
   userNum.value = await getUserNum()
 }
 
-const loadGroupNum = async () => {
-  groupNum.value = await getGroupNum()
+const loadShareNum = async () => {
+  shareNum.value = await getShareNum()
 }
 
 const loadTaskNum = async () => {

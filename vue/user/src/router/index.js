@@ -14,10 +14,10 @@ const router = createRouter({
         meta: { title: '首页', name: 'home', isTab: true }
       },
       { 
-        path: '/chat',
-        component: () => import('../pages/Chat.vue'),
-        name: 'chat',
-        meta: { title: '讨论', isTab: true, isShowNav: true }
+        path: '/share',
+        component: () => import('../pages/Share.vue'),
+        name: 'share',
+        meta: { title: '分享', isTab: true, isShowNav: true }
       },
       {
         path: '/travel',
@@ -54,12 +54,6 @@ const router = createRouter({
         component: () => import('../pages/UserTask.vue'),
         name: 'userTask',
         meta: { title: '我的任务', isTab: true,isShowNav: true, isShowBack: true }
-      },
-      {
-        path: '/userGroup',
-        component: () => import('../pages/UserGroup.vue'),
-        name: 'userGroup',
-        meta: { title: '我的小组', isTab: true,isShowNav: true, isShowBack: true }
       },
       {
         path: '/buy',

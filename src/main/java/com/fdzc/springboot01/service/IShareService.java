@@ -22,4 +22,6 @@ public interface IShareService {
 
     void download(HttpServletResponse response);
 
+    Long countNum();
+
 }

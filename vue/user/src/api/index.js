@@ -30,11 +30,6 @@ export function getHotTask(params) {
   return request.get('/tasks/hot', { params })
 }
 
-// 热门小组接口
-export function getHotGroup(params) {
-  return request.get('/groups/hot', { params })
-}
-
 // 任务列表接口
 export function getTaskList(params) {
   return request.get('/tasks', { params })
@@ -83,31 +78,6 @@ export function editTravel(data) {
 // 删除出行接口
 export function delTravel(data) {
   return request.delete('/travels/'+data.id)
-}
-
-// 小组列表接口
-export function getGroupList(params) {
-  return request.get('/groups', { params })
-}
-
-// 查询单个小组接口
-export function getGroup(params) {
-  return request.get('/groups/'+params.id)
-}
-
-// 新增小组接口
-export function addGroup(data) {
-  return request.post('/groups', data)
-}
-
-// 修改小组接口
-export function editGroup(data) {
-  return request.put('/groups', data)
-}
-
-// 删除小组接口
-export function delGroup(data) {
-  return request.delete('/groups/'+data.id)
 }
 
 // 分享列表接口
@@ -203,11 +173,6 @@ export function delUserTask(data) {
 // 添加订单
 export function addBuy(data) {
   return request.post('/goods/buy', data)
-}
-
-// 获取用户的所有小组
-export function getUserGroup(params) {
-  return request.get('/groups/userGroup/'+params.id)
 }
 
 // 获取用户的所有兑换

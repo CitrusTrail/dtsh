@@ -64,4 +64,7 @@ public class ShareService implements IShareService {
         }
     }
 
+    public Long countNum() {
+        return shareMapper.selectCount(null);
+    }
 }

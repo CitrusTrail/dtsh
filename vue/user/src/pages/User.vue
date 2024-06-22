@@ -24,7 +24,6 @@
     <van-cell icon="records" title="我的积分" :value="user.point" />
     <van-cell icon="records" title="我的碳排放" is-link />
     <van-cell icon="records" title="我的任务" is-link to="userTask" />
-    <van-cell icon="records" title="我的小组" is-link to="userGroup" />
     <van-cell icon="records" title="我的分享" is-link />
     <van-cell icon="records" title="我的出行" is-link />
     <van-cell icon="records" title="我的兑换" is-link to="buy" />

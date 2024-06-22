@@ -36,13 +36,6 @@
             </el-icon>
             <span>出行管理</span>
           </el-menu-item>
-        <!-- 小组管理 -->
-          <el-menu-item index="/group">
-            <el-icon>
-              <Comment />
-            </el-icon>
-            <span>小组管理</span>
-          </el-menu-item>
         <!-- 分享管理 -->
           <el-menu-item index="/share">
             <el-icon>

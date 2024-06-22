@@ -76,31 +76,6 @@ export function delTravel(data) {
   return request.delete('/travels/'+data.id)
 }
 
-// 小组列表接口
-export function getGroupList(params) {
-  return request.get('/groups', { params })
-}
-
-// 查询单个小组接口
-export function getGroup(params) {
-  return request.get('/groups/'+params.id)
-}
-
-// 新增小组接口
-export function addGroup(data) {
-  return request.post('/groups', data)
-}
-
-// 修改小组接口
-export function editGroup(data) {
-  return request.put('/groups', data)
-}
-
-// 删除小组接口
-export function delGroup(data) {
-  return request.delete('/groups/'+data.id)
-}
-
 // 分享列表接口
 export function getShareList(params) {
   return request.get('/shares', { params })
@@ -186,11 +161,6 @@ export function delMultipleTravel(data) {
   return request.post('/travels/multiple', data)
 }
 
-// 批量删除小组接口
-export function delMultipleGroup(data) {
-  return request.post('/groups/multiple', data)
-}
-
 // 批量删除分享接口
 export function delMultipleShare(data) {
   return request.post('/shares/multiple', data)
@@ -216,11 +186,6 @@ export function downloadTravel() {
   return request.get('/travels/download',{ responseType: 'blob' })
 }
 
-// 导出小组接口
-export function downloadGroup() {
-  return request.get('/groups/download',{ responseType: 'blob' })
-}
-
 // 导出分享接口
 export function downloadShare() {
   return request.get('/shares/download',{ responseType: 'blob' })
@@ -236,11 +201,6 @@ export function downloadUser() {
   return request.get('/users/download',{ responseType: 'blob' })
 }
 
-// 查询小组用户接口
-export function getGroupUser(params) {
-  return request.get('/groups/groupUser/'+params.id)
-}
-
 // 查询出行方式
 export function getMode(params) {
   return request.get('/travels/mode', params)
@@ -251,9 +211,9 @@ export function getUserNum(params) {
   return request.get('/users/num', params)
 }
 
-// 获取小组数量
-export function getGroupNum(params) {
-  return request.get('/groups/num', params)
+// 获取分享数量
+export function getShareNum(params) {
+  return request.get('/shares/num', params)
 }
 
 // 获取任务数量
