@@ -69,6 +69,10 @@ const onClick = async () => {
     })
     if (data == 1) {
       showSuccessToast('参与成功');
+    } else if(data == -1) {
+      showToast('您已经参与此任务了');
+    } else {
+      showToast('参与失败');
     }
   }else{
     router.push({ path: '/login' })

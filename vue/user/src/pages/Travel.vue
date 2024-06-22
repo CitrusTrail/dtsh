@@ -43,7 +43,7 @@ const router = useRouter()
 
 const { user } = useUser()
 
-let url = 'https://map.baidu.com'
+const url = ref('https://map.baidu.com')
 const isShow = ref(true)
 const showEnd = ref(false)
 
@@ -56,9 +56,13 @@ const form = reactive({
 })
 
 const onClickHide = async () => {
-  isShow.value = false
-  form.startTime = new Date().toLocaleString()
-  showEnd.value = true
+  if(user.id != ''){
+    form.startTime = new Date().toLocaleString()
+    isShow.value = false
+    showEnd.value = true
+  }else{
+    router.push({ path: '/login' })
+  }
 }
 
 const endTravel = async () => {
