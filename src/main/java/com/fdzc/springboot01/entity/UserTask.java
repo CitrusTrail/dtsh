@@ -9,4 +9,6 @@ public class UserTask {
     private Integer userId;
     private Integer taskId;
     private String completedTime;
+    private String image;
+    private Integer status;
 }

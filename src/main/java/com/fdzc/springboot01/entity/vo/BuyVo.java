@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class BuyVo {
     private Integer id;
+    private Integer goodsId;
     private String name;
     private String time;
     private Integer point;

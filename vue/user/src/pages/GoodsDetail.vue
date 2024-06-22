@@ -23,12 +23,14 @@
       —— 商品详情 ——
     </div>
     <div class="goods-description" v-html="goods.description"></div>
-    <van-button type="danger" @click="showPopup" size="large" round>立即兑换</van-button>
+    <van-action-bar>
+      <van-button type="danger" @click="showPopup" size="large" round>立即兑换</van-button>
+    </van-action-bar>
     <van-popup :show="isShow" @close="onClose" position="bottom" style="height: 30%; padding: 50px 0;">
-        <div>兑换数量：<van-stepper value="num" @change="onChange" /></div>
-        <van-action-bar>
-          <van-action-bar-button type="danger" @click="onClick" text="确定" />
-        </van-action-bar>
+      <div>兑换数量：<van-stepper value="num" @change="onChange" /></div>
+      <van-action-bar>
+        <van-action-bar-button type="danger" @click="onClick" text="确定" />
+      </van-action-bar>
     </van-popup>
   </div>
   <div class="goods-not-found" v-else>商品不存在</div>
@@ -71,21 +73,22 @@ const router = useRouter()
 
 const onClick = async () => {
   if(user.id != ''){
-    if(user.point >= goods.point * num.value){
       const data = await addBuy({
         userId: user.id,
         goodsId: props.id,
-        point: goods.point,
+        point: goods.point * num.value,
         num: num.value,
         time: new Date().toLocaleString()
       })
-      if (data == 1) {
-        user.point -= goods.point;
-        showSuccessToast('兑换成功');
+      if (data == 0) {
+        showToast('兑换失败')
+      } else if (data == -1) {
+        showToast('商品库存不足')
+      } else if (data == -2) {
+        showToast('您的积分不足')
+      } else {
+        showSuccessToast('兑换成功')
       }
-    }else{
-      showToast('您的积分不足');
-    }
     isShow.value = false
   }else{
     router.push({ path: '/login' })

@@ -93,12 +93,20 @@ public class GoodsService implements IGoodsService {
     }
 
     public Integer addOneBuy(Buy buy) {
+        Goods goods = goodsMapper.selectById(buy.getGoodsId());
+        if(goods.getStock() < buy.getNum()) {
+            return -1;
+        }
+        User user = userMapper.selectById(buy.getUserId());
+        if(user.getPoint() < buy.getPoint()) {
+            return -2;
+        }
         int res = buyMapper.insert(buy);
         if(res == 1){
-            Integer point = goodsMapper.selectById(buy.getGoodsId()).getPoint();
-            User user = userMapper.selectById(buy.getUserId());
-            user.setPoint(user.getPoint()-point);
+            user.setPoint(user.getPoint()-buy.getPoint());
             userMapper.updateById(user);
+            goods.setStock(goods.getStock()-buy.getNum());
+            goodsMapper.updateById(goods);
         }
         return res;
     }

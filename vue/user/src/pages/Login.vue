@@ -66,8 +66,7 @@ const submitForm = async values => {
       isLogin: true,
       id: data.id,
       username: user.username,
-      avatar: user.avatar,
-      point: user.point
+      avatar: user.avatar
     })
     router.push({ name: 'user' })
   }

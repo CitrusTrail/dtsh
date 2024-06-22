@@ -6,8 +6,7 @@ const useUser = defineStore('user', () => {
     isLogin: false,
     id: '',
     username: '',
-    avatar: '',
-    point: ''
+    avatar: ''
   }
   const user = reactive(Object.assign({}, defaultUser))
   const updateUser = options => {

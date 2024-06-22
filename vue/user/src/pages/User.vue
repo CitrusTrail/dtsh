@@ -21,17 +21,18 @@
     <van-cell icon="records" title="个人信息" is-link to="userDetail" />
   </van-cell-group>
   <van-cell-group  class="my-title" v-if="user.id!=''" >
-    <van-cell icon="records" title="我的积分" :value="user.point" />
+    <van-cell icon="records" title="我的积分" :value="data.point" />
     <van-cell icon="records" title="我的碳排放" is-link />
     <van-cell icon="records" title="我的任务" is-link to="userTask" />
     <van-cell icon="records" title="我的分享" is-link />
-    <van-cell icon="records" title="我的出行" is-link />
     <van-cell icon="records" title="我的兑换" is-link to="buy" />
   </van-cell-group>
 </div>
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
+import { getUser } from '../api'
 import avatar_default from '../assets/images/avatar_default.png'
 import router from '../router/index'
 import useToken from '../stores/token'
@@ -40,6 +41,18 @@ import { showToast } from 'vant'
 
 const { removeToken } = useToken()
 const { user, removeUser } = useUser()
+
+const data = ref({})
+
+onMounted(() => {
+  loadUserDetail()
+})
+
+// 加载用户详情
+const loadUserDetail = async () => {
+  data.value = await getUser({ id: user.id })
+}
+
 
 // 退出登录
 const onLogout = async () => {

@@ -47,7 +47,7 @@
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
-import { login, getUser, editUser } from '../api'
+import { getUser, editUser } from '../api'
 import useUser from '../stores/user'
 import { showSuccessToast } from 'vant'
 
