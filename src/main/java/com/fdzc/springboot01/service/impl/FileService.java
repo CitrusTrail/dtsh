@@ -17,8 +17,6 @@ import java.util.UUID;
 
 @Service
 public class FileService implements IFileService {
-    @Resource
-    private TaskMapper mapper;
 
     public AvatarDTO uploadPicture(MultipartFile file) {
         AvatarDTO avatarDTO = new AvatarDTO();
@@ -26,24 +24,13 @@ public class FileService implements IFileService {
             String originalFilename = file.getOriginalFilename();
             String suffixName = originalFilename.substring(originalFilename.lastIndexOf("."));
             String newFilename = UUID.randomUUID().toString() + "_" + suffixName;
-            ClassPathResource classPathResource = new ClassPathResource("static/upload/picture");
-            File fileDir = classPathResource.getFile();
+            File fileDir = new File("src/main/resources/static/server/image/upload");
             file.transferTo(new File(fileDir.getAbsolutePath() + "/" + newFilename));
-            avatarDTO.setUrl("http://localhost:8099/upload/picture/" + newFilename);
-            avatarDTO.setSavepath("http://localhost:8099/upload/picture/" + newFilename);
+            avatarDTO.setUrl("/server/image/upload/" + newFilename);
+            avatarDTO.setSavepath("/server/image/upload/" + newFilename);
         } catch (Exception e) {
         }
+        System.out.println("你好"+avatarDTO);
         return avatarDTO;
-    }
-
-    public void download(HttpServletResponse response) {
-        List<Task> tasks = mapper.selectList(null);
-        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-        response.setCharacterEncoding("UTF-8");
-        try {
-            response.setHeader("Content-disposition", "attachment;filename=" + "测试" + ".xlsx");
-            EasyExcel.write(response.getOutputStream(),Task.class).autoCloseStream(Boolean.FALSE).sheet("任务列表").doWrite(tasks);
-        } catch (Exception e) {
-        }
     }
 }

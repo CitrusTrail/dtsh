@@ -9,6 +9,4 @@ public interface IFileService {
 
     AvatarDTO uploadPicture(MultipartFile file);
 
-    void download(HttpServletResponse response);
-
 }
