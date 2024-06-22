@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +37,18 @@ public class TravelService implements ITravelService {
     }
 
     public Integer addOneTravel(Travel travel) {
+        LocalDateTime startTime = LocalDateTime.parse(travel.getStartTime(), DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
+        LocalDateTime endTime = LocalDateTime.parse(travel.getEndTime(), DateTimeFormatter.ofPattern("yyyy/M/d H:m:s"));
+        Integer totalTime = (int) Duration.between(startTime,endTime).toMinutes();
+        Double carbon = 0.0;
+        String mode = travel.getMode();
+        if(mode=="步行"||mode=="骑行"){
+            carbon = totalTime * 14.4;
+        }else{
+            carbon = totalTime * 24.4;
+        }
+        travel.setTotalTime(totalTime);
+        travel.setCarbon(carbon);
         return travelMapper.insert(travel);
     }
 
