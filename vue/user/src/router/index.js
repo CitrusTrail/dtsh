@@ -26,6 +26,12 @@ const router = createRouter({
         meta: { title: '出行', isTab: true, isShowNav: true }
       },
       {
+        path: '/travelMode',
+        component: () => import('../pages/TravelMode.vue'),
+        name: 'travelMode',
+        meta: { title: '出行方式', isTab: true, isShowNav: true }
+      },
+      {
         path: '/goods' ,
         component: () => import('../pages/GoodsList.vue'),
         name: 'goods' ,
