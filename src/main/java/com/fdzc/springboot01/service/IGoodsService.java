@@ -21,7 +21,15 @@ public interface IGoodsService {
 
     Integer deleteOneGoods(Integer id);
 
-    List<Buy> findAllBuy();
+    Integer deleteMultipleGoods(IdDTO idDTO);
+
+    void downloadGoods(HttpServletResponse response);
+
+    PageDTO<Buy> findAllBuy(int page, int pagesize, Integer id, Integer userId, Integer goodsId);
+
+    Buy findBuyById(Integer id);
+
+    List<BuyVo> findUserGoods(Integer id);
 
     Integer addOneBuy(Buy buy);
 
@@ -29,10 +37,8 @@ public interface IGoodsService {
 
     Integer deleteOneBuy(Integer id);
 
-    Integer deleteMultipleGoods(IdDTO idDTO);
+    Integer deleteMultipleBuy(IdDTO idDTO);
 
-    void download(HttpServletResponse response);
-
-    List<BuyVo> findUserGoods(Integer id);
+    void downloadBuy(HttpServletResponse response);
 
 }

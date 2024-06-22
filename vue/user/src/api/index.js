@@ -177,7 +177,7 @@ export function addBuy(data) {
 
 // 获取用户的所有兑换
 export function getBuy(params) {
-  return request.get('/goods/buy/'+params.id)
+  return request.get('/goods/userGoods/'+params.id)
 }
 
 // 取消兑换

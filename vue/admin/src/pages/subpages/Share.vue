@@ -165,7 +165,7 @@ const handleSelectionChange = val => {
 
 // 批量删除
 const delMultipleRow = () => {
- ElMessageBox.confirm('确定要删除选中的任务吗？', {
+ ElMessageBox.confirm('确定要删除选中的分享吗？', {
    closeOnClickModal: false,
    confirmButtonText: '确定',
    cancelButtonText: '取消',

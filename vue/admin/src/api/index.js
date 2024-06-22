@@ -126,6 +126,31 @@ export function delGoods(data) {
   return request.delete('/goods/'+data.id)
 }
 
+// 订单列表接口
+export function getBuyList(params) {
+  return request.get('/goods/buy', { params })
+}
+
+// 查询单个订单接口
+export function getBuy(params) {
+  return request.get('/goods/buy/'+params.id)
+}
+
+// 新增订单接口
+export function addBuy(data) {
+  return request.post('/goods/buy', data)
+}
+
+// 修改订单接口
+export function editBuy(data) {
+  return request.put('/goods/buy', data)
+}
+
+// 删除订单接口
+export function delBuy(data) {
+  return request.delete('/goods/buy/' + data.id)
+}
+
 // 用户列表接口
 export function getUserList(params) {
   return request.get('/users', { params })
@@ -171,6 +196,11 @@ export function delMultipleGoods(data) {
   return request.post('/goods/multiple', data)
 }
 
+// 批量删除订单接口
+export function delMultipleBuy(data) {
+  return request.post('/goods/buy/multiple', data)
+}
+
 // 批量删除用户接口
 export function delMultipleUser(data) {
   return request.post('/users/multiple', data)
@@ -194,6 +224,11 @@ export function downloadShare() {
 // 导出商品接口
 export function downloadGoods() {
   return request.get('/goods/download',{ responseType: 'blob' })
+}
+
+// 导出订单接口
+export function downloadBuy() {
+  return request.get('/goods/buy/download',{ responseType: 'blob' })
 }
 
 // 导出用户接口

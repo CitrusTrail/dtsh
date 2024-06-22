@@ -1,8 +1,5 @@
 <template>
   <div class="home-new">
-    <div class="home-new-title">
-      <h3>公告</h3>
-    </div>
     <van-notice-bar
       left-icon="volume-o"
       scrollable
@@ -27,16 +24,6 @@ const GoodsList = [
 
 <style lang="less" scoped>
 .home-new {
-  .home-new-title {
-    font-size: 16px;
-    height: 50px;
-    h3 {
-      font-size: 22px;
-      width: 50%;
-      padding-new: 8px;
-      margin: 0 25px;
-    }
-  }
   .content {
     --van-tag-primary-color: #4c4;
     --van-card-font-size: 16px;

@@ -43,13 +43,27 @@
             </el-icon>
             <span>分享管理</span>
           </el-menu-item>
-        <!-- 商品管理 -->
+        <!-- 兑换管理 -->
+        <el-sub-menu index="/goods">
+          <template #title>
+            <el-icon><ShoppingBag /></el-icon>
+            <span>兑换管理</span>
+          </template>
+          <!-- 商品管理 -->
           <el-menu-item index="/goods">
             <el-icon>
               <ShoppingBag />
             </el-icon>
             <span>商品管理</span>
           </el-menu-item>
+          <!-- 订单管理 -->
+          <el-menu-item index="/buy">
+            <el-icon>
+              <ShoppingBag />
+            </el-icon>
+            <span>订单管理</span>
+          </el-menu-item>
+        </el-sub-menu>
         <!-- 个人中心 -->
           <el-menu-item index="/setting">
             <el-icon>

@@ -1,6 +1,7 @@
 package com.fdzc.springboot01.entity;
 
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import org.springframework.stereotype.Component;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class Goods {
-    @TableId
+    @TableId(value="id",type= IdType.AUTO)
     @ExcelProperty(value = "商品编号")
     private Integer id;
     @ExcelProperty(value = "商品名称")

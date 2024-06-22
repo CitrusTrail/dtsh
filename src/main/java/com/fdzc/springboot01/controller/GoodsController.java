@@ -42,9 +42,29 @@ public class GoodsController {
         return Result.success(service.deleteOneGoods(id));
     }
 
+    @PostMapping("/multiple")
+    public Result deleteMultipleGoods(@RequestBody IdDTO idDTO) {
+        return Result.success(service.deleteMultipleGoods(idDTO));
+    }
+
+    @GetMapping("/download")
+    public void downloadGoods(HttpServletResponse response) {
+        service.downloadGoods(response);
+    }
+
     @GetMapping("/buy")
-    public Result findAllBuy() {
-        return Result.success(service.findAllBuy());
+    public Result findAllBuy(int page,int pagesize,Integer id,Integer userId,Integer goodsId) {
+        return Result.success(service.findAllBuy(page,pagesize,id,userId,goodsId));
+    }
+
+    @GetMapping("/buy/{id}")
+    public Result findBuyById(@PathVariable Integer id) {
+        return Result.success(service.findBuyById(id));
+    }
+
+    @GetMapping("/userGoods/{id}")
+    public Result findUserGoods(@PathVariable Integer id) {
+        return Result.success(service.findUserGoods(id));
     }
 
     @PostMapping("/buy")
@@ -62,19 +82,14 @@ public class GoodsController {
         return Result.success(service.deleteOneBuy(id));
     }
 
-    @PostMapping("/multiple")
-    public Result deleteMultipleGoods(@RequestBody IdDTO idDTO) {
-        return Result.success(service.deleteMultipleGoods(idDTO));
+    @PostMapping("/buy/multiple")
+    public Result deleteMultipleBuy(@RequestBody IdDTO idDTO) {
+        return Result.success(service.deleteMultipleBuy(idDTO));
     }
 
-    @GetMapping("/download")
-    public void download(HttpServletResponse response) {
-        service.download(response);
-    }
-
-    @GetMapping("/buy/{id}")
-    public Result findUserGoods(@PathVariable Integer id) {
-        return Result.success(service.findUserGoods(id));
+    @GetMapping("/buy/download")
+    public void downloadBuy(HttpServletResponse response) {
+        service.downloadBuy(response);
     }
 
 }

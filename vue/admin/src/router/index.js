@@ -47,6 +47,12 @@ const router = createRouter({
           meta: { title: '商品管理' },
         },
         {
+          path: '/buy',
+          name: 'buy',
+          component: () => import('../pages/subpages/Buy.vue'),
+          meta: { title: '订单管理' },
+        },
+        {
           path: '/setting',
           name: 'setting',
           component: () => import('../pages/subpages/Setting.vue'),

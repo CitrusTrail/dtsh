@@ -1,5 +1,6 @@
 package com.fdzc.springboot01.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import org.springframework.stereotype.Component;
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 public class Admin {
-    @TableId
+    @TableId(value="id",type= IdType.AUTO)
     private Integer id;
     private String name;
     private String password;

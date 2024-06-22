@@ -55,8 +55,41 @@ public class GoodsService implements IGoodsService {
         return goodsMapper.deleteById(id);
     }
 
-    public List<Buy> findAllBuy() {
-        return buyMapper.selectList(null);
+    public Integer deleteMultipleGoods(IdDTO idDTO) {
+        List<Integer> ids = idDTO.getIds();
+        Integer res = 0;
+        for (Integer id : ids) {
+            res += deleteOneGoods(id);
+        }
+        return res;
+    }
+
+    public void downloadGoods(HttpServletResponse response) {
+        List<Goods> list = goodsMapper.selectList(null);
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("UTF-8");
+        try {
+            response.setHeader("Content-disposition", "attachment;filename=export.xlsx");
+            EasyExcel.write(response.getOutputStream(),Goods.class).autoCloseStream(Boolean.FALSE).sheet("商品列表").doWrite(list);
+        } catch (Exception e) {
+        }
+    }
+
+    public PageDTO<Buy> findAllBuy(int page, int pagesize, Integer id, Integer userId, Integer goodsId) {
+        int offset = (page - 1) * pagesize;
+        PageDTO<Buy> pageDTO = new PageDTO<>();
+        List<Buy> buy = buyMapper.selectAllBuy(id, userId, goodsId);
+        pageDTO.setRecords(buy.stream().skip(offset).limit(pagesize).collect(Collectors.toList()));
+        pageDTO.setTotal(buy.size());
+        return pageDTO;
+    }
+
+    public Buy findBuyById(Integer id) {
+        return buyMapper.selectById(id);
+    }
+
+    public List<BuyVo> findUserGoods(Integer id) {
+        return buyMapper.selectUserGoods(id);
     }
 
     public Integer addOneBuy(Buy buy) {
@@ -78,28 +111,26 @@ public class GoodsService implements IGoodsService {
         return buyMapper.deleteById(id);
     }
 
-    public Integer deleteMultipleGoods(IdDTO idDTO) {
+    public Integer deleteMultipleBuy(IdDTO idDTO) {
         List<Integer> ids = idDTO.getIds();
         Integer res = 0;
         for (Integer id : ids) {
-            res += deleteOneGoods(id);
+            res += deleteOneBuy(id);
         }
         return res;
     }
 
-    public void download(HttpServletResponse response) {
-        List<Goods> list = goodsMapper.selectList(null);
+    public void downloadBuy(HttpServletResponse response) {
+        List<Buy> list = buyMapper.selectList(null);
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setCharacterEncoding("UTF-8");
         try {
             response.setHeader("Content-disposition", "attachment;filename=export.xlsx");
-            EasyExcel.write(response.getOutputStream(),Goods.class).autoCloseStream(Boolean.FALSE).sheet("商品列表").doWrite(list);
+            EasyExcel.write(response.getOutputStream(),Buy.class).autoCloseStream(Boolean.FALSE).sheet("订单列表").doWrite(list);
         } catch (Exception e) {
         }
     }
 
-    public List<BuyVo> findUserGoods(Integer id) {
-        return buyMapper.selectUserGoods(id);
-    }
+
 
 }
