@@ -63,6 +63,7 @@ const loadUser = async () => {
 
 <style>
 #app {
+  min-height: 680px;
   background: #F7F8FA;
   color: #2c3e50;
   line-height: 24px;

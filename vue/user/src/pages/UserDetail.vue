@@ -1,6 +1,12 @@
 <template>
   <van-form @submit="submitForm" @failed="onFailed" ref="ruleFormRef" :model="form">
-    <van-cell-group>
+    <van-cell-group inset style="margin-top:20px;">
+      <van-field label="头像：">
+        <template #input>
+          <van-uploader :after-read="afterRead" :max-count="1" v-model="fileList"/>
+        </template>
+      </van-field>
+
       <van-field
         v-model="form.name"
         label="账号："
@@ -9,8 +15,7 @@
         name="name"
         :rules="usernameRules"
       ></van-field>
-    </van-cell-group>
-    <van-cell-group>
+
       <van-field
         v-model="form.password"
         label="密码："
@@ -20,8 +25,7 @@
         type="password"
         :rules="passwordRules"
       ></van-field>
-    </van-cell-group>
-    <van-cell-group>
+
       <van-field
         v-model="form.tel"
         label="联系电话："
@@ -29,8 +33,7 @@
         name="tel"
         clearable
       ></van-field>
-    </van-cell-group>
-    <van-cell-group>
+
       <van-field
         v-model="form.address"
         label="地址："
@@ -47,7 +50,7 @@
 
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
-import { getUser, editUser } from '../api'
+import { getUser, editUser, uploadPictureURL } from '../api'
 import useUser from '../stores/user'
 import { showSuccessToast } from 'vant'
 
@@ -57,7 +60,8 @@ const form = reactive({
   name: '',
   password: '',
   tel: '',
-  address: ''
+  address: '',
+  avatar: ''
 })
 const ruleFormRef = ref()
 
@@ -71,6 +75,8 @@ const passwordRules = ref([
   { pattern: /^\w{6,24}$/, message: '密码必须为6-24位英文字母或数字' }
 ])
 
+const fileList = ref([])
+
 onMounted(() => {
   loadUserDetail()
 })
@@ -78,7 +84,13 @@ onMounted(() => {
 // 加载用户详情
 const loadUserDetail = async () => {
   const data = await getUser({ id: user.id })
+  fileList.value.push({ url: data.avatar })
   Object.assign(form, data)
+}
+
+const afterRead = async (file) => {
+  const data = await uploadPictureURL(file)
+  form.avatar = data.url
 }
 
 // 表单提交函数
@@ -99,6 +111,6 @@ const onFailed = errorInfo => {
 <style lang="less" scoped>
 button {
   position: fixed;
-  top: 270px;
+  top: 400px;
 }
 </style>

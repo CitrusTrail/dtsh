@@ -12,6 +12,6 @@ import java.util.List;
 public interface ShareMapper extends BaseMapper<Share> {
     List<Share> selectAllShare(@Param("id") Integer id, @Param("userId") Integer userId, @Param("content") String content);
 
-    @Select("select * from share where user_id=#{id}")
+    @Select("select * from share where user_id=#{id} order by id desc")
     List<Share> selectUserShare(Integer id);
 }
