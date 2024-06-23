@@ -7,6 +7,7 @@ import com.fdzc.springboot01.entity.dto.PageDTO;
 import com.fdzc.springboot01.entity.vo.HotTaskVo;
 import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.entity.UserTask;
+import com.fdzc.springboot01.entity.vo.TaskVo;
 import com.fdzc.springboot01.mapper.TaskMapper;
 import com.fdzc.springboot01.mapper.UserTaskMapper;
 import com.fdzc.springboot01.service.ITaskService;
@@ -71,7 +72,7 @@ public class TaskService implements ITaskService {
         }
     }
 
-    public List<Task> findUserTasks(Integer id) {
+    public List<TaskVo> findUserTasks(Integer id) {
         return userTaskMapper.selectUserTasks(id);
     }
 

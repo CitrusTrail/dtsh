@@ -53,7 +53,7 @@ public class TaskController {
     }
 
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/userTask/users/{id}")
     public Result findUserTasks(@PathVariable Integer id) {
         return Result.success(service.findUserTasks(id));
     }
@@ -85,7 +85,7 @@ public class TaskController {
 
     @PostMapping("/userTask/multiple")
     public Result deleteMultipleUserTask(@RequestBody IdDTO idDTO) {
-        return Result.success(service.deleteMultipleTask(idDTO));
+        return Result.success(service.deleteMultipleUserTask(idDTO));
     }
 
     @GetMapping("/userTask/download")

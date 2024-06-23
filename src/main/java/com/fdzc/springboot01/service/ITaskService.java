@@ -5,6 +5,7 @@ import com.fdzc.springboot01.entity.dto.PageDTO;
 import com.fdzc.springboot01.entity.vo.HotTaskVo;
 import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.entity.UserTask;
+import com.fdzc.springboot01.entity.vo.TaskVo;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -25,7 +26,7 @@ public interface ITaskService {
 
     void downloadTask(HttpServletResponse response);
 
-    List<Task> findUserTasks(Integer id);
+    List<TaskVo> findUserTasks(Integer id);
 
     PageDTO<UserTask> findAllUserTask(int page, int pagesize, Integer id, Integer taskId, Integer userId);
 

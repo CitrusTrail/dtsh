@@ -1,9 +1,8 @@
 package com.fdzc.springboot01.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.entity.UserTask;
-import org.apache.ibatis.annotations.Delete;
+import com.fdzc.springboot01.entity.vo.TaskVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -18,6 +17,6 @@ public interface UserTaskMapper extends BaseMapper<UserTask> {
     @Select("select * from user_task where user_id=#{userId} and task_id=#{taskId} limit 1")
     UserTask selectUserTask(UserTask userTask);
 
-    List<Task> selectUserTasks(Integer id);
+    List<TaskVo> selectUserTasks(Integer id);
 
 }

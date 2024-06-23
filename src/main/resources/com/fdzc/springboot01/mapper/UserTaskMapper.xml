@@ -20,11 +20,16 @@
         order by
             id desc
     </select>
-    <select id="selectUserTask" resultType="com.fdzc.springboot01.entity.Task">
+    <select id="selectUserTasks" resultType="com.fdzc.springboot01.entity.vo.TaskVo">
         select
-            t.id id,
+            u.id id,
+            t.id taskId,
             name,
-            description
+            description,
+            t.image image,
+            carbon,
+            point,
+            status
         from
             user_task u
                 left join

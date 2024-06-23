@@ -166,8 +166,13 @@ export function addUserTask(data) {
 }
 
 // 删除用户任务接口
-export function delUserTask(data) {
+export function editUserTask(data) {
   return request.put('/tasks/userTask', data)
+}
+
+// 删除用户任务接口
+export function delUserTask(data) {
+  return request.delete('/tasks/userTask/'+data.id)
 }
 
 // 添加订单
