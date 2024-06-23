@@ -95,25 +95,6 @@ const btnCancel = () => {
   loadUser()
 }
 
-// 上传成功
-const uploadSuccess = response => {
-  const { errno, errmsg, data } = response
-  if (errno !== 0) {
-    notification({
-      message: errmsg,
-      type: 'error'
-    })
-  } else {
-    if (errmsg !== '') {
-      notification({
-        message: errmsg,
-        type: 'success'
-      })
-    }
-    form.picture = data.savepath
-  }
-}
-
 </script>
 
 <style scoped>

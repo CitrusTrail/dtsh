@@ -116,7 +116,7 @@ const uploadSuccess = async response => {
     })
   } else {
     notification({
-      message: msg,
+      message: '上传成功',
       type: 'success'
     })
     await changeAdminAvatar({

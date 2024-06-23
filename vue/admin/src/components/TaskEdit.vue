@@ -75,6 +75,10 @@ const formRef = ref()
 const { token } = useToken()
 const headers = { jwt: token }
 
+const uploadRef = ref()
+const uploadURL = uploadPictureURL()
+const uploadData = { type: 'goods_image' }
+
 onMounted(() => {
   loadTask()
 })
@@ -116,12 +120,9 @@ const editSubmit = async () => {
 // 重置表单
 const btnCancel = () => {
   formRef.value.resetFields()
+  form.image = ''
   loadTask()
 }
-
-const uploadRef = ref()
-const uploadURL = uploadPictureURL()
-const uploadData = { type: 'goods_image' }
 
 const submitUpload = () => {
   uploadRef.value.submit()
@@ -137,7 +138,7 @@ const uploadSuccess = async response => {
     })
   } else {
     notification({
-      message: msg,
+      message: '上传成功',
       type: 'success'
     })
     form.image = data.url

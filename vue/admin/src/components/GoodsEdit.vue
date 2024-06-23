@@ -116,6 +116,7 @@ const editSubmit = async () => {
 // 重置表单
 const btnCancel = () => {
   formRef.value.resetFields()
+  form.image = ''
   loadGoods()
 }
 
@@ -137,7 +138,7 @@ const uploadSuccess = async response => {
     })
   } else {
     notification({
-      message: msg,
+      message: '上传成功',
       type: 'success'
     })
     form.image = data.url
