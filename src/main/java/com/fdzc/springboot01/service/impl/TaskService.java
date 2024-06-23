@@ -1,6 +1,7 @@
 package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fdzc.springboot01.entity.dto.IdDTO;
 import com.fdzc.springboot01.entity.dto.PageDTO;
 import com.fdzc.springboot01.entity.vo.HotTaskVo;
@@ -50,20 +51,49 @@ public class TaskService implements ITaskService {
         return taskMapper.deleteById(id);
     }
 
-    public List<UserTask> findAllUserTask() {
-        return userTaskMapper.selectList(null);
+    public Integer deleteMultipleTask(IdDTO idDTO) {
+        List<Integer> ids = idDTO.getIds();
+        Integer res = 0;
+        for (Integer id : ids) {
+            res += deleteOneTask(id);
+        }
+        return res;
     }
 
-    public List<Task> findUserTask(Integer id) {
-        return userTaskMapper.selectUserTask(id);
+    public void downloadTask(HttpServletResponse response) {
+        List<Task> list = taskMapper.selectList(null);
+        response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+        response.setCharacterEncoding("UTF-8");
+        try {
+            response.setHeader("Content-disposition", "attachment;filename=export.xlsx");
+            EasyExcel.write(response.getOutputStream(),Task.class).autoCloseStream(Boolean.FALSE).sheet("任务列表").doWrite(list);
+        } catch (Exception e) {
+        }
     }
 
-    public UserTask findUserTaskById(UserTask userTask) {
-        return userTaskMapper.selectUserTaskById(userTask);
+    public List<Task> findUserTasks(Integer id) {
+        return userTaskMapper.selectUserTasks(id);
+    }
+
+    public PageDTO<UserTask> findAllUserTask(int page, int pagesize, Integer id, Integer taskId, Integer userId) {
+        int offset = (page - 1) * pagesize;
+        PageDTO<UserTask> pageDTO = new PageDTO<>();
+        List<UserTask> userTasks = userTaskMapper.selectAllUserTask(id, taskId, userId);
+        pageDTO.setRecords(userTasks.stream().skip(offset).limit(pagesize).collect(Collectors.toList()));
+        pageDTO.setTotal(userTasks.size());
+        return pageDTO;
+    }
+
+    public UserTask findUserTask(Integer id) {
+        return userTaskMapper.selectById(id);
+    }
+
+    private UserTask findUserTask(UserTask userTask) {
+        return userTaskMapper.selectUserTask(userTask);
     }
 
     public Integer addOneUserTask(UserTask userTask) {
-        if(findUserTaskById(userTask) == null) {
+        if(findUserTask(userTask) == null) {
             return userTaskMapper.insert(userTask);
         } else {
             return -1;
@@ -74,26 +104,26 @@ public class TaskService implements ITaskService {
         return userTaskMapper.updateById(userTask);
     }
 
-    public Integer deleteOneUserTask(UserTask userTask) {
-        return userTaskMapper.deleteUserTask(userTask);
+    public Integer deleteOneUserTask(Integer id) {
+        return userTaskMapper.deleteById(id);
     }
 
-    public Integer deleteMultipleTask(IdDTO idDTO) {
+    public Integer deleteMultipleUserTask(IdDTO idDTO) {
         List<Integer> ids = idDTO.getIds();
         Integer res = 0;
         for (Integer id : ids) {
-            res += deleteOneTask(id);
+            res += deleteOneUserTask(id);
         }
         return res;
     }
 
-    public void download(HttpServletResponse response) {
-        List<Task> list = taskMapper.selectList(null);
+    public void downloadUserTask(HttpServletResponse response) {
+        List<UserTask> list = userTaskMapper.selectList(null);
         response.setContentType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
         response.setCharacterEncoding("UTF-8");
         try {
             response.setHeader("Content-disposition", "attachment;filename=export.xlsx");
-            EasyExcel.write(response.getOutputStream(),Task.class).autoCloseStream(Boolean.FALSE).sheet("任务列表").doWrite(list);
+            EasyExcel.write(response.getOutputStream(),UserTask.class).autoCloseStream(Boolean.FALSE).sheet("任务列表").doWrite(list);
         } catch (Exception e) {
         }
     }

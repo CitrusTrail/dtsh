@@ -21,21 +21,25 @@ public interface ITaskService {
 
     Integer deleteOneTask(Integer id);
 
-    List<UserTask> findAllUserTask();
+    Integer deleteMultipleTask(IdDTO idDTO);
 
-    List<Task> findUserTask(Integer id);
+    void downloadTask(HttpServletResponse response);
 
-    UserTask findUserTaskById(UserTask userTask);
+    List<Task> findUserTasks(Integer id);
+
+    PageDTO<UserTask> findAllUserTask(int page, int pagesize, Integer id, Integer taskId, Integer userId);
+
+    UserTask findUserTask(Integer id);
 
     Integer addOneUserTask(UserTask userTask);
 
     Integer updateOneUserTask(UserTask userTask);
 
-    Integer deleteOneUserTask(UserTask userTask);
+    Integer deleteOneUserTask(Integer id);
 
-    Integer deleteMultipleTask(IdDTO idDTO);
+    Integer deleteMultipleUserTask(IdDTO idDTO);
 
-    void download(HttpServletResponse response);
+    void downloadUserTask(HttpServletResponse response);
 
     List<HotTaskVo> findHotTask(Integer num);
 

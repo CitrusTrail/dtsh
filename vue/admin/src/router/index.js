@@ -29,6 +29,12 @@ const router = createRouter({
           meta: { title: '任务管理' },
         },
         {
+          path: '/userTask',
+          name: 'userTask',
+          component: () => import('../pages/subpages/UserTask.vue'),
+          meta: { title: '任务审核' },
+        },
+        {
           path: '/travel',
           name: 'travel',
           component: () => import('../pages/subpages/Travel.vue'),

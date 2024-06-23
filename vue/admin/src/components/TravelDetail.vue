@@ -94,19 +94,6 @@ const loadTravel = async () => {
   }
 }
 
-// 新增出行
-const addSubmit = async () => {
-  const data = {
-    userId: form.userId,
-    mode: form.mode,
-    carbon: form.carbon,
-    description: form.description
-  }
-  if (await addTravel(data)) {
-    emit('success')
-  }
-}
-
 // 修改出行
 const editSubmit = async () => {
   if (await editTravel(form)) {

@@ -23,12 +23,26 @@
             <span>用户管理</span>
           </el-menu-item>
         <!-- 任务管理 -->
+        <el-sub-menu index="/task">
+          <template #title>
+            <el-icon><ShoppingBag /></el-icon>
+            <span>任务管理</span>
+          </template>
+          <!-- 任务管理 -->
           <el-menu-item index="/task">
             <el-icon>
               <List />
             </el-icon>
             <span>任务管理</span>
           </el-menu-item>
+          <!-- 任务审核 -->
+          <el-menu-item index="/userTask">
+            <el-icon>
+              <List />
+            </el-icon>
+            <span>任务审核</span>
+          </el-menu-item>
+        </el-sub-menu>
         <!-- 出行管理 -->
           <el-menu-item index="/travel">
             <el-icon>
@@ -44,7 +58,7 @@
             <span>分享管理</span>
           </el-menu-item>
         <!-- 兑换管理 -->
-        <el-sub-menu>
+        <el-sub-menu index="/goods">
           <template #title>
             <el-icon><ShoppingBag /></el-icon>
             <span>兑换管理</span>

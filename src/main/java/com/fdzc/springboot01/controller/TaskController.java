@@ -42,9 +42,25 @@ public class TaskController {
         return Result.success(service.deleteOneTask(id));
     }
 
+    @PostMapping("/multiple")
+    public Result deleteMultipleTask(@RequestBody IdDTO idDTO) {
+        return Result.success(service.deleteMultipleTask(idDTO));
+    }
+
+    @GetMapping("/download")
+    public void downloadTask(HttpServletResponse response) {
+        service.downloadTask(response);
+    }
+
+
+    @GetMapping("/users/{id}")
+    public Result findUserTasks(@PathVariable Integer id) {
+        return Result.success(service.findUserTasks(id));
+    }
+
     @GetMapping("/userTask")
-    public Result findAllUserTask() {
-        return Result.success(service.findAllUserTask());
+    public Result findAllUserTask(int page,int pagesize,Integer id,Integer taskId,Integer userId) {
+        return Result.success(service.findAllUserTask(page,pagesize,id,taskId,userId));
     }
 
     @GetMapping("/userTask/{id}")
@@ -57,24 +73,24 @@ public class TaskController {
         return Result.success(service.addOneUserTask(userTask));
     }
 
-//    @PutMapping("/userTask")
-//    public Result updateOneUserTask(@RequestBody UserTask userTask) {
-//        return Result.success(service.updateOneUserTask(userTask));
-//    }
-
     @PutMapping("/userTask")
-    public Result deleteOneUserTask(@RequestBody UserTask userTask) {
-        return Result.success(service.deleteOneUserTask(userTask));
+    public Result updateOneUserTask(@RequestBody UserTask userTask) {
+        return Result.success(service.updateOneUserTask(userTask));
     }
 
-    @PostMapping("/multiple")
-    public Result deleteMultipleTask(@RequestBody IdDTO idDTO) {
+    @DeleteMapping("/userTask/{id}")
+    public Result deleteOneUserTask(@PathVariable Integer id) {
+        return Result.success(service.deleteOneUserTask(id));
+    }
+
+    @PostMapping("/userTask/multiple")
+    public Result deleteMultipleUserTask(@RequestBody IdDTO idDTO) {
         return Result.success(service.deleteMultipleTask(idDTO));
     }
 
-    @GetMapping("/download")
-    public void download(HttpServletResponse response) {
-        service.download(response);
+    @GetMapping("/userTask/download")
+    public void downloadUserTask(HttpServletResponse response) {
+        service.downloadUserTask(response);
     }
 
     @GetMapping("/hot")

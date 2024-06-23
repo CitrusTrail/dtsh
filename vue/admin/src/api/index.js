@@ -51,6 +51,31 @@ export function delTask(data) {
   return request.delete('/tasks/'+data.id)
 }
 
+// 任务列表接口
+export function getUserTaskList(params) {
+  return request.get('/tasks/userTask', { params })
+}
+
+// 查询单个任务接口
+export function getUserTask(params) {
+  return request.get('/tasks/userTask/'+params.id)
+}
+
+// 新增任务接口
+export function addUserTask(data) {
+  return request.post('/tasks/userTask', data)
+}
+
+// 修改任务接口
+export function editUserTask(data) {
+  return request.put('/tasks/userTask', data)
+}
+
+// 删除任务接口
+export function delUserTask(data) {
+  return request.delete('/tasks/userTask'+data.id)
+}
+
 // 出行列表接口
 export function getTravelList(params) {
   return request.get('/travels', { params })
@@ -181,6 +206,11 @@ export function delMultipleTask(data) {
   return request.post('/tasks/multiple', data)
 }
 
+// 批量删除任务接口
+export function delMultipleUserTask(data) {
+  return request.post('/tasks/userTask/multiple', data)
+}
+
 // 批量删除出行接口
 export function delMultipleTravel(data) {
   return request.post('/travels/multiple', data)
@@ -209,6 +239,11 @@ export function delMultipleUser(data) {
 // 导出任务接口
 export function downloadTask() {
   return request.get('/tasks/download',{ responseType: 'blob' })
+}
+
+// 导出任务接口
+export function downloadUserTask() {
+  return request.get('/tasks/userTask/download',{ responseType: 'blob' })
 }
 
 // 导出出行接口

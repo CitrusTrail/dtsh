@@ -3,6 +3,23 @@
         PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fdzc.springboot01.mapper.UserTaskMapper">
+    <select id="selectAllUserTask" resultType="com.fdzc.springboot01.entity.UserTask">
+        select * from user_task
+        <where>
+            completed_time is null
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="taskId != null and taskId != ''">
+                and task_id = #{taskId}
+            </if>
+            <if test="userId != null and userId != ''">
+                and user_id = #{userId}
+            </if>
+        </where>
+        order by
+            id desc
+    </select>
     <select id="selectUserTask" resultType="com.fdzc.springboot01.entity.Task">
         select
             t.id id,

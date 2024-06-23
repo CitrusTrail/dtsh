@@ -87,26 +87,27 @@ INSERT INTO `task` VALUES (7, '低碳校园行', '“低碳校园行”是一个
 -- ----------------------------
 DROP TABLE IF EXISTS `user_task`;
 CREATE TABLE `user_task` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `task_id` int(11) NOT NULL,
   `completed_time` datetime,
   `image` varchar(255),
-  `status` int(11),
-  PRIMARY KEY (`user_id`, `task_id`) USING BTREE
-);
+  `status` varchar(255),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_task
 -- ----------------------------
-INSERT INTO `user_task` VALUES (1, 1, '2024-06-01 00:00:00', null, null);
-INSERT INTO `user_task` VALUES (2, 1, '2024-06-01 00:00:00', null, null);
-INSERT INTO `user_task` VALUES (3, 1, '2024-06-01 00:00:00', null, null);
-INSERT INTO `user_task` VALUES (2, 2, '2024-06-01 00:00:00', null, null);
-INSERT INTO `user_task` VALUES (1, 2, '2024-06-01 00:00:00', null, null);
-INSERT INTO `user_task` VALUES (3, 2, '2024-06-01 00:00:00', null, null);
-INSERT INTO `user_task` VALUES (1, 6, '2024-06-01 00:00:00', null, null);
-INSERT INTO `user_task` VALUES (2, 6, '2024-06-01 00:00:00', null, null);
-INSERT INTO `user_task` VALUES (1, 7, '2024-06-01 00:00:00', null, null);
+INSERT INTO `user_task` VALUES (1, 1, 1, '2024-06-01 00:00:00', '/server/image/usertask/1.png', null);
+INSERT INTO `user_task` VALUES (2, 2, 1, '2024-06-01 00:00:00', '/server/image/usertask/1.png', null);
+INSERT INTO `user_task` VALUES (3, 3, 1, '2024-06-01 00:00:00', '/server/image/usertask/1.png', null);
+INSERT INTO `user_task` VALUES (4, 2, 2, '2024-06-01 00:00:00', '/server/image/usertask/1.png', null);
+INSERT INTO `user_task` VALUES (5, 1, 2, null, '/server/image/usertask/1.png', null);
+INSERT INTO `user_task` VALUES (6, 3, 2, null, '/server/image/usertask/1.png', null);
+INSERT INTO `user_task` VALUES (7, 1, 6, null, '/server/image/usertask/1.png', null);
+INSERT INTO `user_task` VALUES (8, 2, 6, null, '/server/image/usertask/1.png', null);
+INSERT INTO `user_task` VALUES (9, 1, 7, null, '/server/image/usertask/1.png', null);
 
 -- ----------------------------
 -- Table structure for travel

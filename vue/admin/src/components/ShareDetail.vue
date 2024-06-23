@@ -94,19 +94,6 @@ const loadShare = async () => {
   }
 }
 
-// 新增分享
-const addSubmit = async () => {
-  const data = {
-    name: form.name,
-    point: form.point,
-    carbon: form.carbon,
-    description: form.description
-  }
-  if (await addShare(data)) {
-    emit('success')
-  }
-}
-
 // 修改分享
 const editSubmit = async () => {
   if (await editShare(form)) {

@@ -157,7 +157,7 @@ export function delUser(data) {
 
 // 获取用户任务接口
 export function getUserTask(params) {
-  return request.get('/tasks/userTask/'+params.id)
+  return request.get('/tasks/userTask/users/'+params.id)
 }
 
 // 添加用户任务接口
