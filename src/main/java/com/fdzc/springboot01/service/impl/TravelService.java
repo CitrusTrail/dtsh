@@ -1,11 +1,13 @@
 package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
+import com.fdzc.springboot01.entity.User;
 import com.fdzc.springboot01.entity.dto.IdDTO;
 import com.fdzc.springboot01.entity.dto.PageDTO;
 import com.fdzc.springboot01.entity.vo.ModeVo;
 import com.fdzc.springboot01.entity.Travel;
 import com.fdzc.springboot01.mapper.TravelMapper;
+import com.fdzc.springboot01.mapper.UserMapper;
 import com.fdzc.springboot01.service.ITravelService;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,9 @@ public class TravelService implements ITravelService {
 
     @Resource
     TravelMapper travelMapper;
+
+    @Resource
+    UserMapper userMapper;
 
     public PageDTO<Travel> findAllTravel(int page, int pagesize, Integer id, Integer userId, String mode) {
         int offset = (page - 1) * pagesize;
@@ -49,7 +54,13 @@ public class TravelService implements ITravelService {
         }
         travel.setTotalTime(totalTime);
         travel.setCarbon(carbon);
-        return travelMapper.insert(travel);
+        int res = travelMapper.insert(travel);
+        if(res == 1){
+            User user = userMapper.selectById(travel.getUserId());
+            user.setCarbon(user.getCarbon()+travel.getCarbon());
+            userMapper.updateById(user);
+        }
+        return res;
     }
 
     public Integer updateOneTravel(Travel travel) {

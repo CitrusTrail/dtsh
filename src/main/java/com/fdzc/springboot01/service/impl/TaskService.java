@@ -118,8 +118,12 @@ public class TaskService implements ITaskService {
                 if(oldStatus==null||!oldStatus.equals(newStatus)){
                     if(newStatus.equals("通过")){
                         user.setPoint(user.getPoint()+task.getPoint());
+                        if(user.getCarbon()-task.getCarbon() >= 0){
+                            user.setCarbon(user.getCarbon()-task.getCarbon());
+                        }
                     }else if(newStatus.equals("不通过")){
                         user.setPoint(user.getPoint()-task.getPoint());
+                        user.setCarbon(user.getCarbon()+task.getCarbon());
                     }
                 }
             }
