@@ -51,6 +51,11 @@ public class ShareController {
         service.download(response);
     }
 
+    @GetMapping("/userShare/{id}")
+    public Result findUserShare(@PathVariable Integer id) {
+        return Result.success(service.findUserShare(id));
+    }
+
     @GetMapping("/num")
     public Result countNum() {
         return Result.success(service.countNum());

@@ -64,6 +64,10 @@ public class ShareService implements IShareService {
         }
     }
 
+    public List<Share> findUserShare(Integer id) {
+        return shareMapper.selectUserShare(id);
+    }
+
     public Long countNum() {
         return shareMapper.selectCount(null);
     }

@@ -115,6 +115,11 @@ export function delShare(data) {
   return request.delete('/shares/'+data.id)
 }
 
+// 查询用户分享
+export function getUserShare(params) {
+  return request.get('/shares/userShare/'+params.id)
+}
+
 // 商品列表接口
 export function getGoodsList(params) {
   return request.get('/goods', { params })

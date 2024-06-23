@@ -103,11 +103,11 @@ INSERT INTO `user_task` VALUES (1, 1, 1, '2024-06-01 00:00:00', '/server/image/u
 INSERT INTO `user_task` VALUES (2, 2, 1, '2024-06-01 00:00:00', '/server/image/usertask/1.png', null);
 INSERT INTO `user_task` VALUES (3, 3, 1, '2024-06-01 00:00:00', '/server/image/usertask/1.png', null);
 INSERT INTO `user_task` VALUES (4, 2, 2, '2024-06-01 00:00:00', '/server/image/usertask/1.png', null);
-INSERT INTO `user_task` VALUES (5, 1, 2, null, '/server/image/usertask/1.png', null);
-INSERT INTO `user_task` VALUES (6, 3, 2, null, '/server/image/usertask/1.png', null);
-INSERT INTO `user_task` VALUES (7, 1, 6, null, '/server/image/usertask/1.png', null);
-INSERT INTO `user_task` VALUES (8, 2, 6, null, '/server/image/usertask/1.png', null);
-INSERT INTO `user_task` VALUES (9, 1, 7, null, '/server/image/usertask/1.png', null);
+INSERT INTO `user_task` VALUES (5, 1, 2, null, null, null);
+INSERT INTO `user_task` VALUES (6, 3, 2, null, null, null);
+INSERT INTO `user_task` VALUES (7, 1, 6, '2024-06-01 00:00:00', '/server/image/usertask/1.png', '通过');
+INSERT INTO `user_task` VALUES (8, 2, 6, '2024-06-01 00:00:00', '/server/image/usertask/1.png', '不通过');
+INSERT INTO `user_task` VALUES (9, 1, 7, null, null, null);
 
 -- ----------------------------
 -- Table structure for travel
@@ -149,14 +149,15 @@ CREATE TABLE `share` (
   `content` text,
   `time` datetime NOT NULL,
   `likes` INT DEFAULT 0,  -- 点赞数
+  `image` varchar(255),
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of share
 -- ----------------------------
-INSERT INTO `share` VALUES (1, 1, '今天又是低碳出行的一天', '2024-05-01 12:00:00', 2);
-INSERT INTO `share` VALUES (2, 2, '风景真美！', '2024-05-01 12:00:00', 4);
+INSERT INTO `share` VALUES (1, 1, '今天又是低碳出行的一天', '2024-05-01 12:00:00', 2, '/server/image/usertask/1.png');
+INSERT INTO `share` VALUES (2, 2, '风景真美！', '2024-05-01 12:00:00', 4, '/server/image/usertask/1.png');
 
 -- ----------------------------
 -- Table structure for goods

@@ -109,8 +109,8 @@ const loadUserTaskList = async () => {
     page: page.value,
     pagesize: pagesize.value,
     id: form.value.id,
-    name: form.value.name,
-    description: form.value.description
+    taskId: form.value.taskId,
+    userId: form.value.userId
   }
   const data = await getUserTaskList(params)
   userTaskList.value = data.records

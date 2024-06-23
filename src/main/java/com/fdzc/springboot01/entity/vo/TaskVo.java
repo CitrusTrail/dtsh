@@ -6,6 +6,7 @@ import lombok.Data;
 public class TaskVo {
     private Integer id;
     private Integer taskId;
+    private Integer userId;
     private String name;
     private String description;
     private Double carbon;

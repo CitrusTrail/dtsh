@@ -114,11 +114,13 @@ public class TaskService implements ITaskService {
         if(res == 1) {
             User user = userMapper.selectById(userTask.getUserId());
             Task task = taskMapper.selectById(userTask.getTaskId());
-            if(oldStatus==null||!oldStatus.equals(newStatus)){
-                if(newStatus.equals("通过")){
-                    user.setPoint(user.getPoint()+task.getPoint());
-                }else if(newStatus.equals("不通过")){
-                    user.setPoint(user.getPoint()-task.getPoint());
+            if(newStatus!=null){
+                if(oldStatus==null||!oldStatus.equals(newStatus)){
+                    if(newStatus.equals("通过")){
+                        user.setPoint(user.getPoint()+task.getPoint());
+                    }else if(newStatus.equals("不通过")){
+                        user.setPoint(user.getPoint()-task.getPoint());
+                    }
                 }
             }
             userMapper.updateById(user);

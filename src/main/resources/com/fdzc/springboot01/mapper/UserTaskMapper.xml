@@ -23,6 +23,7 @@
     <select id="selectUserTasks" resultType="com.fdzc.springboot01.entity.vo.TaskVo">
         select
             u.id id,
+            user_id userId,
             t.id taskId,
             name,
             description,

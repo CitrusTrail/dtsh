@@ -5,6 +5,7 @@ import com.fdzc.springboot01.entity.dto.PageDTO;
 import com.fdzc.springboot01.entity.Share;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 public interface IShareService {
 
@@ -21,6 +22,8 @@ public interface IShareService {
     Integer deleteMultipleShare(IdDTO idDTO);
 
     void download(HttpServletResponse response);
+
+    List<Share> findUserShare(Integer id);
 
     Long countNum();
 

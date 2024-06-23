@@ -20,4 +20,6 @@ public class Share {
     private String time;
     @ExcelProperty(value = "点赞数")
     private Integer likes;
+    @ExcelProperty(value = "分享图片")
+    private String image;
 }
