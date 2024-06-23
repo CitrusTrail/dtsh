@@ -6,7 +6,7 @@
       direction="vertical"
       border
     >
-      <el-descriptions-item>
+      <el-descriptions-item :span="1">
         <template #label>
           <div class="cell-item">
             分享编号
@@ -14,7 +14,7 @@
         </template>
         {{ form.id }}
       </el-descriptions-item>
-      <el-descriptions-item>
+      <el-descriptions-item :span="1">
         <template #label>
           <div class="cell-item">
             用户编号
@@ -22,7 +22,7 @@
         </template>
         {{ form.userId }}
       </el-descriptions-item>
-      <el-descriptions-item>
+      <el-descriptions-item :span="2">
         <template #label>
           <div class="cell-item">
             发送时间
@@ -37,6 +37,14 @@
           </div>
         </template>
         {{ form.content }}
+      </el-descriptions-item>
+      <el-descriptions-item :span="4">
+        <template #label>
+          <div class="cell-item">
+            分享图片
+          </div>
+        </template>
+        <el-image :src="form.image"/>
       </el-descriptions-item>
     </el-descriptions>
   </el-form>
@@ -61,7 +69,8 @@ const form = reactive({
   id: props.id,
   userId: '',
   time: '',
-  content: ''
+  content: '',
+  image: ''
 })
 const formRef = ref()
 const { token } = useToken()

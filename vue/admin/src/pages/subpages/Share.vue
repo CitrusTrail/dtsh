@@ -40,7 +40,14 @@
       <el-table-column prop="id" label="分享编号" width="100" />
       <el-table-column prop="userId" label="用户编号" width="100" />
       <el-table-column prop="time" label="发送时间" width="200" />
-      <el-table-column prop="content" label="分享内容" show-overflow-tooltip />
+      <el-table-column label="分享图片" width="200">
+        <template #default="scope">
+          <div style="display: flex; align-items: center">
+            <el-image :src="scope.row.image"/>
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="content" label="分享内容" show-overflow-tooltip/>
       <el-table-column fixed="right" label="操作" width="200">
         <template #default="{ row }">
           <el-button type="success" @click="detailRow(row)" plain >详情</el-button>
