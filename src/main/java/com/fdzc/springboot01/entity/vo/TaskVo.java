@@ -12,4 +12,5 @@ public class TaskVo {
     private Integer point;
     private String image;
     private String status;
+    private String completedTime;
 }

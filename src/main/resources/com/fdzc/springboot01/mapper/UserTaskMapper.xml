@@ -6,7 +6,7 @@
     <select id="selectAllUserTask" resultType="com.fdzc.springboot01.entity.UserTask">
         select * from user_task
         <where>
-            completed_time is null
+            completed_time is not null
             <if test="id != null and id != ''">
                 and id = #{id}
             </if>
@@ -29,7 +29,8 @@
             t.image image,
             carbon,
             point,
-            status
+            status,
+            completed_time completedTime
         from
             user_task u
                 left join

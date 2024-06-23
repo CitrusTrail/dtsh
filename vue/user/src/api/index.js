@@ -1,4 +1,5 @@
 import request from '../utils/request'
+import config from "../../../admin/src/config";
 
 // 登录接口
 export function login(data) {
@@ -8,6 +9,15 @@ export function login(data) {
 // 注册接口
 export function register(data) {
   return request.post('/users/register', data)
+}
+
+// 更新图片地址
+export function uploadPictureURL(file) {
+  return request.post(config.baseURL + '/file/picture', file, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
 }
 
 // 商品相册接口

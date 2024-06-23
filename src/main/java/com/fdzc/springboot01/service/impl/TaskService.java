@@ -2,6 +2,8 @@ package com.fdzc.springboot01.service.impl;
 
 import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.fdzc.springboot01.entity.User;
 import com.fdzc.springboot01.entity.dto.IdDTO;
 import com.fdzc.springboot01.entity.dto.PageDTO;
 import com.fdzc.springboot01.entity.vo.HotTaskVo;
@@ -9,6 +11,7 @@ import com.fdzc.springboot01.entity.Task;
 import com.fdzc.springboot01.entity.UserTask;
 import com.fdzc.springboot01.entity.vo.TaskVo;
 import com.fdzc.springboot01.mapper.TaskMapper;
+import com.fdzc.springboot01.mapper.UserMapper;
 import com.fdzc.springboot01.mapper.UserTaskMapper;
 import com.fdzc.springboot01.service.ITaskService;
 import org.springframework.stereotype.Service;
@@ -26,6 +29,9 @@ public class TaskService implements ITaskService {
 
     @Resource
     UserTaskMapper userTaskMapper;
+
+    @Resource
+    UserMapper userMapper;
 
     public PageDTO<Task> findAllTask(int page, int pagesize, Integer id, String name, String description) {
         int offset = (page - 1) * pagesize;
@@ -102,7 +108,22 @@ public class TaskService implements ITaskService {
     }
 
     public Integer updateOneUserTask(UserTask userTask) {
-        return userTaskMapper.updateById(userTask);
+        String oldStatus = userTaskMapper.selectById(userTask.getId()).getStatus();
+        String newStatus = userTask.getStatus();
+        int res =  userTaskMapper.updateById(userTask);
+        if(res == 1) {
+            User user = userMapper.selectById(userTask.getUserId());
+            Task task = taskMapper.selectById(userTask.getTaskId());
+            if(oldStatus==null||!oldStatus.equals(newStatus)){
+                if(newStatus.equals("通过")){
+                    user.setPoint(user.getPoint()+task.getPoint());
+                }else if(newStatus.equals("不通过")){
+                    user.setPoint(user.getPoint()-task.getPoint());
+                }
+            }
+            userMapper.updateById(user);
+        }
+        return res;
     }
 
     public Integer deleteOneUserTask(Integer id) {

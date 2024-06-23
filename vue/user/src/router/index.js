@@ -47,38 +47,44 @@ const router = createRouter({
         path: '/userDetail',
         component: () => import('../pages/UserDetail.vue'),
         name: 'userDetail',
-        meta: { title: '个人信息', isTab: true,isShowNav: true, isShowBack: true }
+        meta: { title: '个人信息', isTab: false,isShowNav: true, isShowBack: true }
       },
       {
         path: '/userTask',
         component: () => import('../pages/UserTask.vue'),
         name: 'userTask',
-        meta: { title: '我的任务', isTab: true,isShowNav: true, isShowBack: true }
+        meta: { title: '我的任务', isTab: false,isShowNav: true, isShowBack: true }
+      },
+      {
+        path: '/userShare',
+        component: () => import('../pages/UserShare.vue'),
+        name: 'userShare',
+        meta: { title: '我的分享', isTab: false,isShowNav: true, isShowBack: true }
       },
       {
         path: '/buy',
         component: () => import('../pages/UserGoods.vue'),
         name: 'buy',
-        meta: { title: '我的兑换', isTab: true,isShowNav: true, isShowBack: true }
+        meta: { title: '我的兑换', isTab: false,isShowNav: true, isShowBack: true }
       },
       { 
         path: '/login',
         component: () => import('../pages/Login.vue'), 
         name: 'login', 
-        meta: { title: '登录', isTab: true, isShowNav: true, isShowBack: true } 
+        meta: { title: '登录', isTab: false, isShowNav: true, isShowBack: true }
       },
       { 
         path: '/register', 
         component: () => import('../pages/Register.vue'), 
         name: 'register', 
-        meta: { title: '注册', isTab: true, isShowNav: true, isShowBack: true } 
+        meta: { title: '注册', isTab: false, isShowNav: true, isShowBack: true }
       },
       { 
         path: '/goodslist',
         component: () => import('../pages/GoodsList.vue'), 
         props: true, 
         name: 'goodslist', 
-        meta: { title: '商品列表', isTab: true, isShowNav: true, isShowBack: true } 
+        meta: { title: '商品列表', isTab: true, isShowNav: true, isShowBack: true }
       },
       { 
         path: '/goodsDetail/:id',
