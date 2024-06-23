@@ -50,7 +50,9 @@ onMounted(() => {
 
 // 加载用户详情
 const loadUserDetail = async () => {
-  data.value = await getUser({ id: user.id })
+  if(user.id){
+    data.value = await getUser({ id: user.id })
+  }
 }
 
 

@@ -36,6 +36,7 @@ import { login, getUser } from '../api'
 import useToken from '../stores/token'
 import useUser from '../stores/user'
 import { useRouter } from 'vue-router'
+import { showToast } from 'vant'
 
 const { updateToken } = useToken()
 const { updateUser } = useUser()
@@ -59,7 +60,7 @@ const passwordRules = ref([
 // 表单提交函数
 const submitForm = async values => {
   const data = await login(values)
-  if (data) {
+  if (data.token!=null) {
     updateToken(data.token)
     const user = await getUser({ id: data.id })
     updateUser({
@@ -69,6 +70,8 @@ const submitForm = async values => {
       avatar: user.avatar
     })
     router.push({ name: 'user' })
+  }else{
+    showToast('用户名或密码错误！')
   }
 }
 const onFailed = errorInfo => {
