@@ -14,8 +14,8 @@
       </div>
     </van-cell-group>
     <van-popup :show="isShow" @close="onClose" position="bottom" style="height: 40%; padding: 50px 0;">
-    <div style="width: 90%; margin: 0 auto;">
-      <div style="margin-bottom: 20px;">请上传您参与任务的图片，我们将进行审核</div>
+      <div style="width: 90%; margin: 0 auto;">
+        <div style="margin-bottom: 20px;">请上传您参与任务的图片，我们将进行审核</div>
         <van-uploader :after-read="afterRead" :max-count="1" v-model="fileList"/>
         <van-action-bar>
           <van-action-bar-button type="danger" @click="onCheck" text="确定" />
@@ -49,7 +49,7 @@ const onClick = async (userTask) => {
 }
 
 const isShow = ref(false)
-const fileList = ref([]);
+const fileList = ref([])
 const url = ref('')
 const userTask = ref({})
 
@@ -61,6 +61,7 @@ const complete = (data) => {
 const onClose = () => {
   url.value = ''
   userTask.value = {}
+  fileList.value = []
   isShow.value = false
 }
 

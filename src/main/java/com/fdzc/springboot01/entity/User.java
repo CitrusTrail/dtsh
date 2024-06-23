@@ -22,6 +22,8 @@ public class User {
     private String tel;
     @ExcelProperty(value = "积分")
     private Integer point;
+    @ExcelProperty(value = "碳排放")
+    private Double carbon;
     @ExcelProperty(value = "头像")
     private String avatar;
 }

@@ -18,8 +18,6 @@ public class Share {
     private String content;
     @ExcelProperty(value = "发送时间")
     private String time;
-    @ExcelProperty(value = "点赞数")
-    private Integer likes;
     @ExcelProperty(value = "分享图片")
     private String image;
 }

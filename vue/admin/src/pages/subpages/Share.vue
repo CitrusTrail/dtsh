@@ -40,7 +40,6 @@
       <el-table-column prop="id" label="分享编号" width="100" />
       <el-table-column prop="userId" label="用户编号" width="100" />
       <el-table-column prop="time" label="发送时间" width="200" />
-      <el-table-column prop="likes" label="点赞数" width="100" />
       <el-table-column prop="content" label="分享内容" show-overflow-tooltip />
       <el-table-column fixed="right" label="操作" width="200">
         <template #default="{ row }">

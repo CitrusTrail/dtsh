@@ -28,6 +28,7 @@ CREATE TABLE `user`  (
   `address` text,
   `tel` varchar(50),
   `point` int(11), -- 积分
+  `carbon` decimal(10, 2),
   `avatar` text,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
@@ -35,9 +36,9 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'zhangsan', '123456', '福建省福州市闽侯县福州大学', '13500000000', 233, '/server/image/avatar/1.png');
-INSERT INTO `user` VALUES (2, 'lisi', '123456', '福建省福州市闽侯县福州大学', '13900000000', 999, '/server/image/avatar/2.png');
-INSERT INTO `user` VALUES (3, 'wangwu', '123456', '福建省福州市闽侯县福州大学', '13700000000', 999, '/server/image/avatar/3.png');
+INSERT INTO `user` VALUES (1, 'zhangsan', '123456', '福建省福州市闽侯县福州大学', '13500000000', 233, 999.99, '/server/image/avatar/1.png');
+INSERT INTO `user` VALUES (2, 'lisi', '123456', '福建省福州市闽侯县福州大学', '13900000000', 999, 999.99, '/server/image/avatar/2.png');
+INSERT INTO `user` VALUES (3, 'wangwu', '123456', '福建省福州市闽侯县福州大学', '13700000000', 999, 999.99, '/server/image/avatar/3.png');
 
 -- ----------------------------
 -- Table structure for admin
@@ -148,7 +149,6 @@ CREATE TABLE `share` (
   `user_id` int(11) NOT NULL,
   `content` text,
   `time` datetime NOT NULL,
-  `likes` INT DEFAULT 0,  -- 点赞数
   `image` varchar(255),
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
@@ -156,8 +156,8 @@ CREATE TABLE `share` (
 -- ----------------------------
 -- Records of share
 -- ----------------------------
-INSERT INTO `share` VALUES (1, 1, '今天又是低碳出行的一天', '2024-05-01 12:00:00', 2, '/server/image/usertask/1.png');
-INSERT INTO `share` VALUES (2, 2, '风景真美！', '2024-05-01 12:00:00', 4, '/server/image/usertask/1.png');
+INSERT INTO `share` VALUES (1, 1, '今天又是低碳出行的一天', '2024-05-01 12:00:00', '/server/image/usertask/1.png');
+INSERT INTO `share` VALUES (2, 2, '风景真美！', '2024-05-01 12:00:00', '/server/image/usertask/1.png');
 
 -- ----------------------------
 -- Table structure for goods
@@ -212,22 +212,5 @@ INSERT INTO `buy` VALUES (7, 2, 4, '2024-05-01 12:00:00', 999, 999);
 INSERT INTO `buy` VALUES (8, 3, 8, '2024-05-01 12:00:00', 999, 999);
 INSERT INTO `buy` VALUES (9, 1, 6, '2024-05-01 12:00:00', 999, 999);
 INSERT INTO `buy` VALUES (10, 2, 6, '2024-05-01 12:00:00', 999, 999);
-
--- ----------------------------
--- Table structure for user_carbon
--- ----------------------------
-DROP TABLE IF EXISTS `user_carbon`;
-CREATE TABLE `user_carbon` (
-  `user_id` int(11) NOT NULL,
-  `date` date,
-  `carbon` decimal(10, 2),
-  PRIMARY KEY (`user_id`, `date`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of user_carbon
--- ----------------------------
-INSERT INTO `user_carbon` VALUES (1, '2024-05-01', 999.99);
-INSERT INTO `user_carbon` VALUES (1, '2024-05-02', 999.99);
 
 SET FOREIGN_KEY_CHECKS = 1;

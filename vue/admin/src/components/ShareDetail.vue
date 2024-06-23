@@ -30,14 +30,6 @@
         </template>
         {{ form.time }}
       </el-descriptions-item>
-      <el-descriptions-item>
-        <template #label>
-          <div class="cell-item">
-            点赞数
-          </div>
-        </template>
-        {{ form.likes }}
-      </el-descriptions-item>
       <el-descriptions-item :span="4">
         <template #label>
           <div class="cell-item">
@@ -69,7 +61,6 @@ const form = reactive({
   id: props.id,
   userId: '',
   time: '',
-  likes: '',
   content: ''
 })
 const formRef = ref()
